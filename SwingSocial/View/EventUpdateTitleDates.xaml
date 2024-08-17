@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SwingSocial.Sample.View.EventUpdateTitleDates"
+             xmlns:viewmodel="clr-namespace:SwingSocial.Sample.ViewModel"  x:DataType="viewmodel:NewAccountViewModel"            
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"             
+             BackgroundColor="Black"             
+             xmlns:view="clr-namespace:SwingSocial.Sample.View;assembly=SwingSocial" xmlns:model="clr-namespace:SwingSocial.Sample.Model"
+             xmlns:xlabs="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:htmllabel="clr-namespace:Plugin.HtmlLabel;assembly=Plugin.HtmlLabel" xmlns:helper="clr-namespace:SwingSocial.Sample.Helper"
+             Title ="" Shell.BackgroundColor="Black">
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Margin="10"/>
+
+        </Grid>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <AbsoluteLayout>
+                <ScrollView x:Name="MainScroll" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout>
+                        <Frame CornerRadius="10" Padding="0" Margin="0" VerticalOptions="FillAndExpand">
+                            <StackLayout x:Name="stkMain" BackgroundColor="Black">
+
+                                <Label Text="Enter Event name:" TextColor="white" FontSize="16" FontAttributes="Bold" BackgroundColor="Black" Margin="20,20,0,0"></Label>
+                                <Frame CornerRadius="10" Margin="20" Padding="0" BackgroundColor="black">
+                                                    <StackLayout>
+                                        <Entry x:Name="EventName" Text="" Placeholder="Username" TextColor="white" PlaceholderColor="#292a2e"></Entry>
+                                    </StackLayout>
+
+                                </Frame>
+
+
+
+                                <StackLayout Orientation="Horizontal">
+                                    <Frame HorizontalOptions="Start" BackgroundColor="Black" Padding="0" Margin="0">
+                                        <StackLayout>
+                                            <Label TextColor="White">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="Start Time "></Span>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Frame CornerRadius="10" Padding="0" Margin="0" BorderColor="#292a2e" BackgroundColor="#292a2e">
+                                                <helper:DateTimePicker x:Name="EventStartDateTime" BackgroundColor="#292a2e" WidthRequest="200">
+
+                                                </helper:DateTimePicker>
+                                            </Frame>
+                                        </StackLayout>
+                                    </Frame>
+
+                                    <Frame HorizontalOptions="EndAndExpand" BackgroundColor="Black" Padding="0" Margin="0">
+                                        <StackLayout>
+                                            <Label TextColor="White">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="End Time "></Span>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Frame CornerRadius="10" Padding="0" Margin="0" BorderColor="#292a2e" BackgroundColor="#292a2e">
+                                                <helper:DateTimePicker x:Name="EventEndDateTime" BackgroundColor="#292a2e" WidthRequest="200">
+
+                                                </helper:DateTimePicker>
+
+                                            </Frame>
+                                        </StackLayout>
+                                    </Frame>
+
+
+                                </StackLayout>
+
+                                <!--<Frame CornerRadius="10" Margin="20" Padding="0" BackgroundColor="black">
+                                    <StackLayout>
+                                        <Label Text="Enter Event start and end dates:" TextColor="white" FontSize="16" FontAttributes="Bold" BackgroundColor="Black" Margin="20,20,0,0"></Label>
+                                        <DatePicker x:Name="EventStartDateTime" MinimumDate="01/01/1940"
+MaximumDate="12/31/2018"
+Date="06/21/2018" TextColor="white" BackgroundColor="#292a2e"/>
+                                       
+                                        <DatePicker x:Name="EventEndDateTime" MinimumDate="01/01/1940"
+MaximumDate="12/31/2018"
+Date="06/21/2018" TextColor="white" BackgroundColor="#292a2e"/>                                        
+                                    </StackLayout>
+
+                                </Frame>-->
+                                <Frame
+                                            Margin="0"  Padding="0"
+       BorderColor="White" BackgroundColor="#c21164"
+       CornerRadius="10"
+       HeightRequest="50"
+       WidthRequest="130"
+       IsClippedToBounds="True"
+       HorizontalOptions="Center"
+       VerticalOptions="Center">
+                                    <Button Clicked="Saved_Tapped" CornerRadius="10" Text="Save" TextColor="white" BackgroundColor="#c21164" HorizontalOptions="Center" VerticalOptions="Center" Margin="1" FontSize="22">
+                                    </Button>
+                                </Frame>
+
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </ScrollView>
+
+            </AbsoluteLayout>            
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

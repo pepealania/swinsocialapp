@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SwingSocial.Sample.View.CommentsPage"
+             xmlns:viewmodel="clr-namespace:SwingSocial.Sample.ViewModel"             
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"             
+             BackgroundColor="Black"             
+             xmlns:view="clr-namespace:SwingSocial.Sample.View;assembly=SwingSocial"                          
+             xmlns:model="clr-namespace:SwingSocial.Sample.Model"
+             x:DataType="viewmodel:CommentsPageViewModel"
+             Title ="" Shell.BackgroundColor="Black">
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Margin="10"/>
+
+        </Grid>
+    </Shell.TitleView>
+    <ContentPage.Content>
+
+        <StackLayout>
+            <ScrollView Orientation="Vertical">
+                <StackLayout Margin="20" Background="black" Spacing="0">
+                    <Label Text="Comment" TextColor="White" BackgroundColor="Black" FontSize="26" FontAttributes="Bold" HorizontalTextAlignment="Center"></Label>
+                    <Label x:Name="commentsLabel" TextColor="Red"></Label>
+                    <Frame Padding="0" CornerRadius="10">
+                        <Image x:Name="commentsImage" HorizontalOptions="FillAndExpand" Aspect="AspectFit" Margin="0"></Image>
+                    </Frame>
+
+                    <StackLayout>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="5*"></ColumnDefinition>
+                                <ColumnDefinition Width="5*"></ColumnDefinition>
+
+                            </Grid.ColumnDefinitions>
+                            <Button Text="{Binding LikesButtonLabel}" x:Name="WhatsHotLike" TextColor="White" CornerRadius="5" BackgroundColor="#c21164" HorizontalOptions="FillAndExpand" Clicked="TapGestureRecognizer_LikeTapped"></Button>
+                            <Frame BackgroundColor="#c21164" Grid.Column="1" Margin="0" Padding="0" CornerRadius="10" BorderColor="#394A57" IsVisible="{Binding PostDeleteButtonIsVisible}">
+
+                                <Button HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="#c21164" Text="Delete Post" TextColor="White" Clicked="DeletePost_Clicked"></Button>
+                            </Frame>
+
+                        </Grid>
+                        <Frame Padding="10" BorderColor="white" CornerRadius="10" Margin="10" BackgroundColor="#000000">
+                            <StackLayout>
+                                <Label TextColor="White" BackgroundColor="Black">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding TotalComments}"></Span>
+                                            <Span Text=" Comments"></Span>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Frame CornerRadius="10" BackgroundColor="Black" Padding="0" Margin="0">
+                                    <Entry x:Name="commentEmtry" Placeholder="Insert Comment" Text="" FontSize="16" BackgroundColor="White" HorizontalOptions="FillAndExpand"></Entry>
+
+                                </Frame>
+
+                                <Frame
+                                            Margin="0" Padding="0"
+       BorderColor="White" BackgroundColor="#c21164"
+       CornerRadius="10"
+       IsClippedToBounds="True"
+       HorizontalOptions="Center"
+       VerticalOptions="Center">
+                                    <Button HorizontalOptions="FillAndExpand" Margin="0" Padding="0" Text="Save" CornerRadius="10" TextColor="white" BackgroundColor="#c21164" Clicked="TapGestureRecognizer_SaveCommentTapped" CommandParameter="{Binding Source={x:Reference commentEmtry}, Path=Text}">
+                                    </Button>
+
+                                </Frame>
+
+
+                            </StackLayout>
+                        </Frame>
+                        <ListView HasUnevenRows="True" ItemsSource="{Binding PostComments}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate  x:DataType="model:PostComment">
+                                    <ViewCell IsEnabled="True">
+                                        <StackLayout>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Grid BackgroundColor="black">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="*" />
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="auto" />
+                                                        <ColumnDefinition Width="auto" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Frame Grid.Row="0"
+           Grid.Column="1"
+           Grid.ColumnSpan="2"
+           Padding="0"
+           HorizontalOptions="CenterAndExpand"
+           VerticalOptions="Center"
+           CornerRadius="100"
+           IsClippedToBounds="True"
+           HeightRequest="50"
+           WidthRequest="50"
+           BackgroundColor="SaddleBrown">
+                                                        <Image Source="{Binding Avatar}"
+               VerticalOptions="FillAndExpand"
+               HorizontalOptions="FillAndExpand" />
+                                                    </Frame>
+                                                </Grid>
+                                                <Frame BorderColor="white" Padding="0" Margin="0" CornerRadius="10" BackgroundColor="black" WidthRequest="700">
+                                                    <Grid>
+                                                        <Grid.RowDefinitions>
+
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="8.5*"></ColumnDefinition>
+                                                            <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                                                        </Grid.ColumnDefinitions>
+                                                        <StackLayout Grid.Column="0" Orientation="Vertical" Margin="10"
+                                                VerticalOptions="Center" BackgroundColor="Black">
+
+                                                            <Label Text="{Binding UserName}" FontSize="12"
+                                               TextColor="White" />
+
+                                                            <Label Text="{Binding Comment}"
+                                               FontSize="9" TextColor="White" />
+
+                                                        </StackLayout>
+                                                        <Button Grid.Column="1" Text="Reply" Clicked="ReplyClicked" TextColor="White" BackgroundColor="#c21164" CornerRadius="10" Padding="0" Margin="5" FontSize="10"></Button>
+                                                    </Grid>
+                                                </Frame>
+
+                                            </StackLayout>
+                                            <StackLayout Orientation="Horizontal" x:Name="ReplyComment" IsVisible="false">
+                                                <Frame BorderColor="white" Padding="0" Margin="0" CornerRadius="10" BackgroundColor="black" WidthRequest="700">
+                                                    <Grid Padding="0">
+                                                        <Grid.RowDefinitions>
+
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="8.7*"></ColumnDefinition>
+                                                            <ColumnDefinition Width="1.3*"></ColumnDefinition>
+                                                        </Grid.ColumnDefinitions>
+                                                        <StackLayout Grid.Column="0" Orientation="Vertical" Margin="5,5,0,5"
+                                                VerticalOptions="Center">
+                                                            <Frame CornerRadius="10" BackgroundColor="Black" Padding="0" Margin="0">
+                                                                <Entry x:Name="commentEmtry" Placeholder="Insert Comment" Text="" FontSize="12" BackgroundColor="White" HorizontalOptions="FillAndExpand" Margin="0"></Entry>
+                                                            </Frame>
+                                                        </StackLayout>
+
+                                                        <Button Grid.Column="1" Text="Save" TextColor="White" BackgroundColor="#c21164" CornerRadius="10" Padding="0" Margin="5" FontSize="10"></Button>
+
+                                                    </Grid>
+                                                </Frame>
+
+                                            </StackLayout>
+                                        </StackLayout>
+
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                    </StackLayout>
+
+                </StackLayout>
+
+            </ScrollView>
+            <StackLayout BackgroundColor="Black" WidthRequest="700">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="10, 10, 10, 20" Spacing="25" BackgroundColor="Black">
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="superLikeButton1" Source="iconhome.png" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:SwingerSocialPage}"></ImageButton>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="nopeButton" Source="iconcommunity.png" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:Community}" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="pineapple" Source="pineapplelittle.png" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:MapPage}" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                        <!--<ImageButton x:Name="superLikeButton" Source="FlashingPineapple.gif" WidthRequest="50" HeightRequest="50" BackgroundColor="White" Scale="1">
+                    </ImageButton>-->
+                        <!--<ff:CachedImage x:Name="pineapple" WidthRequest="50" HeightRequest="50" Margin="0,0,0,0">
+                            <ff:CachedImage.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:MapPage}"/>
+                            </ff:CachedImage.GestureRecognizers>
+                        </ff:CachedImage>-->
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="likeButton" Source="iconmessaging.png" Clicked="OnChatClicked" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="superLikeButton" Source="iconlikes.png" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:Matches}" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+
+        </StackLayout>        
+    </ContentPage.Content>
+</ContentPage>

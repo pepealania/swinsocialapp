@@ -1,0 +1,406 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:swipeCardView="clr-namespace:MLToolkit.Forms.SwipeCardView;assembly=MLToolkit.Forms.SwipeCardView"
+             x:Class="SwingSocial.Sample.View.Explore"
+             xmlns:view="clr-namespace:SwingSocial.Sample.View;assembly=SwingSocial"             
+             Title="Explore" Shell.BackgroundColor="Black">
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Margin="10"/>
+
+        </Grid>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="Black">
+        <Grid BackgroundColor="Black" HeightRequest="750">
+
+        <!-- Menu view -->
+        <Grid RowSpacing="2" x:Name="GridMenuView" BackgroundColor="Black">
+
+            <Grid.RowDefinitions>
+                <RowDefinition x:Name="MenuSafeAreaRow" Height="0" />
+                <RowDefinition x:Name="MenuTopRow" />
+                <RowDefinition Height="47.5" />
+                <RowDefinition Height="47.5"  />
+                <RowDefinition Height="47.5" />
+                <RowDefinition Height="47.5" />
+                <RowDefinition Height="47.5" />
+                <RowDefinition Height="47.5" />
+                <RowDefinition Height="47.5" />
+                <RowDefinition Height="47.5" />
+                <RowDefinition Height="47.5" />
+                <RowDefinition Height="47.5" />
+                <RowDefinition Height="47.5" />
+                        <RowDefinition Height="47.5" />
+                        <RowDefinition x:Name="MenuBottomRow" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="70" />
+                <ColumnDefinition Width="27.5" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Row="0" Grid.RowSpan="12" Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="Black"  Aspect="AspectFill" />
+
+            <!--<Frame Grid.Row="2" Grid.Column="1" WidthRequest="67.5" x:Name="UserIcon" Opacity="0" TranslationY="-10"
+                   HorizontalOptions="Center" VerticalOptions="Center"
+                   BackgroundColor="White" HasShadow="False" 
+                   HeightRequest="67.5" CornerRadius="33.75" IsClippedToBounds="True">
+                <Image Margin="-20" Source="events.png" HeightRequest="67.5"
+                       WidthRequest="47.5" VerticalOptions="Center" HorizontalOptions="Center" />
+            </Frame>-->
+
+
+            <ImageButton Grid.Row="2" Grid.Column="0" WidthRequest="60" x:Name="UsersIcon" Opacity="0" TranslationY="-10"
+                   HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnShowMenu"
+                   Source="saturnborderevents.png" 
+                   HeightRequest="37.5" BackgroundColor="Black" BorderColor="Yellow"/>
+            <!--<Label Grid.Row="2" Grid.Column="1" Text="5" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" BackgroundColor="Black"></Label>-->
+            <ImageButton Grid.Row="3" Grid.Column="0" WidthRequest="60" x:Name="StarIcon" Opacity="0" TranslationY="-10"
+                   HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnShowWhatsHotView"
+                   Source="saturnborderwhatshot.png"
+                   HeightRequest="37.5"  BackgroundColor="Black"  />
+            <!--<Label Grid.Row="3" Grid.Column="1" Text="25" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12"  BackgroundColor="Black"></Label>-->
+            <ImageButton Grid.Row="4" Grid.Column="0" WidthRequest="67.5" x:Name="MessageIcon" Opacity="0" TranslationY="-10"
+                   HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnShowLikeds"
+                   Source="saturnborderliked.png"
+                   HeightRequest="37.5"  BackgroundColor="Black" />
+            <ImageButton Grid.Row="5" Grid.Column="0" WidthRequest="67.5" x:Name="LikeMeIcon" Opacity="0" TranslationY="-10"
+                   HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnShowLikedsMe"
+                   Source="saturnborderlikedme.png"
+                   HeightRequest="37.5"  BackgroundColor="Black" />
+                    <!--<Label Grid.Row="4" Grid.Column="1" Text="55" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12"  BackgroundColor="Black"></Label>-->
+            <ImageButton Grid.Row="6" Grid.Column="0" WidthRequest="67.5" x:Name="SettingsIcon" Opacity="0" TranslationY="-10"
+                   HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnShowMaybes"
+                   Source="saturnbordermaybe.png"
+                   HeightRequest="37.5"  BackgroundColor="Black" />
+            <!--<Label Grid.Row="5" Grid.Column="1" Text="12" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12"  BackgroundColor="Black"></Label>-->
+            <Image Grid.Row="7" Grid.Column="0" WidthRequest="67.5" x:Name="SettingsIcon1" Opacity="0" TranslationY="-10"
+                   HorizontalOptions="Center" VerticalOptions="Center"
+                   Source="saturnborderonline.png"
+                   HeightRequest="37.5"  BackgroundColor="Black" />
+            <!--<Label Grid.Row="6" Grid.Column="1" Text="100" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12"  BackgroundColor="Black"></Label>-->
+            <ImageButton Grid.Row="8" Grid.Column="0" WidthRequest="67.5" x:Name="SettingsIcon2" Opacity="0" TranslationY="-10"
+                   HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnShowFriends"
+                   Source="saturnborderfriends.png"
+                   HeightRequest="37.5"  BackgroundColor="Black" />
+            <!--<Label Grid.Row="7" Grid.Column="1" Text="100" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12"  BackgroundColor="Black"></Label>-->
+            <ImageButton Grid.Row="9" Grid.Column="0" WidthRequest="67.5" x:Name="SettingsIcon3" Opacity="0" TranslationY="-10"
+                   HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnShowNopeds"
+                   Source="saturnborderdenied.png"
+                   HeightRequest="37.5"  BackgroundColor="Black" />
+            <ImageButton Grid.Row="10" Grid.Column="0" WidthRequest="67.5" x:Name="LearnIcon" Opacity="0" TranslationY="-10"
+            HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnShowLearnView"
+            Source="saturnborderlearn.png"
+            HeightRequest="37.5"  BackgroundColor="Black" />
+                    <!--<Label Grid.Row="8" Grid.Column="1" Text="100" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12"  BackgroundColor="Black"></Label>-->
+            <ImageButton Grid.Row="11" Grid.Column="0" WidthRequest="67.5" x:Name="SettingsIcon4" Opacity="0" TranslationY="-10"
+                   HorizontalOptions="Center" VerticalOptions="Center"
+                   Source="saturnbordertravel.png"
+                   HeightRequest="37.5"  BackgroundColor="Black" Clicked="OnShowTravelView" />
+
+                    <!--<Label Grid.Row="9" Grid.Column="1" Text="100" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12"  BackgroundColor="Black"></Label>-->
+        </Grid>
+
+        <!-- Content view -->
+        <Frame x:Name="Page" BackgroundColor="Black">
+            <Grid Margin="0" RowSpacing="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <!--<Grid Grid.Row="0" BackgroundColor="{StaticResource PrimaryColor}" RowSpacing="0" ColumnSpacing="0">-->
+                <Grid Grid.Row="0" BackgroundColor="Black" RowSpacing="0" ColumnSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition x:Name="ToolbarSafeAreaRow" />
+                        <RowDefinition Height="48" />
+                        <RowDefinition Height="48" />                        
+                    </Grid.RowDefinitions>
+
+
+                    <!--<Button Grid.Column="0" Grid.Row="1" Clicked="OnShowMenu" Image="menu.png"
+                            CornerRadius="0" BackgroundColor="Transparent" />-->
+                    <Button HorizontalOptions="Start" x:Name="EventsBack" IsVisible="false" Grid.Row="1" Clicked="OnShowMenu" ImageSource="toparrow.png"
+                            BackgroundColor="Transparent" HeightRequest="20" WidthRequest="20" />
+
+                    <!--<Label Grid.Column="1" Grid.Row="1" FontSize="Medium"
+                           Text="Inbox" TextColor="{StaticResource TitleTextColor}"
+                           HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />-->
+                            <Image Source="thumbnail_logo.png" x:Name="DetailLogo" Grid.Row="1" BackgroundColor="Transparent" HorizontalOptions="Center" WidthRequest="205" HeightRequest="45"></Image>
+                            <Label HorizontalOptions="Center" Grid.Row="2" FontSize="Medium" x:Name="ListTitle"
+                           TextColor="White"
+                           HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                        </Grid>
+
+                        <StackLayout x:Name="LearnView" IsVisible="false" Margin="10,50,10,10" BackgroundColor="Black">
+                            <!-- WebView needs to be given height and width request within layouts to render. -->
+                            <WebView x:Name="webView" WidthRequest="1000" HeightRequest="1000" Source="https://swingsocial.co/blogs/"/>
+                        </StackLayout>
+                        <StackLayout x:Name="TravelView" IsVisible="false" Margin="10,50,10,10" BackgroundColor="Black">
+                            <!-- WebView needs to be given height and width request within layouts to render. -->
+                            <WebView x:Name="travelwebView" WidthRequest="1000" HeightRequest="1000" Source="https://swingsocial.co/resorts/"/>
+                        </StackLayout>
+                        <StackLayout x:Name="WhatsHotView" IsVisible="false" Margin="10,50,10,10" BackgroundColor="Black">
+                            <!-- WebView needs to be given height and width request within layouts to render. -->
+                            <WebView x:Name="whatshotwebView" WidthRequest="1000" HeightRequest="1000" Source="http://swingsocial.club/app/posts/"/>
+                        </StackLayout>                
+                                                <ListView IsVisible="false" Grid.Row="1" x:Name="ProfilesListView" RowHeight="500" BackgroundColor="Black" ItemsSource="{Binding LikedProfiles}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell IsEnabled="False">
+                                        <Grid RowSpacing="0" ColumnSpacing="0" Padding="0,0,0,0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Image Margin="0" HeightRequest="700" Source="{Binding Avatar}" />
+
+                                            <StackLayout Grid.Row="1"
+                                                VerticalOptions="Center" >
+
+                                                <Label Text="{Binding UserName}" FontSize="Medium"
+                                               TextColor="#394A57" />
+
+                                                <Label Text="{Binding UserName}"
+                                               FontSize="Small" TextColor="#8C9095" />
+
+                                            </StackLayout>
+
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                        <ListView IsVisible="false" Grid.Row="1" x:Name="NopeProfilesListView" RowHeight="500" BackgroundColor="Black" ItemsSource="{Binding NopedProfiles}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell IsEnabled="False">
+                                        <Grid RowSpacing="0" ColumnSpacing="0" Padding="0,0,0,0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Image Margin="0" HeightRequest="700" Source="{Binding Avatar}" />
+
+                                            <StackLayout Grid.Row="1"
+                                                VerticalOptions="Center" >
+
+                                                <Label Text="{Binding UserName}" FontSize="Medium"
+                                               TextColor="#394A57" />
+
+                                                <Label Text="{Binding UserName}"
+                                               FontSize="Small" TextColor="#8C9095" />
+
+                                            </StackLayout>
+
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                        <ListView IsVisible="false" Grid.Row="1" x:Name="MaybeProfilesListView" RowHeight="500" BackgroundColor="Black" ItemsSource="{Binding MaybeProfiles}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell IsEnabled="False">
+                                        <Grid RowSpacing="0" ColumnSpacing="0" Padding="0,0,0,0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Image Margin="0" HeightRequest="700" Source="{Binding Avatar}" />
+
+                                            <StackLayout Grid.Row="1"
+                                                VerticalOptions="Center" >
+
+                                                <Label Text="{Binding UserName}" FontSize="Medium"
+                                               TextColor="#394A57" />
+
+                                                <Label Text="{Binding UserName}"
+                                               FontSize="Small" TextColor="#8C9095" />
+
+                                            </StackLayout>
+                                            <ListView IsVisible="false" Grid.Row="1" x:Name="MaybeProfilesListView" RowHeight="500" BackgroundColor="Black" ItemsSource="{Binding MaybeProfiles}">
+                                                <ListView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <ViewCell IsEnabled="False">
+                                                            <Grid RowSpacing="0" ColumnSpacing="0" Padding="0,0,0,0">
+                                                                <Grid.RowDefinitions>
+                                                                    <RowDefinition Height="*"/>
+                                                                    <RowDefinition Height="*"/>
+                                                                </Grid.RowDefinitions>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="*" />
+                                                                </Grid.ColumnDefinitions>
+
+                                                                <Image Margin="0" HeightRequest="700" Source="{Binding Avatar}" />
+
+                                                                <StackLayout Grid.Row="1"
+                                                VerticalOptions="Center" >
+
+                                                                    <Label Text="{Binding UserName}" FontSize="Medium"
+                                               TextColor="#394A57" />
+
+                                                                    <Label Text="{Binding UserName}"
+                                               FontSize="Small" TextColor="#8C9095" />
+
+                                                                </StackLayout>
+
+                                                            </Grid>
+                                                        </ViewCell>
+                                                    </DataTemplate>
+                                                </ListView.ItemTemplate>
+                                            </ListView>
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                        <ListView IsVisible="false" Grid.Row="1" x:Name="FriendProfilesListView" RowHeight="500" BackgroundColor="Black" ItemsSource="{Binding FriendProfiles}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell IsEnabled="False">
+                                        <Grid RowSpacing="0" ColumnSpacing="0" Padding="0,0,0,0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <Image Margin="0" HeightRequest="700" Source="{Binding Avatar}" />
+
+                                            <StackLayout Grid.Row="1"
+                                                VerticalOptions="Center" >
+
+                                                <Label Text="{Binding UserName}" FontSize="Medium"
+                                               TextColor="#394A57" />
+
+                                                <Label Text="{Binding UserName}"
+                                               FontSize="Small" TextColor="#8C9095" />
+
+                                            </StackLayout>
+                                            <ListView IsVisible="false" Grid.Row="1" x:Name="MaybeProfilesListView" RowHeight="500" BackgroundColor="Black" ItemsSource="{Binding MaybeProfiles}">
+                                                <ListView.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <ViewCell IsEnabled="False">
+                                                            <Grid RowSpacing="0" ColumnSpacing="0" Padding="0,0,0,0">
+                                                                <Grid.RowDefinitions>
+                                                                    <RowDefinition Height="*"/>
+                                                                    <RowDefinition Height="*"/>
+                                                                </Grid.RowDefinitions>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="*" />
+                                                                </Grid.ColumnDefinitions>
+
+                                                                <Image Margin="0" HeightRequest="700" Source="{Binding Avatar}" />
+
+                                                                <StackLayout Grid.Row="1"
+                                                VerticalOptions="Center" >
+
+                                                                    <Label Text="{Binding UserName}" FontSize="Medium"
+                                               TextColor="#394A57" />
+
+                                                                    <Label Text="{Binding UserName}"
+                                               FontSize="Small" TextColor="#8C9095" />
+
+                                                                </StackLayout>
+
+                                                            </Grid>
+                                                        </ViewCell>
+                                                    </DataTemplate>
+                                                </ListView.ItemTemplate>
+                                            </ListView>
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <ListView Grid.Row="1" x:Name="UserListView" HasUnevenRows="True" BackgroundColor="Black" ItemsSource="{Binding Events}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell IsEnabled="False">
+                                        <Grid RowSpacing="0" ColumnSpacing="0" Padding="0,0,0,0">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <StackLayout Grid.Row="0"
+                                                >
+                                                <Image Margin="0" Source="{Binding CoverImageUrl}" />
+                                                <Label Text="{Binding Name}" FontSize="Medium"
+                                               TextColor="#394A57" />
+
+                                                <Label Text="{Binding Name}"
+                                               FontSize="Small" TextColor="#8C9095" />
+
+                                                <Label Text="{Binding StartTime}" FontSize="Small"
+                                               TextColor="#C2C5CB" />
+
+                                            </StackLayout>
+
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+        </Frame>
+
+    </Grid>
+
+            <StackLayout BackgroundColor="Black" WidthRequest="700">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="10, 10, 10, 20" Spacing="30" BackgroundColor="Black">
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="superLikeButton1" Source="iconhome.png" WidthRequest="40" HeightRequest="40" BackgroundColor="Black" Scale="1" Margin="0,0,0,0" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:SwingerSocialPage}"></ImageButton>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="nopeButton" Source="iconcommunity.png" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:Explore}" WidthRequest="40" HeightRequest="40" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="pineapple" Source="pineapplelittle.png" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:MapPage}" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                        <!--<ImageButton x:Name="superLikeButton" Source="FlashingPineapple.gif" WidthRequest="50" HeightRequest="50" BackgroundColor="White" Scale="1">
+                    </ImageButton>-->
+                        <!--<ff:CachedImage x:Name="pineapple" WidthRequest="50" HeightRequest="50" Margin="0,0,0,0">
+                            <ff:CachedImage.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:MapPage}"/>
+                            </ff:CachedImage.GestureRecognizers>
+                        </ff:CachedImage>-->
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="likeButton" Source="iconmessaging.png" Clicked="OnChatClicked" WidthRequest="40" HeightRequest="40" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="superLikeButton" Source="iconlikes.png" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:Matches}" WidthRequest="40" HeightRequest="40" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

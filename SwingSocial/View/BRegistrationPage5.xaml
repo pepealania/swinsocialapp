@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SwingSocial.Sample.View.BRegistrationPage5"
+             xmlns:viewmodel="clr-namespace:SwingSocial.Sample.ViewModel"  x:DataType="viewmodel:NewAccountViewModel"            
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"             
+             BackgroundColor="Black"             
+             xmlns:view="clr-namespace:SwingSocial.Sample.View;assembly=SwingSocial" xmlns:model="clr-namespace:SwingSocial.Sample.Model"
+             xmlns:xlabs="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:htmllabel="clr-namespace:Plugin.HtmlLabel;assembly=Plugin.HtmlLabel"
+             Title ="" Shell.BackgroundColor="Black">
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Margin="10"/>
+
+        </Grid>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <ScrollView x:Name="MainScroll" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout>
+                    <Label Text="I am a" TextColor="white" FontSize="26" FontAttributes="Bold" BackgroundColor="Black" Margin="20,20,0,0" HorizontalOptions="Center"></Label>
+                    <Label Text="Everyone's welcome on SwingSocial." TextColor="white" FontSize="16" BackgroundColor="Black" Margin="20,20,0,0" HorizontalOptions="Center"></Label>
+                    <Picker Title="I am a" x:Name="userTypesPicker" BackgroundColor="#5d5a5d"
+        TitleColor="White"
+        TextColor="White"
+        FontAttributes="Italic"
+        FontSize="12" SelectedIndexChanged="userTypesPicker_SelectedIndexChanged"/>
+
+                    <Label IsVisible="false" x:Name="SingleAgeLabel" Text="What's your age?" TextColor="white"></Label>
+                    <Entry IsVisible="false" x:Name="SingleAgeEntry" Keyboard="Numeric" BackgroundColor="#5d5a5d"
+        TextColor="White"
+        FontAttributes="Italic"
+        FontSize="12"/>
+                    <StackLayout IsVisible="false" x:Name="CoupleStackLayout">
+                        <Label Text="My Information" TextColor="white" FontSize="26" FontAttributes="Bold" BackgroundColor="Black" Margin="20,20,0,0" HorizontalOptions="Center"></Label>
+
+                        <Label x:Name="CoupleMyAgeLabel" Text="What's your age?" TextColor="white"></Label>
+                        <Entry x:Name="CoupleMyAgeEntry" Keyboard="Numeric" BackgroundColor="#5d5a5d"
+        TextColor="White"
+        FontAttributes="Italic"
+        FontSize="12"/>
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Sexual Orientation " TextColor="White" FontSize="12"></Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Text="What's your sexual orientation?" TextColor="white"></Label>
+                        <Picker Title="Sexual orientation" x:Name="CoupleMySexOrientationPicker" BackgroundColor="#5d5a5d"
+        TitleColor="White"
+        TextColor="White"
+        FontAttributes="Italic"
+        FontSize="12"/>                        
+                        <Label Text="Partner's Information" TextColor="white" FontSize="26" FontAttributes="Bold" BackgroundColor="Black" Margin="20,20,0,0" HorizontalOptions="Center"></Label>
+
+                        <Label x:Name="CouplePartnerAgeLabel" Text="What's your age?" TextColor="white"></Label>
+                        <Entry x:Name="CouplePartnerAgeEntry" Keyboard="Numeric" BackgroundColor="#5d5a5d"
+        TextColor="White"
+        FontAttributes="Italic"
+        FontSize="12"/>
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Sexual Orientation " TextColor="White" FontSize="12"></Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Text="What's your sexual orientation?" TextColor="white"></Label>
+                        <Picker Title="Sexual orientation" x:Name="CouplePartSexOrientationPicker" BackgroundColor="#5d5a5d"
+        TitleColor="White"
+        TextColor="White"
+        FontAttributes="Italic"
+        FontSize="12"/>                        
+                    </StackLayout>
+                    <Frame
+                                            Margin="0"
+       BorderColor="White" BackgroundColor="#c21164"
+       CornerRadius="50"
+       HeightRequest="60"
+                                    Padding="0"
+       WidthRequest="60"
+       IsClippedToBounds="True"
+       HorizontalOptions="Center"
+       VerticalOptions="Center">
+                        <Button CornerRadius="50" Clicked="GotoBRegistrationPage6_Tapped" Text=">" TextColor="white" FontSize="22" BackgroundColor="#c21164" HorizontalOptions="Center" VerticalOptions="Center" Margin="1">
+                        </Button>
+                    </Frame>
+
+                    <Image x:Name="listOfFeaturesPerAccountType" HorizontalOptions="FillAndExpand" Source="hedo2.jpeg" Margin="20"></Image>
+                    <Label Text="Come party with us" TextColor="#c21164" HorizontalOptions="Center" FontSize="26">
+                    </Label>
+
+                </StackLayout>
+                </ScrollView>
+
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

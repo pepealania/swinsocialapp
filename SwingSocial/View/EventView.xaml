@@ -1,0 +1,340 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SwingSocial.Sample.View.EventView"
+             xmlns:viewmodel="clr-namespace:SwingSocial.Sample.ViewModel"             
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"             
+xmlns:htmllabel="clr-namespace:Plugin.HtmlLabel;assembly=Plugin.HtmlLabel"
+             BackgroundColor="Black" 
+             x:DataType="viewmodel:EventPageViewModel"
+                          xmlns:model="clr-namespace:SwingSocial.Sample.Model"
+             xmlns:view="clr-namespace:SwingSocial.Sample.View;assembly=SwingSocial"             
+             Title ="" Shell.BackgroundColor="Black">
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Margin="10"/>
+
+        </Grid>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout>
+            <ScrollView Orientation="Vertical">
+                <StackLayout Margin="0">
+                    <Button x:Name="EditEvent" BackgroundColor="#c21164" Text="Edit Event" TextColor="white" CornerRadius="10" IsVisible="false" HorizontalOptions="Center" Clicked="EditEvent_Clicked">
+
+                    </Button>
+                    <Label x:Name="eventName" FontSize="30" FontAttributes="Bold" HorizontalTextAlignment="Center"></Label>
+                    <Label HorizontalTextAlignment="Center">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span x:Name="eventStartTime" TextColor="White" FontSize="15" BackgroundColor="Black"></Span>
+                                <Span Text=" - "></Span>
+                                <Span x:Name="eventEndTime" TextColor="white" FontSize="15" BackgroundColor="black"></Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+
+                    </Label>
+                    <Image x:Name="eventImage" HeightRequest="600" Margin="0"></Image>
+
+                    <StackLayout IsVisible="{Binding ExtraImagesExist}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="85*"></ColumnDefinition>
+                                <ColumnDefinition Width="50"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label x:Name="ImagesExtraLabel" Text="Images" FontSize="16" TextColor="White" Margin="10,20,0,0" Grid.Column="0"></Label>
+                            <ImageButton Grid.Column="1" HeightRequest="50" WidthRequest="50" x:Name="ImagesExtraCollectionHideShow" BackgroundColor="black" Source="circleminus" Clicked="HideShowExtraImages"></ImageButton>
+                        </Grid>
+                        <Frame x:Name="ImagesExtraFrame" Padding="10" BorderColor="white" CornerRadius="10" Margin="10" BackgroundColor="#000000">
+                            <CollectionView x:Name="ExtraImagesCollection" HeightRequest="500">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate x:DataType="model:ExtraImage">
+                                        <Frame BorderColor="#131414" HeightRequest="500" BackgroundColor="Transparent" Padding="0" CornerRadius="10" HorizontalOptions="Center" VerticalOptions="Center">
+                                            <ImageButton Aspect="AspectFill" Margin="0" Source="{Binding ImageUrl}"  ></ImageButton>
+                                        </Frame>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+                        </Frame>
+                    </StackLayout>
+
+
+                    <WebView x:Name="eventsTable" HeightRequest="300" BackgroundColor="Black">
+
+                    </WebView>
+                    <Frame Padding="10" BorderColor="white" CornerRadius="10" Margin="10" BackgroundColor="#000000">
+                        <StackLayout>
+                            <Label HorizontalOptions="Center" Text="Join the fun" FontSize="25" TextColor="White" FontAttributes="Bold"></Label>
+                            <Label HorizontalOptions="Center" Text="Be one of the first to RSVP" FontSize="16" TextColor="White"></Label>
+
+                            <Frame HorizontalOptions="Center" BackgroundColor="#b648d3" CornerRadius="10" Padding="0" BorderColor="White">
+                                <Button CornerRadius="10" Text="RSVP"  
+       VerticalOptions="FillAndExpand" Margin="5" HorizontalOptions="Center" TextColor="white" BackgroundColor="#b648d3" Clicked="TapGestureRecognizer_RSVP" WidthRequest="130">
+                                </Button>
+                            </Frame>
+
+
+                        </StackLayout>
+                    </Frame>
+
+                    <Grid IsVisible="{Binding ShowTicketsSection}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="85*"></ColumnDefinition>
+                            <ColumnDefinition Width="50"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label x:Name="TicketsLabel" Text="Tickets" FontSize="16" TextColor="White" Margin="10,20,0,0" Grid.Column="0"></Label>
+                        <ImageButton Grid.Column="1" HeightRequest="50" WidthRequest="50" x:Name="TicketListViewHideShow" BackgroundColor="black" Source="circleminus" Clicked="HideShowTicketsList"></ImageButton>
+                    </Grid>
+
+                    <ListView IsVisible="{Binding ShowTicketsSection}" Grid.Row="1" x:Name="TicketsListView" HasUnevenRows="True" BackgroundColor="Black" ItemsSource="{Binding TicketPackages}" >
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="model:TicketPackage">
+                                <ViewCell IsEnabled="True">
+                                    <Grid RowSpacing="0" ColumnSpacing="0" Padding="0,0,0,0">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+                                        <Frame Padding="10" BorderColor="white" CornerRadius="10" Margin="10" BackgroundColor="#000000">
+                                            <StackLayout>
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="100"></RowDefinition>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="4*"></ColumnDefinition>
+                                                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                                                        <ColumnDefinition Width="3*"></ColumnDefinition>
+
+                                                    </Grid.ColumnDefinitions>
+
+                                                    <Frame BackgroundColor="#5e34eb" Grid.Column="0" Padding="0" Margin="20" CornerRadius="10">
+                                                        <Label HorizontalOptions="Center" BackgroundColor="#5e34eb" Margin="20" Text="{Binding TypeUpperCase}" TextColor="White"/>
+                                                    </Frame>
+                                                    <Frame BackgroundColor="#b648d3" Grid.Column="2" Padding="0" Margin="20" CornerRadius="10">
+
+                                                        <Label HorizontalOptions="Center" Margin="20" BackgroundColor="#b648d3" TextColor="White">
+                                                            <Label.FormattedText>
+                                                                <FormattedString>
+                                                                    <Span Text="$"></Span>
+                                                                    <Span Text="{Binding Price}" TextColor="White" FontSize="15" BackgroundColor="#b648d3"></Span>
+                                                                </FormattedString>
+                                                            </Label.FormattedText>
+                                                        </Label>
+                                                    </Frame>
+
+                                                </Grid>
+                                                <Grid HorizontalOptions="Center" >
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="50"></ColumnDefinition>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Entry Text="{Binding TicketsPurchased}" Grid.Column="0" BackgroundColor="White" Keyboard="Numeric" TextChanged="Entry_TextChanged">
+                                                    </Entry>
+                                                </Grid>
+
+                                                <Label Margin="20,20,20,20">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="{Binding Name}" TextColor="White" FontSize="15" BackgroundColor="Black"></Span>
+                                                            <Span Text=" "></Span>
+                                                            <Span Text="{Binding Quantity}" TextColor="white" FontSize="15" BackgroundColor="black"></Span>
+                                                            <Span Text=" "></Span>
+                                                            <Span Text="Tickets Available" TextColor="white" FontSize="15" BackgroundColor="black"></Span>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+
+                                            </StackLayout>
+                                        </Frame>
+
+
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <Frame IsVisible="{Binding ShowTicketsSection}" x:Name="TicketsCheckout" Padding="10" CornerRadius="10" BackgroundColor="Black" Margin="10" BorderColor="#4f4e4c">
+                        <!--<Button BackgroundColor="Black" TextColor="white" Text="Checkout" FontSize="20" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:PaymentBillingPage}" FontAttributes="Bold"></Button>-->
+                        <Button BackgroundColor="Black" TextColor="white" Text="Checkout" FontSize="20" Clicked="TicketsCheckoutClicked" CommandParameter="{Binding .}" FontAttributes="Bold"></Button>
+
+                    </Frame>
+
+                    <Frame Padding="10" BorderColor="white" CornerRadius="10" Margin="10" BackgroundColor="#000000">
+                        <StackLayout>
+                            <!--<Frame
+                                            Margin="0"
+       BorderColor="White" BackgroundColor="#b648d3"
+       CornerRadius="50"
+       HeightRequest="30"
+       WidthRequest="30"
+       IsClippedToBounds="True"
+       HorizontalOptions="Center"
+       VerticalOptions="Center"
+                                                >
+                            <Image Source="envelope" BackgroundColor="#b648d3"
+                                                   Aspect="AspectFill"
+                                                   Margin="2"
+         HeightRequest="30"
+         WidthRequest="30"/>
+                        </Frame>-->
+                            <Label HorizontalOptions="Center" Text="Remind RSVPs &amp; Attendees" FontSize="25" TextColor="White" FontAttributes="Bold"></Label>
+
+
+
+                            <Frame HorizontalOptions="Center" BackgroundColor="#b648d3" CornerRadius="10" Padding="0" BorderColor="White">
+                                <Button CornerRadius="10" Text="Send Email" 
+       VerticalOptions="FillAndExpand" Margin="5" HorizontalOptions="Center" TextColor="white" BackgroundColor="#b648d3" Clicked="SendEmailRSVPAttendees_Clicked" WidthRequest="130">
+                                </Button>
+                            </Frame>
+
+
+                        </StackLayout>
+                    </Frame>
+
+                    <Frame Padding="10" BorderColor="white" CornerRadius="10" Margin="10" BackgroundColor="#000000">
+                        <StackLayout>
+                            <Label HorizontalOptions="Center" Text="Download Attendess &amp; RSVP list" FontSize="25" TextColor="White" FontAttributes="Bold"></Label>
+
+                            <Frame
+                                            Margin="0"
+       BorderColor="White" BackgroundColor="#b648d3"
+       CornerRadius="10"
+       HeightRequest="20"
+       WidthRequest="150"
+       IsClippedToBounds="True"
+       HorizontalOptions="Center"
+       VerticalOptions="Center">
+                                <Label Text="Download Attendees list" TextColor="white" BackgroundColor="#b648d3" HorizontalOptions="Center">
+                                </Label>
+                            </Frame>
+
+
+
+                        </StackLayout>
+                    </Frame>
+                    <htmllabel:HtmlLabel Margin="20,20,20,20" x:Name="eventDescription" TextColor="White"></htmllabel:HtmlLabel>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="85*"></ColumnDefinition>
+                            <ColumnDefinition Width="50"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label x:Name="RSVPLabel" Text="RSVP" FontSize="16" TextColor="White" Margin="10,20,0,0" Grid.Column="0"></Label>
+                        <ImageButton Grid.Column="1" HeightRequest="50" WidthRequest="50" x:Name="RSVPCollectionHideShow" BackgroundColor="black" Source="circleminus" Clicked="HideShowPartnerTable"></ImageButton>
+                    </Grid>
+                    <Frame x:Name="RSVPFrame" Padding="10" BorderColor="white" CornerRadius="10" Margin="10" BackgroundColor="#000000">
+                        <CollectionView x:Name="RSVPsCollection" ItemsSource="{Binding RSVPs}" HeightRequest="{Binding RSVPHeight}">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Orientation="Vertical" Span="3"></GridItemsLayout>
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="model:RSVP">
+                                    <Frame BorderColor="#131414" BackgroundColor="Transparent" Padding="10">
+                                        <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="90*"></RowDefinition>
+                                                <RowDefinition Height="10*"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <AbsoluteLayout Grid.Row="0">
+                                                <ImageButton Aspect="AspectFill" Margin="0" Clicked="RSVPImage_Clicked" CommandParameter="{Binding .}" Source="{Binding Avatar}" AbsoluteLayout.LayoutBounds="0,0,100,100" AbsoluteLayout.LayoutFlags="PositionProportional"></ImageButton>
+
+                                            </AbsoluteLayout>
+                                            <Label HorizontalOptions="Center" VerticalOptions="Start" Margin="0" Grid.Row="1" Text="{Binding Username}" FontSize="8" TextColor="White" ></Label>
+                                        </Grid>
+                                    </Frame>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+
+                    </Frame>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="85*"></ColumnDefinition>
+                            <ColumnDefinition Width="50"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label x:Name="AttendeesLabel" Text="Attendees" FontSize="16" TextColor="White" Margin="10,20,0,0" Grid.Column="0"></Label>
+                        <ImageButton Grid.Column="1" HeightRequest="50" WidthRequest="50" x:Name="AttendeesCollectionHideShow" BackgroundColor="black" Source="circleminus" Clicked="HideShowAttendees"></ImageButton>
+                    </Grid>
+                    <Frame x:Name="AttendeeFrame" Padding="10" BorderColor="white" CornerRadius="10" Margin="10" BackgroundColor="#000000">
+                        <CollectionView ItemsSource="{Binding Attendees}" HeightRequest="{Binding AttendeesHeight}">
+                            <CollectionView.ItemsLayout>
+                                <GridItemsLayout Orientation="Vertical" Span="3"></GridItemsLayout>
+                            </CollectionView.ItemsLayout>
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="model:Attendee">
+                                    <Frame BorderColor="#131414" BackgroundColor="Transparent" Padding="10">
+                                        <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="90*"></RowDefinition>
+                                                <RowDefinition Height="10*"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <AbsoluteLayout Grid.Row="0">
+                                                <ImageButton Aspect="AspectFill" Margin="0" Source="{Binding Avatar}" AbsoluteLayout.LayoutBounds="0,0,100,100" AbsoluteLayout.LayoutFlags="PositionProportional"></ImageButton>
+
+                                            </AbsoluteLayout>
+                                            <Label HorizontalOptions="Center" VerticalOptions="Start" Margin="0" Grid.Row="1" Text="{Binding Username}" FontSize="8" TextColor="White" ></Label>
+                                        </Grid>
+                                    </Frame>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+
+                    </Frame>
+
+
+                    <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Margin="10"/>
+                </StackLayout>
+            </ScrollView>
+
+
+            <StackLayout BackgroundColor="Black" WidthRequest="700">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="10, 10, 10, 20" Spacing="25" BackgroundColor="Black">
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="superLikeButton1" Source="iconhome.png" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:SwingerSocialPage}"></ImageButton>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="nopeButton" Source="iconcommunity.png" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:Community}" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="pineapple" Source="pineapplelittle.png" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:MapPage}" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                        <!--<ImageButton x:Name="superLikeButton" Source="FlashingPineapple.gif" WidthRequest="50" HeightRequest="50" BackgroundColor="White" Scale="1">
+                    </ImageButton>-->
+                        <!--<ff:CachedImage x:Name="pineapple" WidthRequest="50" HeightRequest="50" Margin="0,0,0,0">
+                            <ff:CachedImage.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:MapPage}"/>
+                            </ff:CachedImage.GestureRecognizers>
+                        </ff:CachedImage>-->
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="likeButton" Source="iconmessaging.png" Clicked="OnChatClicked" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="superLikeButton" Source="iconlikes.png" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:Matches}" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

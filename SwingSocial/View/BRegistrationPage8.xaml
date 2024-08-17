@@ -1,0 +1,284 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SwingSocial.Sample.View.BRegistrationPage8"
+             xmlns:viewmodel="clr-namespace:SwingSocial.Sample.ViewModel"  x:DataType="viewmodel:NewAccountViewModel"            
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"             
+             BackgroundColor="Black"             
+             xmlns:view="clr-namespace:SwingSocial.Sample.View;assembly=SwingSocial" xmlns:model="clr-namespace:SwingSocial.Sample.Model"
+             xmlns:xlabs="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:htmllabel="clr-namespace:Plugin.HtmlLabel;assembly=Plugin.HtmlLabel"
+             Title ="" Shell.BackgroundColor="Black">
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Margin="10"/>
+
+        </Grid>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout Margin="20" VerticalOptions="FillAndExpand" >
+            <AbsoluteLayout VerticalOptions="FillAndExpand" BackgroundColor="Black">
+                <ScrollView x:Name="MainScroll" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout>
+                        <Frame CornerRadius="10" Padding="0" Margin="0" VerticalOptions="FillAndExpand">
+                            <StackLayout x:Name="stkMain" BackgroundColor="Black">
+                                <Label Text="Create your account" FontSize="16" FontAttributes="Bold" TextColor="White" BackgroundColor="Black" HorizontalOptions="Center"></Label>
+                                <Label Text="Already registered?" FontSize="12" FontAttributes="Bold" TextColor="White" BackgroundColor="Black" HorizontalOptions="Center"></Label>
+                                <Label TextColor="#ba0c90" Text="Click here to Login" HorizontalOptions="Center">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer  NumberOfTapsRequired="1" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:Login}">
+                                        </TapGestureRecognizer>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                <Label Text="Select a Plan" TextColor="white" FontSize="16" FontAttributes="Bold" BackgroundColor="Black" Margin="20,20,0,0"></Label>
+                                <Frame BackgroundColor="Black">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="50"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="100*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Frame BackgroundColor="White" CornerRadius="10" Padding="0" HorizontalOptions="FillAndExpand">
+                                            <xlabs:BindableRadioGroup x:Name="ansPicker"
+                                     FontName="AmericanTypewriter" 
+                                     BackgroundColor="White" SelectedIndex="1"
+                                     VerticalOptions="Start" Orientation="Horizontal"  HorizontalOptions="Center"/>
+
+                                        </Frame>
+
+                                    </Grid>
+
+                                </Frame>
+                                <Grid Margin="20,0,0,0" x:Name="premiumOptions">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="25*"></ColumnDefinition>
+                                        <ColumnDefinition Width="25*"></ColumnDefinition>
+                                        <ColumnDefinition Width="25*"></ColumnDefinition>
+                                        <ColumnDefinition Width="25*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Frame BorderColor="white" Grid.Column="0" Padding="0">
+                                        <Label BackgroundColor="#ba0c90" x:Name="monthlyLabel" Text="Monthly" TextColor="White">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="MonthlyTapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </Frame>
+                                    <Frame BorderColor="white" Grid.Column="1" Padding="0">
+                                        <Label BackgroundColor="Black" x:Name="quarterlyLabel" Text="Quarterly" TextColor="White">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="QuarterlyTapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                                            </Label.GestureRecognizers>
+
+                                        </Label>
+                                    </Frame>
+                                    <Frame BorderColor="white" Grid.Column="2" Padding="0">
+                                        <Label BackgroundColor="Black" x:Name="bianuallyLabel" Text="Bi-Annually" TextColor="White">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="BiAnuallyTapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                                            </Label.GestureRecognizers>
+
+                                        </Label>
+                                    </Frame>
+                                    <Frame BorderColor="white" Grid.Column="3" Padding="0">
+                                        <Label BackgroundColor="Black" x:Name="anuallyLabel" Text="Annually" TextColor="White">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="AnuallyTapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                                            </Label.GestureRecognizers>
+
+                                        </Label>
+                                    </Frame>
+                                </Grid>
+                                <Frame x:Name="freeFeatures" BackgroundColor="Black" CornerRadius="10" BorderColor="DarkGray">
+                                    <StackLayout>
+                                        <Label Text="Free" TextColor="Violet" FontSize="16"></Label>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Frame CornerRadius="50" BackgroundColor="Green" Padding="0" Margin="0">
+                                                <Label Text="✔️"></Label>
+                                            </Frame>
+                                            <Label Text="Browse &amp; Search Members" TextColor="White"></Label>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Frame CornerRadius="50" BackgroundColor="Green" Padding="0" Margin="0">
+                                                <Label Text="✔️"></Label>
+                                            </Frame>
+                                            <Label Text="Browse &amp; Search Events" TextColor="White"></Label>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Frame CornerRadius="50" BackgroundColor="Green" Padding="0" Margin="0">
+                                                <Label Text="✔️"></Label>
+                                            </Frame>
+                                            <Label Text="Swipe &amp; Like up to 15 Profiles daily" TextColor="White"></Label>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Frame CornerRadius="50" BackgroundColor="Green" Padding="0" Margin="0">
+                                                <Label Text="✔️"></Label>
+                                            </Frame>
+                                            <Label Text="Receive email messages from other Members" TextColor="White"></Label>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Frame CornerRadius="50" BackgroundColor="Green" Padding="0" Margin="0">
+                                                <Label Text="✔️"></Label>
+                                            </Frame>
+                                            <Label Text="Browse, Travel &amp; make bookings" TextColor="White"></Label>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Frame CornerRadius="50" BackgroundColor="Red" Padding="0" Margin="0">
+                                                <Label Text="✖️" TextColor="black"></Label>
+                                            </Frame>
+                                            <Label Text="Send &amp; receive chat &amp; email to other members" TextColor="White"></Label>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Frame CornerRadius="50" BackgroundColor="Red" Padding="0" Margin="0">
+                                                <Label Text="✖️"></Label>
+                                            </Frame>
+                                            <Label Text="Get tickets for free &amp; paid events" TextColor="White"></Label>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Frame CornerRadius="50" BackgroundColor="Red" Padding="0" Margin="0">
+                                                <Label Text="✖️"></Label>
+                                            </Frame>
+                                            <Label Text="Comment &amp; React to What's hot posts" TextColor="White"></Label>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <StackLayout>
+                                                <Frame CornerRadius="50" BackgroundColor="Red" Padding="0" Margin="0">
+                                                    <Label Text="✖️"></Label>
+                                                </Frame>
+                                            </StackLayout>
+
+                                            <Label Text="Unlimited access to thousands of lifestyle profiles" TextColor="White"></Label>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <StackLayout HeightRequest="30" WidthRequest="30">
+                                                <Frame CornerRadius="50" BackgroundColor="Red" Padding="0" Margin="0">
+                                                    <Label Text="✖️" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
+                                                </Frame>
+                                            </StackLayout>
+                                            <Label Text="Instantly, chat with other lifestyle members who are at a club, sporting event, or any gathering with our exclusive Pineapple feature!" TextColor="White"></Label>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                                <Frame x:Name="primeFeatures" BackgroundColor="Black" CornerRadius="10" BorderColor="DarkGray">
+                                    <StackLayout>
+                                        <StackLayout>
+                                            <Label Text="Premium" TextColor="Violet" FontSize="16" VerticalOptions="Center"></Label>
+
+                                            <Label HorizontalOptions="EndAndExpand" x:Name="PriceAmmount" Text="$24.95" TextColor="White" FontSize="16" FontAttributes="Bold" VerticalOptions="Center"></Label>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Frame CornerRadius="50" BackgroundColor="Green" Padding="0" Margin="0">
+                                                <Label Text="✔️"></Label>
+                                            </Frame>
+                                            <Label Text="Browse &amp; Search Members" TextColor="White"></Label>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Frame CornerRadius="50" BackgroundColor="Green" Padding="0" Margin="0">
+                                                <Label Text="✔️"></Label>
+                                            </Frame>
+                                            <Label Text="Browse &amp; Search Events" TextColor="White"></Label>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Frame CornerRadius="50" BackgroundColor="Green" Padding="0" Margin="0">
+                                                <Label Text="✔️"></Label>
+                                            </Frame>
+                                            <Label Text="Swipe &amp; Like up to 15 Profiles daily" TextColor="White"></Label>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Frame CornerRadius="50" BackgroundColor="Green" Padding="0" Margin="0">
+                                                <Label Text="✔️"></Label>
+                                            </Frame>
+                                            <Label Text="Receive email messages from other Members" TextColor="White"></Label>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Frame CornerRadius="50" BackgroundColor="Green" Padding="0" Margin="0">
+                                                <Label Text="✔️"></Label>
+                                            </Frame>
+                                            <Label Text="Browse, Travel &amp; make bookings" TextColor="White"></Label>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Frame CornerRadius="50" BackgroundColor="Green" Padding="0" Margin="0">
+                                                <Label Text="✔️" TextColor="black"></Label>
+                                            </Frame>
+                                            <Label Text="Send &amp; receive chat &amp; email to other members" TextColor="White"></Label>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Frame CornerRadius="50" BackgroundColor="Green" Padding="0" Margin="0">
+                                                <Label Text="✔️"></Label>
+                                            </Frame>
+                                            <Label Text="Get tickets for free &amp; paid events" TextColor="White"></Label>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <Frame CornerRadius="50" BackgroundColor="Green" Padding="0" Margin="0">
+                                                <Label Text="✔️"></Label>
+                                            </Frame>
+                                            <Label Text="Comment &amp; React to What's hot posts" TextColor="White"></Label>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <StackLayout>
+                                                <Frame CornerRadius="50" BackgroundColor="Green" Padding="0" Margin="0">
+                                                    <Label Text="✔️"></Label>
+                                                </Frame>
+                                            </StackLayout>
+
+                                            <Label Text="Unlimited access to thousands of lifestyle profiles" TextColor="White"></Label>
+                                        </StackLayout>
+                                        <StackLayout Orientation="Horizontal">
+                                            <StackLayout HeightRequest="30" WidthRequest="30">
+                                                <Frame CornerRadius="50" BackgroundColor="Green" Padding="0" Margin="0">
+                                                    <Label Text="✔️" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"></Label>
+                                                </Frame>
+                                            </StackLayout>
+                                            <Label Text="Instantly, chat with other lifestyle members who are at a club, sporting event, or any gathering with our exclusive Pineapple feature!" TextColor="White"></Label>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                                <!--<Image x:Name="listOfFeaturesPerAccountType" VerticalOptions="FillAndExpand"></Image>-->
+                                <Grid HorizontalOptions="FillAndExpand">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20*"></ColumnDefinition>
+                                        <ColumnDefinition Width="80*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Switch IsToggled="True" Grid.Column="0"></Switch>
+                                    <Label Text="I agree to the terms and conditions" TextColor="White" Grid.Column="1"></Label>
+                                </Grid>
+                                <Frame
+                                            HorizontalOptions="FillAndExpand" BackgroundColor="#ba0c90" CornerRadius="10" Padding="0">
+                                    <Button CornerRadius="10" Clicked="GotoPaymentBillingPage_Tapped" x:Name="SignUpPay" Text="Pay with Card" TextColor="white" BackgroundColor="#ba0c90" HorizontalOptions="FillAndExpand">
+                                    </Button>
+                                </Frame>
+                                <Label Text="By Signing up, you agree to our terms and conditions and our privacy policy." TextColor="White"></Label>
+
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </ScrollView>
+                <StackLayout Margin="20" AbsoluteLayout.LayoutBounds="0.5,0.5,1,0.5" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="PopUpConfirm" IsVisible="false">
+                    <Frame CornerRadius="10" BackgroundColor="White" Opacity="1">
+                        <StackLayout>
+                            <Label HorizontalOptions="CenterAndExpand" Text="Create account" TextColor="Black" FontSize="16" FontAttributes="Bold"></Label>
+                            <Label HorizontalOptions="Center" Text="You will register" TextColor="Black"></Label>
+                            <Frame HorizontalOptions="FillAndExpand" BackgroundColor="#ba0c90" CornerRadius="10" Padding="0">
+                                <Button CornerRadius="10" Clicked="TapGestureRecognizer_TappedConfirmBox" Text="Confirm" HorizontalOptions="FillAndExpand" TextColor="White" BackgroundColor="#ba0c90">
+                                </Button>
+                            </Frame>
+                            <Frame HorizontalOptions="FillAndExpand" BackgroundColor="White" CornerRadius="10" BorderColor="#ba0c90" Padding="1">
+                                <Button CornerRadius="10" Clicked="TapGestureRecognizerBack_Tapped" BackgroundColor="White" Text="Back" HorizontalOptions="FillAndExpand" TextColor="Black">
+                                </Button>
+                            </Frame>
+                        </StackLayout>
+
+                    </Frame>
+
+                </StackLayout>
+
+            </AbsoluteLayout>            
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

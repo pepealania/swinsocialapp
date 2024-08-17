@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SwingSocial.Sample.View.MyChats"
+             xmlns:viewmodel="clr-namespace:SwingSocial.Sample.ViewModel"  x:DataType="viewmodel:ChatViewModel"            
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"             
+             BackgroundColor="Black"             
+             xmlns:view="clr-namespace:SwingSocial.Sample.View;assembly=SwingSocial" xmlns:model="clr-namespace:SwingSocial.Sample.Model"
+             Title ="" Shell.BackgroundColor="Black">
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Margin="10"/>
+
+        </Grid>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <StackLayout Margin="0,0,0,20" IsVisible="true" x:Name="WhatsHotViewCreate">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="6*"></ColumnDefinition>
+                        <ColumnDefinition Width="4*"></ColumnDefinition>
+
+                    </Grid.ColumnDefinitions>
+                    <Frame BackgroundColor="#b648d3" Grid.Column="0" Padding="5" Margin="0" CornerRadius="10" BorderColor="#394A57">
+
+                        <Label HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="#b648d3" Text="+ Create New Group" TextColor="White">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:ChatGroupPage}" ></TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Frame>
+
+                </Grid>
+            </StackLayout>
+            <Frame CornerRadius="10" Padding="5" Margin="0">
+                <StackLayout x:Name="stkMain" BackgroundColor="Gray">
+                    <ListView x:Name="mychatList" ItemsSource="{Binding Chats}" ItemTapped="mychatList_ItemTapped">
+                        <ListView.ItemTemplate>
+                            <DataTemplate  x:DataType="model:Chat">
+                                <ViewCell IsEnabled="True">
+                                    <StackLayout>
+                                        <Frame VerticalOptions="Center" Padding="5" HorizontalOptions="FillAndExpand"  BackgroundColor="black" BorderColor="White" HeightRequest="80" CornerRadius="10">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                                    <ColumnDefinition Width="9*"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <Image Source="{Binding Avatar}" Grid.Column="0"></Image>
+                                                <Label Text="{Binding Username}" Grid.Column="1" BackgroundColor="black" TextColor="White"></Label>
+
+                                            </Grid>
+                                        </Frame>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    </StackLayout>
+            </Frame>
+
+            <StackLayout BackgroundColor="Black" WidthRequest="700">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="10, 10, 10, 20" Spacing="25" BackgroundColor="Black">
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="superLikeButton1" Source="iconhome.png" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:SwingerSocialPage}"></ImageButton>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="nopeButton" Source="iconcommunity.png" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:Community}" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="pineapple" Source="pineapplelittle.png" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:MapPage}" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                        <!--<ImageButton x:Name="superLikeButton" Source="FlashingPineapple.gif" WidthRequest="50" HeightRequest="50" BackgroundColor="White" Scale="1">
+                    </ImageButton>-->
+                        <!--<ff:CachedImage x:Name="pineapple" WidthRequest="50" HeightRequest="50" Margin="0,0,0,0">
+                            <ff:CachedImage.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:MapPage}"/>
+                            </ff:CachedImage.GestureRecognizers>
+                        </ff:CachedImage>-->
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="likeButton" Source="iconmessaging.png" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="superLikeButton" Source="iconlikes.png" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:Matches}" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

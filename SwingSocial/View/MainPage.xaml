@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:view="clr-namespace:SwingSocial.Sample.View;assembly=SwingSocial"
+             x:Class="SwingSocial.Sample.View.MainPage"
+             Title="" BackgroundColor="Black" Shell.BackgroundColor="Black">
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Margin="10"/>
+
+        </Grid>
+    </Shell.TitleView>
+    <StackLayout VerticalOptions="CenterAndExpand" Padding="10">
+        <Button Text="Press for Demo" FontSize="40" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:SwingerSocialPage}"></Button>
+        <!--<Button Text="Tinder Page" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:TinderPage}"></Button>
+        <Button Text="Simple Page" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:SimplePage}"></Button>
+        <Button Text="Colors Page" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:ColorsPage}"></Button>
+        <Button Text="Customizable Page" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:CustomizablePage}"></Button>
+        <Button Text="Misc Pages" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:MiscContainerPage}"></Button>-->
+    </StackLayout>
+</ContentPage>

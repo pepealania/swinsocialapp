@@ -1,0 +1,325 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:swipeCardView="clr-namespace:MLToolkit.Forms.SwipeCardView;assembly=MLToolkit.Forms.SwipeCardView" 
+             x:Class="SwingSocial.Sample.View.MessagesMenuTopPage"
+             xmlns:viewmodel="clr-namespace:SwingSocial.Sample.ViewModel"  x:DataType="viewmodel:MessagesMenuPageViewModel"
+             xmlns:view="clr-namespace:SwingSocial.Sample.View;assembly=SwingSocial" xmlns:model="clr-namespace:SwingSocial.Sample.Model"            
+             Title="Explore" Shell.BackgroundColor="Black">
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Margin="10"/>
+
+        </Grid>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="Black">
+            <!--<Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3.3*"></ColumnDefinition>
+                    <ColumnDefinition Width="3.3*"></ColumnDefinition>
+                    <ColumnDefinition Width="3.3*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Frame Grid.Column="0" BackgroundColor="#292a2e" CornerRadius="10" Padding="5" Margin="5">
+                    <Label BackgroundColor="#292a2e" TextColor="White" Text="Chat" HorizontalOptions="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnShowChats_Tapped"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Frame>
+                <Frame Grid.Column="2" BackgroundColor="#292a2e" CornerRadius="10" Padding="5" Margin="5">
+                    <Label BackgroundColor="#292a2e" TextColor="White" Text="MailBox" HorizontalOptions="Center">
+                        <Label.GestureRecognizers>de
+                            <TapGestureRecognizer Tapped="OnShowEmails_Tapped"></TapGestureRecognizer>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </Frame>
+            </Grid>-->
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3.3*"></ColumnDefinition>
+                    <ColumnDefinition Width="3.3*"></ColumnDefinition>
+                    <ColumnDefinition Width="3.3*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label HorizontalOptions="Center" Grid.Column="0" FontSize="Medium" Text="Chats"
+TextColor="White"
+HorizontalTextAlignment="Center" VerticalTextAlignment="Center" x:Name="ListTitle"/>
+                <Frame x:Name="MailButtonFrame" Grid.Column="2" BackgroundColor="#292a2e" CornerRadius="10" Padding="0" Margin="5">
+                    <Button BackgroundColor="#292a2e" TextColor="White" Text="MailBox" HorizontalOptions="Center" Clicked="OnShowEmails_Tapped" Margin="1">
+                    </Button>
+                </Frame>
+                <Frame IsVisible="false" x:Name="ChatButtonFrame" Grid.Column="2" BackgroundColor="#292a2e" CornerRadius="10" Padding="0" Margin="5">
+                    <Button BackgroundColor="#292a2e" TextColor="White" Text="Chat" HorizontalOptions="Center" Clicked="OnShowChats_Tapped" Margin="1">
+                    </Button>
+                </Frame>                
+            </Grid>
+
+
+            <Grid BackgroundColor="Black" HeightRequest="750">
+
+
+                <!-- Content view -->
+        <Frame x:Name="Page" BackgroundColor="Black" Padding="0">
+            <Grid Margin="0" RowSpacing="0" x:Name="TopGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout>
+                            <!--<Grid Grid.Row="0" BackgroundColor="{StaticResource PrimaryColor}" RowSpacing="0" ColumnSpacing="0">-->
+                            <StackLayout>
+                                <Grid Grid.Row="0" BackgroundColor="Black" RowSpacing="0" ColumnSpacing="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="50"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <!--<Button HorizontalOptions="Start" x:Name="EventsBack" IsVisible="false" Grid.Row="0" Clicked="OnShowMenu" ImageSource="toparrow.png"
+                            BackgroundColor="Transparent" HeightRequest="20" WidthRequest="20" />
+                                    <Image Source="thumbnail_logo.png" x:Name="DetailLogo" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="Center" WidthRequest="205" HeightRequest="45"></Image>-->
+                                    <!--<Label HorizontalOptions="Center" Grid.Row="0" FontSize="Medium" x:Name="ListTitle"
+                           TextColor="White"
+                           HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />-->
+
+                                    <Frame x:Name="SentBoxButton" IsVisible="false" Grid.Column="1" Grid.Row="0" BackgroundColor="#c21164" CornerRadius="10" Padding="0" Margin="0">
+                                        <Button CornerRadius="10" BackgroundColor="#c21164" TextColor="White" Text="Sent" VerticalOptions="Center" HorizontalOptions="Center" Padding="0" Margin="0" Clicked="SentBox_Tapped">
+                                        </Button>
+                                    </Frame>
+                                </Grid>
+
+                            </StackLayout>
+
+                            <StackLayout>
+                                <StackLayout Margin="0" x:Name="ChatStacklayoutView">
+                                    <Frame CornerRadius="10" Padding="1" Margin="0" BorderColor="#292a2e">
+                                        <StackLayout x:Name="stkMainChats" BackgroundColor="#292a2e">
+                                            <ListView x:Name="mychatList" ItemsSource="{Binding Chats}" ItemTapped="mychatList_ItemTapped" HasUnevenRows="True">
+                                                <ListView.ItemTemplate>
+                                                    <DataTemplate  x:DataType="model:Chat">
+                                                        <ViewCell IsEnabled="True">
+                                                            <StackLayout>
+                                                                <Frame VerticalOptions="Center" Padding="1" HorizontalOptions="FillAndExpand"  BackgroundColor="black" BorderColor="black" CornerRadius="10" Margin="5">
+                                                                    <Grid VerticalOptions="Center" BackgroundColor="Black">
+                                                                        <Grid.RowDefinitions>
+                                                                            <RowDefinition Height="30"></RowDefinition>
+                                                                            <RowDefinition Height="30"></RowDefinition>
+                                                                        </Grid.RowDefinitions>
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                                                                            <ColumnDefinition Width="7*"></ColumnDefinition>
+                                                                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                                                                        </Grid.ColumnDefinitions>
+                                                                        <Frame Grid.Row="0" Grid.Column="0"
+                                            Margin="0" Padding="0"
+       BorderColor="Black"
+       CornerRadius="50"
+       HeightRequest="30"
+       WidthRequest="30"
+       IsClippedToBounds="True"
+       HorizontalOptions="End"
+       VerticalOptions="Center"
+                                                >
+                                                                            <Image Source="{Binding Avatar}" 
+                                                   Aspect="AspectFit"
+                                                   Margin="-20"
+         HeightRequest="30"
+         WidthRequest="30"/>
+                                                                        </Frame>
+
+                                                                        <Label VerticalOptions="Center" Text="{Binding Username}" Grid.Column="1" Grid.Row="0" BackgroundColor="black" TextColor="White"></Label>
+                                                                        <Label VerticalOptions="Center" Text="{Binding Conversation}" Grid.Column="1" Grid.Row="1" BackgroundColor="black" TextColor="White" FontSize="10"></Label>
+                                                                        <Label VerticalOptions="Center" Text="{Binding LastUp}" Grid.Column="2" Grid.Row="0" BackgroundColor="black" TextColor="White" FontSize="10"></Label>
+                                                                        <Button Text="&#x1f5d1;" WidthRequest="10" FontSize="18" CornerRadius="5" TextColor="White" Grid.Column="2" Grid.Row="1" BackgroundColor="#c21164" Margin="20,0,20,0" Padding="0" Clicked="DeleteChat" CommandParameter="{Binding .}"></Button>
+                                                                    </Grid>
+                                                                </Frame>
+                                                            </StackLayout>
+                                                        </ViewCell>
+                                                    </DataTemplate>
+                                                </ListView.ItemTemplate>
+                                            </ListView>
+                                        </StackLayout>
+                                    </Frame>
+                                    <StackLayout Margin="0,0,0,20" IsVisible="true" x:Name="WhatsHotViewCreate">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="50"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="5*"></ColumnDefinition>
+                                                <ColumnDefinition Width="5*"></ColumnDefinition>
+
+                                            </Grid.ColumnDefinitions>
+                                            <Frame IsVisible="false" BackgroundColor="#c21164" Grid.Column="0" Padding="5" Margin="0" CornerRadius="10" BorderColor="#394A57">
+
+                                                <Label HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="#c21164" Text="+ New Group Chat" TextColor="White">
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:ChatGroupPage}" ></TapGestureRecognizer>
+                                                    </Label.GestureRecognizers>
+                                                </Label>
+                                            </Frame>
+                                            <Frame BackgroundColor="#c21164" Grid.Column="1" Padding="5" Margin="0" CornerRadius="10" BorderColor="#394A57">
+
+                                                <Label HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="#c21164" TextColor="White" Text="+ New Chat">
+                                                    <Label.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:CreateChatListPage}" ></TapGestureRecognizer>
+                                                    </Label.GestureRecognizers>
+                                                </Label>
+                                            </Frame>
+                                        </Grid>
+                                    </StackLayout>
+                                </StackLayout>
+
+                            </StackLayout>
+
+                            <StackLayout>
+                                <StackLayout Margin="0" x:Name="EMailStacklayoutView" IsVisible="false">
+                                    <Frame CornerRadius="10" Padding="0" Margin="0">
+                                        <StackLayout x:Name="stkMain" BackgroundColor="#292a2e">
+                                            <!--<Grid BackgroundColor="#292a2e" Padding="5">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="50"></RowDefinition>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="7*"></ColumnDefinition>
+                                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <Entry x:Name="searchEntry" Grid.Column="0" Placeholder="Search Name..." BackgroundColor="White"></Entry>
+                                                <Button Grid.Column="1" BackgroundColor="#b648d3" TextColor="White" Text="Search" Clicked="Button_Clicked" CommandParameter="{Binding Source={x:Reference conversationEntry}, Path=Text}"></Button>
+                                            </Grid>-->
+
+                                            <ListView x:Name="myprofilesEmailList" ItemsSource="{Binding Emails}" ItemTapped="myprofilesInboxEmailList_ItemTapped" HasUnevenRows="True" SeparatorVisibility="Default">
+                                                <ListView.ItemTemplate>
+                                                    <DataTemplate  x:DataType="model:Email">
+                                                        <ViewCell IsEnabled="True">
+                                                            <StackLayout>
+                                                                <Frame VerticalOptions="Center" Padding="5" Margin="5" HorizontalOptions="FillAndExpand"  BackgroundColor="black" BorderColor="black" HeightRequest="70" CornerRadius="10">
+                                                                    <Grid VerticalOptions="CenterAndExpand">
+                                                                        <Grid.RowDefinitions>
+                                                                            <RowDefinition Height="30"></RowDefinition>
+                                                                            <RowDefinition Height="30"></RowDefinition>
+                                                                        </Grid.RowDefinitions>
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="1*"></ColumnDefinition>
+                                                                            <ColumnDefinition Width="7*"></ColumnDefinition>
+                                                                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                                                                        </Grid.ColumnDefinitions>
+                                                                        <Frame Grid.Column="0"
+                                     Margin="0" Padding="0"
+BorderColor="Black"
+CornerRadius="50"
+HeightRequest="30"
+WidthRequest="30"
+IsClippedToBounds="True"
+HorizontalOptions="End"
+VerticalOptions="Center"
+                                         >
+                                                                            <Image Source="{Binding Avatar}" 
+                                            Aspect="AspectFit"
+                                            Margin="-20"
+  HeightRequest="30"
+  WidthRequest="30"/>
+                                                                        </Frame>
+                                                                        
+                                                                        <Label Grid.Row="1" Grid.Column="1" VerticalOptions="Center" BackgroundColor="black" TextColor="White">
+                                                                            <Label.FormattedText>
+                                                                                <FormattedString>
+                                                                                    <Span Text="Subject:"></Span>
+                                                                                    <Span Text=" "></Span>
+                                                                                    <Span Text="{Binding Subject}" FontSize="10"></Span>
+                                                                                </FormattedString>
+                                                                            </Label.FormattedText>
+                                                                        </Label>
+
+                                                                        <Label Grid.Row="0" Grid.Column="1" TextColor="White" VerticalOptions="Center">
+                                                                            <Label.FormattedText>
+                                                                                <FormattedString>
+                                                                                    <Span Text="From:"></Span>
+                                                                                    <Span Text=" "></Span>
+                                                                                    <Span Text="{Binding ProfileFromUsername}"></Span>
+                                                                                </FormattedString>
+                                                                            </Label.FormattedText>
+                                                                        </Label>
+                                                                        <Label Grid.Row="0" Grid.Column="2" VerticalOptions="Center" Text="{Binding CreatedAtString}" FontSize="10" BackgroundColor="black" TextColor="White"></Label>
+
+                                                                    </Grid>
+
+                                                                </Frame>
+                                                            </StackLayout>
+                                                        </ViewCell>
+                                                    </DataTemplate>
+                                                </ListView.ItemTemplate>
+                                            </ListView>
+                                            <Grid BackgroundColor="#3d424a" Padding="5">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="40"></RowDefinition>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="7*"></ColumnDefinition>
+                                                    <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                                                    <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <Entry x:Name="searchEntry" Grid.Column="0" Placeholder="Search Emails..." BackgroundColor="#7F7F7F" PlaceholderColor="White" Text="" TextColor="White" HeightRequest="40"></Entry>
+                                                <ImageButton Grid.Column="1" BackgroundColor="#c21164" HeightRequest="40" WidthRequest="40" Source="searchemail" Padding="10" Clicked="SearchEmail_Clicked" CommandParameter="{Binding Source={x:Reference searchEntry}, Path=Text}"></ImageButton>
+                                                <ImageButton BackgroundColor="#c21164" HeightRequest="40" WidthRequest="40" Source="writeemail" Padding="10" Grid.Column="2"  Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:MailPage}" ></ImageButton>
+                                            </Grid>
+
+                                        </StackLayout>
+                                    </Frame>
+                                </StackLayout>
+
+                            </StackLayout>
+
+                        </StackLayout>
+
+
+                    </Grid>
+        </Frame>
+
+    </Grid>
+
+            <StackLayout BackgroundColor="Black" WidthRequest="700">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="10, 10, 10, 20" Spacing="25" BackgroundColor="Black">
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="superLikeButton1" Source="iconhome.png" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:SwingerSocialPage}"></ImageButton>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="nopeButton" Source="iconcommunity.png" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:Community}" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="pineapple" Source="pineapplelittle.png" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:MapPage}" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                        <!--<ImageButton x:Name="superLikeButton" Source="FlashingPineapple.gif" WidthRequest="50" HeightRequest="50" BackgroundColor="White" Scale="1">
+                    </ImageButton>-->
+                        <!--<ff:CachedImage x:Name="pineapple" WidthRequest="50" HeightRequest="50" Margin="0,0,0,0">
+                            <ff:CachedImage.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:MapPage}"/>
+                            </ff:CachedImage.GestureRecognizers>
+                        </ff:CachedImage>-->
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="likeButton" Source="iconmessaging.png" Clicked="OnChatClicked" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="superLikeButton" Source="iconlikes.png" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:Matches}" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

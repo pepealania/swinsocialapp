@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SwingSocial.Sample.View.EventUpdateVenueCategory"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:viewmodel="clr-namespace:SwingSocial.Sample.ViewModel"  x:DataType="viewmodel:NewAccountViewModel"            
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"             
+             BackgroundColor="Black"             
+             xmlns:view="clr-namespace:SwingSocial.Sample.View;assembly=SwingSocial.Sample" xmlns:model="clr-namespace:SwingSocial.Sample.Model"
+             xmlns:xlabs="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:htmllabel="clr-namespace:Plugin.HtmlLabel;assembly=Plugin.HtmlLabel" xmlns:helper="clr-namespace:SwingSocial.Sample.Helper"
+             Title ="" Shell.BackgroundColor="Black">
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Margin="10"/>
+
+        </Grid>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+                <ScrollView x:Name="MainScroll" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                        <Frame CornerRadius="10" Padding="0" Margin="0" VerticalOptions="FillAndExpand">
+                            <StackLayout x:Name="stkMain" BackgroundColor="Black">
+
+                            <Label TextColor="White">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Venue "></Span>
+                                        <Span Text="*" TextColor="#c21164"></Span>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Text="Enter the location of your event" TextColor="White" FontSize="10"></Label>
+                            <Frame CornerRadius="10" Padding="0" Margin="0" BackgroundColor="#292a2e">
+                                <Entry x:Name="LocationEntry" TextColor="White" PlaceholderColor="DarkGray" Placeholder="City, ST" BackgroundColor="#292a2e"></Entry>
+                            </Frame>                                
+                                
+                            <Label Text="Select your events category" TextColor="White" FontSize="10"></Label>
+                            <Frame CornerRadius="10" Padding="0" Margin="0" BackgroundColor="#292a2e">
+                                <Picker x:Name="CategoryPicker" TextColor="White" TitleColor="DarkGray" Title="Category" BackgroundColor="#292a2e"></Picker>
+                            </Frame>
+
+
+                            <Frame
+                                            Margin="0"  Padding="0"
+       BorderColor="White" BackgroundColor="#c21164"
+       CornerRadius="10"
+       HeightRequest="50"
+       WidthRequest="130"
+       IsClippedToBounds="True"
+       HorizontalOptions="Center"
+       VerticalOptions="Center">
+                                    <Button CornerRadius="10" Text="Save" TextColor="white" BackgroundColor="#c21164" HorizontalOptions="Center" VerticalOptions="Center" Margin="1" FontSize="22" Clicked="UpdateVenueCategory_Clicked">
+                                    </Button>
+                                </Frame>
+
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </ScrollView>
+
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

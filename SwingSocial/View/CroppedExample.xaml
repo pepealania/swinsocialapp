@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SwingSocial.Sample.View.CroppedExample"
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"             
+             BackgroundColor="Black"
+             xmlns:view="clr-namespace:SwingSocial.Sample.View;assembly=SwingSocial" 
+             xmlns:htmllabel="clr-namespace:Plugin.HtmlLabel;assembly=Plugin.HtmlLabel" xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms" xmlns:controls="clr-namespace:SwingSocial.Controls"
+             Title ="" Shell.BackgroundColor="Black">
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Margin="10"/>
+
+        </Grid>
+    </Shell.TitleView>
+    <ContentPage.Content>
+
+        <Grid>
+            <Image x:Name="CroppedImageView" BackgroundColor="Pink" IsVisible="False"/>
+            <skia:SKCanvasView x:Name="CropImageCanvas" BackgroundColor="White"/>
+            <controls:ManualCropView x:Name="ManualCropView" />
+            <Button x:Name="CropButton" VerticalOptions="End" 
+               Text="Crop!" 
+               FontSize="Large"
+               Clicked="CropButton_OnClicked"/>
+            <Button x:Name="DisplayCroppedButton" IsVisible="False" VerticalOptions="End" 
+               Text="Show cropped image from byte[]" 
+               FontSize="Large"
+               Clicked="DisplayCroppedButton_OnClicked"/>
+        </Grid>
+
+
+
+    </ContentPage.Content>
+</ContentPage>
+

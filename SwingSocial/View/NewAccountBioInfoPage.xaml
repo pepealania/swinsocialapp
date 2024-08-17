@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SwingSocial.Sample.View.NewAccountBioInfoPage"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:viewmodel="clr-namespace:SwingSocial.Sample.ViewModel"  x:DataType="viewmodel:NewAccountViewModel"            
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"             
+             BackgroundColor="Black"             
+             xmlns:view="clr-namespace:SwingSocial.Sample.View;assembly=SwingSocial.Sample" xmlns:model="clr-namespace:SwingSocial.Sample.Model"
+             xmlns:xlabs="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:htmllabel="clr-namespace:Plugin.HtmlLabel;assembly=Plugin.HtmlLabel"
+             Title ="" Shell.BackgroundColor="Black">
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Margin="10"/>
+
+        </Grid>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <ScrollView x:Name="MainScroll" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout>
+                        <Label Text="Biographical Info" FontSize="26" HorizontalOptions="Center" TextColor="White" FontAttributes="Bold"></Label>
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="I am a " TextColor="White" FontSize="12"></Span>
+                                    <Span Text="*" TextColor="Violet" FontSize="12"></Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Text="Let other members know what kind of account you're setting up. You'll be filtered based on this but you can choose to be hidden" TextColor="white"></Label>
+                        <Picker Title="I am a" x:Name="userTypesPicker" BackgroundColor="#5d5a5d"
+        TitleColor="White"
+        TextColor="White"
+        FontAttributes="Italic"
+        FontSize="12"/>
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Looking for a " TextColor="White" FontSize="12"></Span>
+                                    <Span Text="*" TextColor="Violet" FontSize="12"></Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Text="What kind of play partners are you interested in?" TextColor="white"></Label>
+                        <Picker Title="Looking for a" x:Name="lookingForPicker" BackgroundColor="#5d5a5d"
+        TitleColor="White"
+        TextColor="White"
+        FontAttributes="Italic"
+        FontSize="12"/>
+
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Home city " TextColor="White" FontSize="12"></Span>
+                                    <Span Text="*" TextColor="Violet" FontSize="12"></Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Text="What's your home city?" TextColor="white"></Label>
+                        <Entry x:Name="homeCityEntry" BackgroundColor="#5d5a5d"
+        TextColor="White"
+        FontAttributes="Italic"
+        FontSize="12"/>
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Tagline " TextColor="White" FontSize="12"></Span>
+                                    <Span Text="*" TextColor="Violet" FontSize="12"></Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Text="Give members a quick snippet of why you're here or whats going on with you right now" TextColor="white"></Label>
+                        <Editor x:Name="taglineEditor" Placeholder="Tagline" BackgroundColor="#5d5a5d"
+        TextColor="White"
+                                PlaceholderColor="White"
+        FontAttributes="Italic" HeightRequest="150"
+        FontSize="12"/>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="About me " TextColor="White" FontSize="12"></Span>
+                                <Span Text="*" TextColor="Violet" FontSize="12"></Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label Text="Tell others what you're all about" TextColor="white"></Label>
+                    <Frame BackgroundColor="Black" BorderColor="White">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20*"></ColumnDefinition>
+                                <ColumnDefinition Width="20*"></ColumnDefinition>
+                                <ColumnDefinition Width="20*"></ColumnDefinition>
+                                <ColumnDefinition Width="20*"></ColumnDefinition>
+                                <ColumnDefinition Width="20*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Frame BackgroundColor="black" BorderColor="white" Padding="0" CornerRadius="10" Grid.Column="0" >
+                                <ImageButton HeightRequest="50" Margin="10" CornerRadius="10" BackgroundColor="Black" Source="bold" Aspect="AspectFit"></ImageButton>
+                            </Frame>
+                            <Frame BackgroundColor="black" BorderColor="white" Padding="0" CornerRadius="10" Grid.Column="1" >
+                                <ImageButton HeightRequest="50" Margin="10" CornerRadius="10" BackgroundColor="Black" Source="italic" Aspect="AspectFit"></ImageButton>
+                            </Frame>
+                        </Grid>                        
+                    </Frame>
+                    <Editor x:Name="aboutMeEditor" Placeholder="About me" BackgroundColor="#5d5a5d"
+        TextColor="White"
+        PlaceholderColor="White"
+        HeightRequest="150"
+        FontSize="12"/>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Swing style " TextColor="White" FontSize="12"></Span>
+                                <Span Text="*" TextColor="Violet" FontSize="12"></Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label Text="How do you swing?" TextColor="white"></Label>
+                    <Picker Title="Swing style" x:Name="swingStylePicker" BackgroundColor="#5d5a5d"
+        TitleColor="White"
+        TextColor="White"
+        FontAttributes="Italic"
+        FontSize="12"/>
+                    <Frame
+                                            Margin="0"
+       BorderColor="White" BackgroundColor="#b648d3"
+       CornerRadius="10"
+       HeightRequest="20"
+       WidthRequest="130"
+       IsClippedToBounds="True"
+       HorizontalOptions="Center"
+       VerticalOptions="Center">
+                        <Label Text="Continue" TextColor="white" BackgroundColor="#b648d3" HorizontalOptions="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped">
+
+                                </TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Frame>
+
+
+                </StackLayout>
+                </ScrollView>
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

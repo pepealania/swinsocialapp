@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SwingSocial.Sample.View.PaymentBillingPage"
+             xmlns:viewmodel="clr-namespace:SwingSocial.Sample.ViewModel"  x:DataType="viewmodel:PaymentBillingViewModel"            
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"             
+             BackgroundColor="Black"             
+             xmlns:view="clr-namespace:SwingSocial.Sample.View;assembly=SwingSocial" xmlns:model="clr-namespace:SwingSocial.Sample.Model"
+             Title ="" Shell.BackgroundColor="Black">
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Margin="10"/>
+
+        </Grid>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <AbsoluteLayout VerticalOptions="FillAndExpand">
+                <ScrollView  Orientation="Vertical" x:Name="MainScroll" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                    <StackLayout Margin="20" BackgroundColor="Black">
+                            <Frame CornerRadius="10" Padding="5" Margin="0" BackgroundColor="Black" BorderColor="white">
+                                <StackLayout x:Name="stkMain" BackgroundColor="Black">
+                                    <Frame CornerRadius="10" BackgroundColor="Black">
+                                        <StackLayout BackgroundColor="black">
+                                            <Label BackgroundColor="Black" Text="Payment Details" FontSize="26" FontAttributes="Bold" TextColor="White"></Label>
+                                            <Label BackgroundColor="Black" Text="First Name" TextColor="White"></Label>
+                                            <Entry BackgroundColor="White"></Entry>
+                                            <Label BackgroundColor="Black" Text="Last Name" TextColor="White"></Label>
+                                            <Entry BackgroundColor="White"></Entry>
+                                            <Label BackgroundColor="Black" Text="Card Number" TextColor="White"></Label>
+                                            <Entry x:Name="CreditCardNumber" BackgroundColor="White"></Entry>
+                                            <Grid>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="20"></RowDefinition>
+                                                    <RowDefinition Height="50"></RowDefinition>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="5*"></ColumnDefinition>
+                                                    <ColumnDefinition Width="5*"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <Label Grid.Row="0" Grid.Column="0" BackgroundColor="Black" Text="Exp. Date" TextColor="White"></Label>
+                                                <Entry Grid.Row="1" Grid.Column="0" x:Name="CreditCardExpDate" BackgroundColor="White"></Entry>
+                                                <Label Grid.Row="0" Grid.Column="1" BackgroundColor="Black" Text="CVC" TextColor="White"></Label>
+                                                <Entry Grid.Row="1" Grid.Column="1" BackgroundColor="White"></Entry>
+                                            </Grid>
+
+                                        </StackLayout>
+                                    </Frame>
+                                    <Frame CornerRadius="10"  BackgroundColor="Black">
+                                        <StackLayout BackgroundColor="Black">
+                                            <Label BackgroundColor="Black" Text="Billing Details" FontSize="26" FontAttributes="Bold" TextColor="White"></Label>
+                                            <Label BackgroundColor="Black" Text="Street Address" TextColor="White"></Label>
+                                            <Entry BackgroundColor="white"></Entry>
+                                            <Label BackgroundColor="Black" Text="City" TextColor="White"></Label>
+                                            <Entry BackgroundColor="White"></Entry>
+                                            <Label BackgroundColor="Black" Text="State" TextColor="White"></Label>
+                                            <Entry BackgroundColor="White"></Entry>
+                                            <Label BackgroundColor="Black" Text="Zip" TextColor="White"></Label>
+                                            <Entry BackgroundColor="White"></Entry>
+                                            <Label BackgroundColor="Black" Text="Country" TextColor="White"></Label>
+                                            <Entry BackgroundColor="White" Text="USA"></Entry>
+                                            <Label BackgroundColor="Black" Text="Phone" TextColor="White"></Label>
+                                            <Entry BackgroundColor="White"></Entry>
+
+                                        </StackLayout>
+                                    </Frame>
+                                    <Frame CornerRadius="10" BackgroundColor="#ba0c90" Padding="0" Margin="0" HorizontalOptions="Center">
+                                    <Button Text="Pay with Card" TextColor="White" BackgroundColor="#ba0c90" Clicked="PayButton_Clicked"></Button>
+                                    </Frame>
+                                </StackLayout>
+
+                            </Frame>
+
+                            <Frame HeightRequest="1000" BackgroundColor="Black">
+
+                            </Frame>
+
+
+                    </StackLayout>
+
+                </ScrollView>
+                <StackLayout Margin="20" AbsoluteLayout.LayoutBounds="0.5,0.5,1,0.5" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="PopUpConfirm" IsVisible="false">
+                    <Frame CornerRadius="10" BackgroundColor="White" Opacity="1">
+                        <StackLayout>
+                            <Label HorizontalOptions="CenterAndExpand" Text="Confirm Payment and Create account" TextColor="Black" FontSize="16" FontAttributes="Bold"></Label>
+                            <Label HorizontalOptions="Center" Text="You will register" TextColor="Black"></Label>
+
+
+                            <Frame HorizontalOptions="FillAndExpand" BackgroundColor="#ba0c90" CornerRadius="10" Padding="0">
+                                <Button CornerRadius="10" Clicked="PayViaGooglePay" Text="Confirm Pay with Card" HorizontalOptions="FillAndExpand" TextColor="White" BackgroundColor="#ba0c90">
+                                </Button>
+                            </Frame>
+
+
+                            <!--<Frame HorizontalOptions="FillAndExpand" BackgroundColor="#ba0c90" CornerRadius="10">
+                                
+                                <Label Text="Confirm" HorizontalOptions="Center" TextColor="White" BackgroundColor="#ba0c90">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_TappedConfirmBox"></TapGestureRecognizer>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Frame>-->
+                            <Frame HorizontalOptions="FillAndExpand" BackgroundColor="White" CornerRadius="10" BorderColor="#ba0c90">
+                                <Label BackgroundColor="White" Text="Back" HorizontalOptions="Center" TextColor="Black">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizerBack_Tapped"></TapGestureRecognizer>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Frame>
+                        </StackLayout>
+
+                    </Frame>
+
+                </StackLayout>
+
+            </AbsoluteLayout>
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

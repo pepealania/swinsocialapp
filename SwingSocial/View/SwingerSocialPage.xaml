@@ -1,0 +1,597 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:swipeCardView="clr-namespace:MLToolkit.Forms.SwipeCardView;assembly=MLToolkit.Forms.SwipeCardView"
+              xmlns:viewmodel="clr-namespace:SwingSocial.Sample.ViewModel" x:DataType="viewmodel:SwingerSocialPageViewModel"
+             
+             x:Class="SwingSocial.Sample.View.SwingerSocialPage"
+             xmlns:model="clr-namespace:SwingSocial.Sample.Model"                          
+             xmlns:view="clr-namespace:SwingSocial.Sample.View;assembly=SwingSocial" xmlns:xlabs="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             BackgroundColor="Black"
+             Title ="" Shell.BackgroundColor="Black">
+    <!--xmlns:htmllabel="clr-namespace:Plugin.HtmlLabel;assembly=Plugin.HtmlLabel"-->
+    <!--<Shell.TitleView>
+        <StackLayout HorizontalOptions="Center">
+            <ImageButton Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent"/>
+            <Label Text="Swipes"></Label>
+        </StackLayout>
+    </Shell.TitleView>-->
+
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Grid.ColumnSpan="3" Margin="0,0,0,0"/>
+            <ImageButton Source="ProfileEdit.png" HorizontalOptions="End" BackgroundColor="Transparent" Grid.ColumnSpan="5" Clicked="MyProfile_Clicked" ></ImageButton>
+
+        </Grid>
+
+    </Shell.TitleView>
+
+    <ContentPage.Content >
+        <StackLayout BackgroundColor="Black" x:Name="TopStackLayout">
+            <AbsoluteLayout BackgroundColor="Black">
+                <swipeCardView:SwipeCardView AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" 
+                x:Name="MySwipeCardView"
+                ItemsSource="{Binding Profiles}"
+                WidthRequest="300"               
+                HeightRequest="1000"
+                Padding="0"
+                SwipedCommand="{Binding SwipedCommand}"
+                DraggingCommand="{Binding DraggingCommand}"
+                Threshold="{Binding Threshold}"
+                SupportedSwipeDirections="Left, Right, Down"
+                SupportedDraggingDirections="Left, Right,Down"
+                LoopCards="True" BackgroundColor="Black">
+                    <swipeCardView:SwipeCardView.ItemTemplate>
+                        <DataTemplate x:DataType="model:ProfileEntity">
+                            <StackLayout BackgroundColor="Black">
+                                <Frame CornerRadius="10" x:Name="SwipeSection" VerticalOptions="FillAndExpand" Padding="0" BackgroundColor="black">
+                                    <AbsoluteLayout BackgroundColor="black">
+
+                                        <Image Source="{Binding Avatar}" Aspect="AspectFill"  AbsoluteLayout.LayoutBounds=".5,0.5,1,1" AbsoluteLayout.LayoutFlags="All" HeightRequest="500" />
+                                        <Frame x:Name="LikeFrame"  BorderColor="red" BackgroundColor="Transparent" Padding="0" CornerRadius="20" AbsoluteLayout.LayoutBounds="0.1,0.2, 150, 100"
+                                         AbsoluteLayout.LayoutFlags="PositionProportional"  Rotation="-20" Opacity="0">
+                                                <Image Source="{Binding TargetLikesIcon}" HeightRequest="50"></Image>
+                                            </Frame>
+
+                                            <Frame x:Name="NopeFrame" BorderColor="blue" BackgroundColor="Transparent" Padding="0" CornerRadius="20" AbsoluteLayout.LayoutBounds="0.9,0.2, 150, 100"
+                                       AbsoluteLayout.LayoutFlags="PositionProportional"  Rotation="20" Opacity="0">
+                                                <Image Source="delete.png" HeightRequest="50"></Image>
+                                            </Frame>
+                                        <Frame x:Name="SuperLikeFrame" BorderColor="#2196F3" BackgroundColor="Transparent" Padding="0" CornerRadius="20" AbsoluteLayout.LayoutBounds="0.5,.7, 150, 100"
+                                        AbsoluteLayout.LayoutFlags="PositionProportional"  Rotation="-20" Opacity="0">
+                                            <Image Source="maybe.png" HeightRequest="50"></Image>
+                                        </Frame>
+                                        <StackLayout Margin="0,0,0,0" x:Name="SwipeInfoStackLayout" VerticalOptions="End" BackgroundColor="Black" AbsoluteLayout.LayoutBounds="0,1.1, 1,1" AbsoluteLayout.LayoutFlags="All">
+
+                                                    <Label BackgroundColor="Black" FontSize="14" FontAttributes="Bold" Margin="20,0,0,0" TextColor="White">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span x:Name="currentUserName" Text="{Binding UserName}" TextColor="White" FontSize="20" FontAttributes="Bold" BackgroundColor="Black"></Span>
+                                                                <Span Text=", "></Span>
+                                                                <Span Text="{Binding BirthGender}" TextColor="white" FontSize="20" BackgroundColor="black"></Span>
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                    <Label BackgroundColor="Black" FontSize="Medium" FontAttributes="Bold" Margin="20,0,0,20" TextColor="White">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="{Binding Location}" TextColor="#D30CDB" BackgroundColor="Black" FontSize="16"></Span>
+                                                                <Span x:Name="IdString" Text="{Binding IdString}" TextColor="Black" BackgroundColor="Black" FontSize="6"></Span>
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                            <Label BackgroundColor="Black" FontSize="10" FontAttributes="Bold" Margin="20,0,0,20" TextColor="White">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding TaglineTruncated}" TextColor="DarkGray" BackgroundColor="Black" FontSize="16"></Span>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+
+                                        </StackLayout>
+                                            <StackLayout Margin="0,30,0,0">
+                                                <Grid BackgroundColor="Transparent">
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="50"></RowDefinition>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="87*"></ColumnDefinition>
+                                                        <ColumnDefinition Width="13*"></ColumnDefinition>
+
+                                                    </Grid.ColumnDefinitions>
+                                                    <ImageButton Source="FriendButton.png" IsVisible="false" BackgroundColor="Black" WidthRequest="50" HeightRequest="50" Grid.Row="0" Grid.Column="0"></ImageButton>
+                                                    <ImageButton Source="ProfileInfo.png" BackgroundColor="Transparent" Clicked="OpenProfileInfo" Grid.Row="0" Grid.Column="1" WidthRequest="50" HeightRequest="50" ></ImageButton>
+
+                                                </Grid>
+
+                                            </StackLayout>
+
+                                        </AbsoluteLayout>
+                                    </Frame>
+
+                                
+                                <StackLayout x:Name="ProfileSection" BackgroundColor="black" WidthRequest="150" HeightRequest="800" IsVisible="false">
+                                        <ScrollView>
+                                            <StackLayout>
+                                                <ImageButton HorizontalOptions="End" Source="uparrow.png" BackgroundColor="Black" WidthRequest="50" HeightRequest="50" Clicked="ShowSwipeImage"></ImageButton>
+                                                <AbsoluteLayout x:Name="absLayout">
+                                                    <AbsoluteLayout x:Name="box" BackgroundColor="White"   WidthRequest="400" HeightRequest="100" >
+                                                        <Image BackgroundColor="White"  AbsoluteLayout.LayoutBounds="0,0, 400, 100" Source="{Binding ProfileBanner}"
+            AbsoluteLayout.LayoutFlags="PositionProportional" Aspect="Fill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+                                                        <Frame
+                                            Margin="10"
+       BorderColor="Black"
+       CornerRadius="50"
+       HeightRequest="80"
+       WidthRequest="80"
+       IsClippedToBounds="True"
+       HorizontalOptions="End"
+       VerticalOptions="Center"
+                                                AbsoluteLayout.LayoutBounds="10,50, 100, 100">
+                                                            <Image Source="{Binding Avatar}"
+                                                   Aspect="AspectFill"
+                                                   Margin="-20"
+         HeightRequest="80"
+         WidthRequest="80" Grid.Row="0" Grid.Column="0" />
+                                                        </Frame>
+                                                    </AbsoluteLayout>
+                                                </AbsoluteLayout>
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="100"></RowDefinition>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label BackgroundColor="Black" Grid.Row="0" Grid.Column="0" FontSize="20" FontAttributes="Bold" Margin="20,0,0,0" TextColor="White" VerticalOptions="End">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="{Binding UserName}" TextColor="White" FontSize="20" FontAttributes="Bold" BackgroundColor="Black"></Span>
+                                                                <Span Text=", "></Span>
+                                                                <Span Text="{Binding Age}" TextColor="White" FontSize="20" BackgroundColor="black"></Span>
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                </Grid>
+                                                <Frame CornerRadius="5" BackgroundColor="#121213" IsVisible="{Binding TagLineIsVisible}">
+                                                    <Label Text="{Binding Tagline}" TextColor="white" FontSize="12"></Label>
+                                                </Frame>
+                                                <Label BackgroundColor="Black" FontSize="Medium" FontAttributes="Bold" Margin="20,0,0,20" TextColor="White" VerticalOptions="End">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="{Binding Location}" TextColor="#D30CDB" BackgroundColor="Black" FontSize="16"></Span>
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <Frame Padding="2" IsVisible="{Binding SwingStyleTagsObjectListIsVisible}" CornerRadius="10" BackgroundColor="#000000">
+                                                    <StackLayout BindableLayout.ItemsSource="{Binding SwingStyleTagsObjectList}" Orientation="Horizontal">
+                                                        <BindableLayout.ItemTemplate>
+                                                            <DataTemplate x:DataType="model:SwingStyleTagsObject">
+                                                                <StackLayout>
+                                                                    <Grid HorizontalOptions="Center" VerticalOptions="Center">
+                                                                        <Grid.RowDefinitions>
+                                                                            <RowDefinition Height="25"></RowDefinition>
+                                                                        </Grid.RowDefinitions>
+                                                                        <Grid.ColumnDefinitions>
+                                                                            <ColumnDefinition Width="{Binding Length}"></ColumnDefinition>
+                                                                        </Grid.ColumnDefinitions>
+                                                                        <Label HorizontalOptions="Center" VerticalOptions="Center"
+                                                        TextColor="white"
+                                                        Text="{Binding Description}"
+                                                             BackgroundColor="#343A40"
+                                                        />
+                                                                    </Grid>
+                                                                </StackLayout>
+                                                            </DataTemplate>
+                                                        </BindableLayout.ItemTemplate>
+
+                                                    </StackLayout>
+                                                </Frame>
+                                                <StackLayout>
+                                                    <Grid>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="50"></RowDefinition>
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                                                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                                                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                                                            <ColumnDefinition Width="4*"></ColumnDefinition>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Frame Grid.Column="0" BackgroundColor="#292a2e" CornerRadius="10" Padding="0">
+                                                            <Label TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" TextType="Html" Text="&amp;#x1F496" BackgroundColor="#292a2e">
+                                                                <Label.GestureRecognizers>
+                                                                    <TapGestureRecognizer Tapped="HeartChat_Tapped" CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                                                </Label.GestureRecognizers>
+                                                            </Label>
+                                                        </Frame>
+                                                        <Frame Grid.Column="1" BackgroundColor="#292a2e" CornerRadius="10" Padding="0">
+                                                            <Label TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" TextType="Html" Text="&amp;#x1F377" BackgroundColor="#292a2e">
+                                                                <Label.GestureRecognizers>
+                                                                    <TapGestureRecognizer Tapped="WineGlass_Tapped" CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                                                </Label.GestureRecognizers>
+                                                            </Label>
+                                                        </Frame>
+                                                        <Frame Grid.Column="2" BackgroundColor="#292a2e" CornerRadius="10" Padding="0">
+                                                            <Label TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" TextType="Html" Text="&amp;#x1F6CC" BackgroundColor="#292a2e">
+                                                                <Label.GestureRecognizers>
+                                                                    <TapGestureRecognizer Tapped="Bed_Tapped" CommandParameter="{Binding .}"></TapGestureRecognizer>
+                                                                </Label.GestureRecognizers>
+                                                            </Label>
+                                                        </Frame>
+                                                        <Button Grid.Column="3" Text="Chat" TextColor="White" FontSize="20" FontAttributes="Bold" CornerRadius="10" BackgroundColor="#292a2e" Clicked="ButtonStartChat_Clicked" CommandParameter="{Binding .}"></Button>
+                                                    </Grid>
+                                                    <Grid>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="50"></RowDefinition>
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                                                            <ColumnDefinition Width="4*"></ColumnDefinition>
+                                                            <ColumnDefinition Width="4*"></ColumnDefinition>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Frame Grid.Column="0" BackgroundColor="#292a2e" CornerRadius="10" Padding="0">
+                                                            <Label TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" TextType="Html" Text="&amp;#x1F6AB" BackgroundColor="#292a2e"></Label>
+                                                        </Frame>
+                                                        <Button TextColor="White" Grid.Column="1" Text="Friend" FontSize="20" FontAttributes="Bold" CornerRadius="10" BackgroundColor="#292a2e" Clicked="SendFriendlyMail_Clicked" CommandParameter="{Binding .}"></Button>
+                                                        <Button TextColor="White" Grid.Column="2" Text="Mail" FontSize="20" FontAttributes="Bold" CornerRadius="10" BackgroundColor="#292a2e" Clicked="GoToEmailPage_Clicked" CommandParameter="{Binding .}"></Button>
+                                                    </Grid>
+                                                </StackLayout>
+                                                <Frame Padding="2" CornerRadius="10" BackgroundColor="black" IsVisible="{Binding AboutIsVisible}">
+                                                    <StackLayout>
+                                                        <Label FontSize="16" TextColor="White" Margin="5" BackgroundColor="#000000">About</Label>
+                                                        <Label TextType="Html" Text="{Binding About}" TextColor="White"></Label>
+                                                    </StackLayout>
+                                                </Frame>
+                                                <Label Text="Details" FontSize="16" TextColor="#ffffff" Margin="10,20,0,0"></Label>
+                                                <WebView Source="{Binding DetailsHtmlTable}" HeightRequest="300" BackgroundColor="Black">
+
+                                                </WebView>
+
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="50"></RowDefinition>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="85*"></ColumnDefinition>
+                                                        <ColumnDefinition Width="50"></ColumnDefinition>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label x:Name="PartnerTableLabel" IsVisible="{Binding IsGenderDetailsHtmlTableVisible}" Text="Partner Details" FontSize="16" TextColor="White" Margin="10,20,0,0" Grid.Column="0"></Label>
+                                                    <ImageButton Grid.Column="1" HeightRequest="50" WidthRequest="50" x:Name="PartnerTableHideShow" BackgroundColor="black" Source="circleminus" Clicked="HideShowPartnerTable"></ImageButton>
+                                                </Grid>
+                                                <WebView x:Name="PartnerTable" IsVisible="{Binding IsGenderDetailsHtmlTableVisible}" Source="{Binding PartnerDetailsHtmlTable}" HeightRequest="300" BackgroundColor="Black">
+
+                                                </WebView>
+
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                                <Button Text="Public Images" CornerRadius="5" TextColor="White" BackgroundColor="#c21164" Clicked="PublicImage_Clicked"></Button>
+                                                <Button Text="{Binding GrantRevokePermissionLabel}" CornerRadius="5" TextColor="White" BackgroundColor="#c21164" Clicked="GrantPermission_Clicked" CommandParameter="{Binding .}"></Button>
+                                                <Button Text="Private Images" CornerRadius="5" TextColor="White" BackgroundColor="#c21164" Clicked="PrivateImage_Clicked" CommandParameter="{Binding .}"></Button>
+                                            </StackLayout>
+                                            <StackLayout x:Name="PublicPhotosSection">
+                                                <Label Text="Profile Photos" FontSize="16" TextColor="White" Margin="10,20,0,0"></Label>
+                                                <ScrollView Orientation="Horizontal">
+                                                    <StackLayout BackgroundColor="Black" BindableLayout.ItemsSource="{Binding MyImages}" Orientation="Horizontal">
+                                                        <BindableLayout.ItemTemplate>
+                                                            <DataTemplate x:DataType="model:MyImage">
+
+                                                                <Frame BorderColor="blue" BackgroundColor="Transparent" Padding="0">
+                                                                    <Image Margin="0" Source="{Binding Url}" HeightRequest="400" WidthRequest="400" HorizontalOptions="Center" VerticalOptions="Center"></Image>
+                                                                </Frame>
+                                                            </DataTemplate>
+                                                        </BindableLayout.ItemTemplate>
+                                                    </StackLayout>
+
+                                                </ScrollView>                                                
+                                            </StackLayout>
+                                            <StackLayout x:Name="PrivatePhotosSection" IsVisible="false">
+                                                <Label Text="Private Profile Photos" FontSize="16" TextColor="White" Margin="10,20,0,0"></Label>
+                                                <ScrollView Orientation="Horizontal">
+                                                    <StackLayout BackgroundColor="Black" BindableLayout.ItemsSource="{Binding MyPrivateImagesList}" Orientation="Horizontal">
+                                                        <BindableLayout.ItemTemplate>
+                                                            <DataTemplate x:DataType="model:MyImage">
+                                                                <Frame BorderColor="blue" BackgroundColor="Transparent" Padding="0">
+                                                                    <Image Margin="0" Source="{Binding Url}" HeightRequest="400" WidthRequest="400" HorizontalOptions="Center" VerticalOptions="Center"></Image>
+                                                                </Frame>
+                                                            </DataTemplate>
+                                                        </BindableLayout.ItemTemplate>
+                                                    </StackLayout>
+
+                                                </ScrollView>
+
+                                            </StackLayout>
+
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="50"></RowDefinition>
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="85*"></ColumnDefinition>
+                                                        <ColumnDefinition Width="50"></ColumnDefinition>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label x:Name="EventsLabel" Text="Platform Events" FontSize="16" TextColor="White" Margin="10,20,0,0" Grid.Column="0"></Label>
+                                                    <ImageButton Grid.Column="1" HeightRequest="50" WidthRequest="50" x:Name="EventsHideShow" BackgroundColor="black" Source="circleminus" Clicked="HideShowEvents"></ImageButton>
+                                                </Grid>
+                                                <Frame BackgroundColor="Black">
+                                                    <Grid>
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="50"></RowDefinition>
+                                                        </Grid.RowDefinitions>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="100*"></ColumnDefinition>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Frame BackgroundColor="White" CornerRadius="10" Padding="0" HorizontalOptions="FillAndExpand">
+                                                            <xlabs:BindableRadioGroup x:Name="ansPicker"
+                                     FontName="AmericanTypewriter" 
+                                     BackgroundColor="White" SelectedIndex="0"
+                                     VerticalOptions="Start" Orientation="Horizontal"  HorizontalOptions="Center">
+                                                                
+                                                            </xlabs:BindableRadioGroup>
+
+                                                        </Frame>
+
+                                                    </Grid>
+
+                                                </Frame>
+
+                                                <Frame x:Name="EventsRsvpFrame" CornerRadius="10" BackgroundColor="#121213" IsVisible="false">
+                                                    <Frame CornerRadius="10" BackgroundColor="#000000">
+
+                                                        <ListView Grid.Row="1" x:Name="EventsListView" RowHeight="400"  BackgroundColor="Black" ItemsSource="{Binding Events}">
+                                                            <ListView.ItemTemplate>
+                                                                <DataTemplate x:DataType="model:Event">
+                                                                    <ViewCell IsEnabled="True">
+
+                                                                        <Frame BorderColor="#292a2e" CornerRadius="10" BackgroundColor="#292a2e" Padding="0" Margin="10">
+
+                                                                            <AbsoluteLayout HeightRequest="400" WidthRequest="100" VerticalOptions="Center" >
+
+
+
+
+                                                                            <Image Margin="0" Source="{Binding CoverImageUrl}" AbsoluteLayout.LayoutBounds="0,0,1,1" BackgroundColor="#292a2e"
+AbsoluteLayout.LayoutFlags="All" HorizontalOptions="Center" VerticalOptions="Center" Aspect="Fill"/>
+
+                                                                                <Label x:Name="NameLabel" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0.95,1,0.1" BackgroundColor="#c21164" Text="{Binding Name}" HorizontalTextAlignment="Center" FontSize="12"  
+TextColor="white" />
+                                                                                <Label x:Name="StartTimeLabel" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,1,1,0.1" BackgroundColor="#c21164" HorizontalTextAlignment="Center" FontSize="12"  
+TextColor="white">
+                                                                                    <Label.FormattedText>
+                                                                                        <FormattedString>
+                                                                                            <Span Text="Starts at : "></Span>
+                                                                                            <Span Text="{Binding StartTimeString}" ></Span>
+                                                                                        </FormattedString>
+                                                                                    </Label.FormattedText>
+                                                                                </Label>
+                                                                                <Label Text=""
+FontSize="Small" TextColor="#8C9095" />
+
+                                                                                <Label Text="{Binding ImagesString}" IsVisible="false" FontSize="Small"
+TextColor="#C2C5CB" />
+                                                                                <Label Text="{Binding Description}" Margin="20,20,20,20" IsVisible="false" FontSize="Small"
+TextColor="#C2C5CB" />
+                                                                                <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,0.1">
+                                                                                    <Button Text="{Binding Category}" HeightRequest="50" BackgroundColor="Purple" TextColor="White"></Button>
+                                                                                </StackLayout>
+
+                                                                            </AbsoluteLayout>
+
+
+                                                                        </Frame>
+                                                                    </ViewCell>
+                                                                </DataTemplate>
+                                                            </ListView.ItemTemplate>
+                                                        </ListView>
+
+
+
+                                                    </Frame>
+
+                                                </Frame>
+
+                                                <Frame x:Name="EventsAllFrame" CornerRadius="10" BackgroundColor="#121213">
+                                                    <Frame CornerRadius="10" BackgroundColor="#000000" x:DataType="viewmodel:TinderPageViewModel">
+
+                                                        <ListView Grid.Row="1" x:Name="EventsAllListView" RowHeight="400"  BackgroundColor="Black" ItemsSource="{Binding EventsAll}">
+                                                            <ListView.ItemTemplate>
+                                                                <DataTemplate x:DataType="model:Event">
+                                                                    <ViewCell IsEnabled="True">
+
+                                                                        <Frame BorderColor="#292a2e" CornerRadius="10" BackgroundColor="#292a2e" Padding="0" Margin="10">
+
+                                                                            <AbsoluteLayout HeightRequest="400" WidthRequest="100" VerticalOptions="Center" >
+
+
+
+
+                                                                            <Image Margin="0" Source="{Binding CoverImageUrl}" AbsoluteLayout.LayoutBounds="0,0,1,1" BackgroundColor="#292a2e"
+AbsoluteLayout.LayoutFlags="All" HorizontalOptions="Center" VerticalOptions="Center" Aspect="Fill"/>
+
+                                                                                <Label x:Name="NameLabel" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0.95,1,0.1" BackgroundColor="#c21164" Text="{Binding Name}" HorizontalTextAlignment="Center" FontSize="12"  
+TextColor="white" />
+                                                                                <Label x:Name="StartTimeLabel" AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,1,1,0.1" BackgroundColor="#c21164" HorizontalTextAlignment="Center" FontSize="12"  
+TextColor="white">
+                                                                                    <Label.FormattedText>
+                                                                                        <FormattedString>
+                                                                                            <Span Text="Starts at : "></Span>
+                                                                                            <Span Text="{Binding StartTimeString}" ></Span>
+                                                                                        </FormattedString>
+                                                                                    </Label.FormattedText>
+                                                                                </Label>
+                                                                                <Label Text=""
+FontSize="Small" TextColor="#8C9095" />
+
+                                                                                <Label Text="{Binding ImagesString}" IsVisible="false" FontSize="Small"
+TextColor="#C2C5CB" />
+                                                                                <Label Text="{Binding Description}" Margin="20,20,20,20" IsVisible="false" FontSize="Small"
+TextColor="#C2C5CB" />
+
+                                                                                <StackLayout AbsoluteLayout.LayoutFlags="All" AbsoluteLayout.LayoutBounds="0,0,1,0.1">
+                                                                                    <Button Text="{Binding Category}" HeightRequest="50" BackgroundColor="Purple" TextColor="White"></Button>
+                                                                                </StackLayout>
+
+                                                                            </AbsoluteLayout>
+
+
+                                                                        </Frame>
+                                                                    </ViewCell>
+                                                                </DataTemplate>
+                                                            </ListView.ItemTemplate>
+                                                        </ListView>
+
+
+
+                                                    </Frame>
+
+                                                </Frame>
+
+
+                                            </StackLayout>
+
+                                        </ScrollView>
+
+
+                                    </StackLayout>
+
+                            </StackLayout>
+                        </DataTemplate>
+                    </swipeCardView:SwipeCardView.ItemTemplate>
+                </swipeCardView:SwipeCardView>
+
+                <StackLayout BackgroundColor="Transparent" AbsoluteLayout.LayoutBounds="0,0.5,1,0.5" AbsoluteLayout.LayoutFlags="All" x:Name="modalStackLayout" IsVisible="false">
+                    <StackLayout Margin="20" HorizontalOptions="Center" VerticalOptions="Center" x:Name="SwipeMessageStartup" IsVisible="false">
+                        <Frame CornerRadius="10" BackgroundColor="black" Opacity="1">
+                            <StackLayout>
+                                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                                    <Label Text="&#8592;" TextColor="white"></Label>
+                                    <Label Text="&#8594;" TextColor="White"></Label>
+                                </StackLayout>
+                                <Label Text="&#128070;" TextColor="White" HorizontalOptions="Center" FontSize="26"></Label>
+
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Swipe Right" TextColor="White"></Label>
+                                    <Label Text="If like the profile" TextColor="White"></Label>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Swipe Down" TextColor="White"></Label>
+                                    <Label Text="If your not sure" TextColor="White"></Label>
+                                </StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="Swipe Left" TextColor="White"></Label>
+                                    <Label Text="If you don't like" TextColor="White"></Label>
+                                </StackLayout>
+                                <Frame HorizontalOptions="FillAndExpand" BackgroundColor="white" CornerRadius="10" Padding="0">
+                                    <Button Text="Continue" HorizontalOptions="FillAndExpand" TextColor="#c21164" BackgroundColor="white" Clicked="SwipeMessageStartup_Clicked">
+                                    </Button>
+                                </Frame>
+                                <Frame HorizontalOptions="FillAndExpand" BackgroundColor="#c21164" CornerRadius="10" Padding="0">
+                                </Frame>
+                                <Frame BorderColor="#c21164" HorizontalOptions="FillAndExpand" BackgroundColor="White" CornerRadius="10"  Padding="1">
+                                </Frame>
+                            </StackLayout>
+
+                        </Frame>
+
+                    </StackLayout>
+                    <StackLayout AbsoluteLayout.LayoutBounds="0.1,0.1,1,0.5" AbsoluteLayout.LayoutFlags="All"  Margin="20" HorizontalOptions="Center" VerticalOptions="Center" x:Name="MatchesConfirmation" IsVisible="false">
+                        <Frame CornerRadius="10" BackgroundColor="#c21164" Opacity="1">
+                            <StackLayout>
+                                <Label HorizontalOptions="CenterAndExpand" Text="Congratulations!" TextColor="White" FontSize="16" FontAttributes="Bold"></Label>
+                                <StackLayout Orientation="Horizontal">
+                                    <Label HorizontalOptions="Center" TextColor="White">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="You matched with "></Span>
+                                                <Span x:Name="matchedProfile"></Span>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Frame
+                                            Margin="0" Padding="0"
+       BorderColor="Black"
+       CornerRadius="50"
+       HeightRequest="80"
+       WidthRequest="80"
+       IsClippedToBounds="True"
+       HorizontalOptions="End"
+       VerticalOptions="Center"
+                                                >
+                                        <ImageButton x:Name="matchedMessageAvatar"
+                                                   Aspect="AspectFit"
+                                                   Margin="1" Clicked="matchedMessageAvatar_Clicked"
+ />
+                                    </Frame>
+                                </StackLayout>
+
+                                <Label HorizontalOptions="CenterAndExpand" Text="See All Your Matched Profiles in the Matches Button." TextColor="White"></Label>
+
+                                <Frame HorizontalOptions="FillAndExpand" BackgroundColor="white" CornerRadius="10" Padding="0">
+                                    <Button Text="Continue" HorizontalOptions="FillAndExpand" TextColor="#c21164" BackgroundColor="white" Clicked="MatchesConfirmationClose_Clicked">
+                                    </Button>
+                                </Frame>
+                                <Frame HorizontalOptions="FillAndExpand" BackgroundColor="#c21164" CornerRadius="10" Padding="0">
+                                </Frame>
+                                <Frame BorderColor="#c21164" HorizontalOptions="FillAndExpand" BackgroundColor="White" CornerRadius="10"  Padding="1">
+                                </Frame>
+                            </StackLayout>
+
+                        </Frame>
+
+                    </StackLayout>
+                    <StackLayout AbsoluteLayout.LayoutBounds="0.1,0.1,1,0.5" AbsoluteLayout.LayoutFlags="All"  Margin="20" HorizontalOptions="Center" VerticalOptions="Center" x:Name="LastProfilePopUp" IsVisible="false">
+                        <Frame CornerRadius="10" BackgroundColor="#c21164" Opacity="1">
+                            <StackLayout>
+                                <Label HorizontalOptions="CenterAndExpand" Text="Attention" TextColor="White" FontSize="16" FontAttributes="Bold"></Label>
+
+                                <Label HorizontalOptions="CenterAndExpand" x:Name="LastProfileMessage" TextColor="White"></Label>
+
+                                <Frame HorizontalOptions="FillAndExpand" BackgroundColor="white" CornerRadius="10" Padding="0">
+                                    <Button Text="Continue" HorizontalOptions="FillAndExpand" TextColor="#c21164" BackgroundColor="white" Clicked="LastProfilePopUpClose_Clicked">
+                                    </Button>
+                                </Frame>
+                                <Frame HorizontalOptions="FillAndExpand" BackgroundColor="white" CornerRadius="10" Padding="0">
+                                    <Button Text="Upgrade" HorizontalOptions="FillAndExpand" TextColor="#c21164" BackgroundColor="white" Clicked="LastProfileGoToBilling_Clicked">
+                                    </Button>
+                                </Frame>
+
+                                <Frame HorizontalOptions="FillAndExpand" BackgroundColor="#c21164" CornerRadius="10" Padding="0">
+                                </Frame>
+                                <Frame BorderColor="#c21164" HorizontalOptions="FillAndExpand" BackgroundColor="White" CornerRadius="10"  Padding="1">
+                                </Frame>
+                            </StackLayout>
+
+                        </Frame>
+
+                    </StackLayout>
+
+                </StackLayout>
+
+            </AbsoluteLayout>
+            <StackLayout BackgroundColor="Black" WidthRequest="700">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="10, 10, 10, 20" Spacing="25" BackgroundColor="Black">
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="homeMenu" Source="iconhome.png" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0" Clicked="HomeMenu_Clicked"></ImageButton>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="communityMenu" Source="iconcommunity.png" Clicked="CommunityMenu_Clicked" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="pineapple" Source="pineapplelittle.png" Clicked="Pineapple_Clicked" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="likeButton" Source="iconmessaging.png" Clicked="OnChatClicked" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="matchesMenu" Source="iconlikes.png" Clicked="MatchesMenu_Clicked" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

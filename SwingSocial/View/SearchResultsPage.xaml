@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SwingSocial.Sample.View.SearchResultsPage"
+             xmlns:viewmodel="clr-namespace:SwingSocial.Sample.ViewModel"  x:DataType="viewmodel:SearchPageViewModel"            
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"             
+             BackgroundColor="Black"             
+             xmlns:view="clr-namespace:SwingSocial.Sample.View;assembly=SwingSocial" xmlns:model="clr-namespace:SwingSocial.Sample.Model"
+             xmlns:xlabs="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             Title ="" Shell.BackgroundColor="Black">
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Margin="10"/>
+
+        </Grid>
+    </Shell.TitleView>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="TransparentButtonStyle" TargetType="xlabs:BindableRadioGroup">
+                <Setter Property="BackgroundColor" Value="Black" />
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView BackgroundColor="Black">
+                        <StackLayout x:Name="stkMain" BackgroundColor="Black">
+                            <Label IsVisible="{Binding NoResultsMessageIsVisible}" TextColor="white" FontSize="16" Text="No profiles match the criteria." HorizontalTextAlignment="Center" VerticalTextAlignment="Center" VerticalOptions="Center" Margin="50"></Label>
+                            <ListView IsVisible="true" x:Name="ProfilesListView" BackgroundColor="Black" RowHeight="400" ItemsSource="{Binding SearchedProfiles}" ItemTapped="ProfilesListView_ItemTapped">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate x:DataType="model:ProfileEntity">
+                                        <ViewCell IsEnabled="True">
+                                            <Frame BorderColor="#c21164" BackgroundColor="#292a2e" Padding="0" Margin="0">
+                                                <AbsoluteLayout HeightRequest="400" WidthRequest="100" VerticalOptions="Center" >
+                                                    <Image AbsoluteLayout.LayoutBounds="0,0,1,1" Aspect="Fill"
+AbsoluteLayout.LayoutFlags="All" Source="{Binding Avatar}" />
+
+                                                    <StackLayout AbsoluteLayout.LayoutBounds="0.1,1,420,100" HorizontalOptions="FillAndExpand" BackgroundColor="Black"
+AbsoluteLayout.LayoutFlags="PositionProportional">
+
+                                                        <Label Text="{Binding UserName}"
+                                               TextColor="White" FontSize="26" />
+                                                        <Label FontSize="20">
+                                                            <Label.FormattedText>
+                                                                <FormattedString>
+                                                                    <Span TextColor="White" Text="{Binding Age}"></Span>
+                                                                    <Span TextColor="White" Text=", "></Span>
+                                                                    <Span TextColor="#c21164" Text="{Binding AccountType}"></Span>
+                                                                </FormattedString>
+                                                            </Label.FormattedText>
+                                                        </Label>
+
+                                                    </StackLayout>
+                                                </AbsoluteLayout>
+
+                                            </Frame>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

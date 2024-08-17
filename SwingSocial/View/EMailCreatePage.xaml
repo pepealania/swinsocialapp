@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SwingSocial.Sample.View.EmailCreatePage"
+             xmlns:viewmodel="clr-namespace:SwingSocial.Sample.ViewModel"  x:DataType="viewmodel:ChatViewModel"            
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"             
+             BackgroundColor="Black"             
+             xmlns:view="clr-namespace:SwingSocial.Sample.View;assembly=SwingSocial" xmlns:model="clr-namespace:SwingSocial.Sample.Model"
+             Title ="" Shell.BackgroundColor="Black">
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Margin="10"/>
+
+        </Grid>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <Label Text="Create Mailbox Message" TextColor="White" FontSize="26" HorizontalOptions="Center"></Label>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width="6.5*"></ColumnDefinition>
+                    <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Frame Grid.Column="0"
+                                            Margin="0" Padding="0"
+       BorderColor="Black"
+       CornerRadius="50"
+       HeightRequest="30"
+       WidthRequest="30"
+       IsClippedToBounds="True"
+       HorizontalOptions="End"
+       VerticalOptions="Center"
+                                                >
+                    <Image x:Name="MailAvatar" 
+                                                   Aspect="AspectFit"
+                                                   Margin="-20"
+         HeightRequest="30"
+         WidthRequest="30"/>
+                </Frame>
+                <Label Grid.Column="1" x:Name="MailFromUserName" VerticalOptions="Center" TextColor="White" BackgroundColor="Black"></Label>
+                <Button Grid.Column="2" BackgroundColor="#c21164" FontSize="20" Text="&#128206;" CornerRadius="5" Padding="0" Margin="0" Clicked="CoverPhoto_Tapped"></Button>
+            </Grid>
+
+            <Frame CornerRadius="10" Padding="0" Margin="0">
+                <StackLayout x:Name="stkMain" BackgroundColor="#292a2e">
+                    <Grid BackgroundColor="#292a2e" Padding="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                            <ColumnDefinition Width="8.5*"></ColumnDefinition>
+
+                        </Grid.ColumnDefinitions>
+                        <Label x:Name="emailFrom" TextColor="White" Grid.Column="0" Text="From:" BackgroundColor="#292a2e"></Label>
+                        <Label Grid.Column="1" x:Name="emailFromLabel" TextColor="White" BackgroundColor="#292a2e"></Label>
+                    </Grid>
+
+                    <Grid BackgroundColor="#292a2e" Padding="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="30"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                            <ColumnDefinition Width="8.5*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label x:Name="emailTo" TextColor="White" Grid.Column="0" Text="To:" BackgroundColor="#292a2e"></Label>
+                        <Label Grid.Column="1" x:Name="emailToLabel" TextColor="White" BackgroundColor="#292a2e"></Label>
+                    </Grid>
+                    <Grid BackgroundColor="#292a2e" Padding="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.5*"></ColumnDefinition>
+                            <ColumnDefinition Width="8.5*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label x:Name="emailSubject" FontSize="12" VerticalOptions="Center" TextColor="White" Grid.Column="0" Text="Subject:" BackgroundColor="#292a2e"></Label>
+                        <Entry VerticalOptions="Center" x:Name="subjectEntry" Grid.Column="1" Placeholder="Write Subject..." PlaceholderColor="White" TextColor="White" BackgroundColor="#292a2e" FontSize="16" Margin="0"></Entry>
+                    </Grid>
+                    <BoxView   VerticalOptions="Center"
+           HorizontalOptions="FillAndExpand"
+           HeightRequest="1"
+           WidthRequest="100"  
+           Color="#5b5d68"></BoxView>
+                    <ScrollView>
+                        <StackLayout>
+                            <Editor x:Name="BodyEditor" AutoSize="TextChanges" HeightRequest="300" BackgroundColor="#292a2e" TextColor="White"></Editor>
+                            <Frame Margin="10,0,10,0" BackgroundColor="Black" CornerRadius="10" BorderColor="white" HeightRequest="400" IsVisible="false" x:Name="AttachedImageFrame">
+                                <AbsoluteLayout>
+                                    <Image AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" x:Name="ImageToDisplayCoverImage" Source="photocamera"  Aspect="Fill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Image>
+                                </AbsoluteLayout>
+                            </Frame>
+                        </StackLayout>
+                    </ScrollView>
+                    <Grid BackgroundColor="#3d424a" Padding="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="7*"></ColumnDefinition>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Entry IsVisible="false" x:Name="conversationEntry" Grid.Column="0" Placeholder="Write Group Name..." BackgroundColor="White"></Entry>
+                        <Frame Grid.Column="1" CornerRadius="10" BackgroundColor="#c21164" Padding="0">
+                            <Button Text="Send" Clicked="SendEmail"  CommandParameter="{Binding .}" BackgroundColor="#c21164" TextColor="White" ></Button>
+                        </Frame>                        
+                     </Grid>
+
+                </StackLayout>
+            </Frame>
+
+
+            <StackLayout BackgroundColor="Black" WidthRequest="700">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="10, 10, 10, 20" Spacing="25" BackgroundColor="Black">
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="superLikeButton1" Source="iconhome.png" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:SwingerSocialPage}"></ImageButton>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="nopeButton" Source="iconcommunity.png" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:Community}" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="pineapple" Source="pineapplelittle.png" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:MapPage}" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                        <!--<ImageButton x:Name="superLikeButton" Source="FlashingPineapple.gif" WidthRequest="50" HeightRequest="50" BackgroundColor="White" Scale="1">
+                    </ImageButton>-->
+                        <!--<ff:CachedImage x:Name="pineapple" WidthRequest="50" HeightRequest="50" Margin="0,0,0,0">
+                            <ff:CachedImage.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:MapPage}"/>
+                            </ff:CachedImage.GestureRecognizers>
+                        </ff:CachedImage>-->
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="likeButton" Source="iconmessaging.png" Clicked="OnChatClicked" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="superLikeButton" Source="iconlikes.png" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:Matches}" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SwingSocial.Sample.View.LearnPage"
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"             
+             BackgroundColor="Black"
+             Title ="">
+    <Shell.TitleView>
+        <StackLayout>
+            <ImageButton Source="swingsocialtoolbar.jpeg" WidthRequest="50" HeightRequest="50" HorizontalOptions="End"/>
+        </StackLayout>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout Margin="20" BackgroundColor="Black">
+            <!-- WebView needs to be given height and width request within layouts to render. -->
+            <WebView x:Name="webView" WidthRequest="1000" HeightRequest="1000" Source="https://swingsocial.co/blogs/"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

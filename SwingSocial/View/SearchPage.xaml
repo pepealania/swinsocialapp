@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SwingSocial.Sample.View.SearchPage"
+              xmlns:viewmodel="clr-namespace:SwingSocial.Sample.ViewModel"  x:DataType="viewmodel:PaymentBillingViewModel"            
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"             
+             BackgroundColor="Black"             
+             xmlns:view="clr-namespace:SwingSocial.Sample.View;assembly=SwingSocial"
+             xmlns:custom="clr-namespace:DurianCode.PlacesSearchBar;assembly=PlacesSearchBar"
+             xmlns:model="clr-namespace:SwingSocial.Sample.Model"
+             xmlns:xlabs="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             Title ="" Shell.BackgroundColor="Black">
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Margin="10"/>
+
+        </Grid>
+    </Shell.TitleView>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="TransparentButtonStyle" TargetType="xlabs:BindableRadioGroup">
+                <Setter Property="BackgroundColor" Value="Black" />
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView BackgroundColor="Black">
+            <StackLayout Margin="20" BackgroundColor="Black">
+                <AbsoluteLayout>
+                    <Frame x:Name="MainScroll" CornerRadius="10" Padding="2" Margin="0" BackgroundColor="Black" BorderColor="white"  AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                        <StackLayout x:Name="stkMain" BackgroundColor="Black">
+                            <Frame CornerRadius="10" BackgroundColor="Black">
+                                <StackLayout BackgroundColor="black">
+                                    <Label BackgroundColor="Black" Text="Search for" FontSize="26" FontAttributes="Bold" TextColor="White"></Label>
+                                    <Grid Margin="0,10,0,10">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="50"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="100*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Frame BackgroundColor="#292a2e" CornerRadius="10" Padding="0" HorizontalOptions="FillAndExpand">
+                                            <xlabs:BindableRadioGroup x:Name="typesPicker" Margin="1"
+                                     Style="{StaticResource TransparentButtonStyle}"
+                                     BackgroundColor="#292a2e"
+                                     VerticalOptions="Center" Orientation="Horizontal"  HorizontalOptions="Center"/>
+
+                                        </Frame>
+
+                                        <!--<CheckBox Grid.Column="0" ></CheckBox>
+                                        <Label Grid.Column="1" BackgroundColor="Black" Text="Couples" TextColor="White" VerticalOptions="Center"></Label>
+                                        <CheckBox Grid.Column="2"></CheckBox>
+                                        <Label Grid.Column="3" BackgroundColor="Black" Text="Single Males" TextColor="White" VerticalOptions="Center"></Label>
+                                        <CheckBox Grid.Column="4"></CheckBox>
+                                        <Label Grid.Column="5" BackgroundColor="Black" Text="Single Females" TextColor="White" VerticalOptions="Center"></Label>-->
+                                    </Grid>
+                                    <BoxView   VerticalOptions="Center"
+           HorizontalOptions="FillAndExpand"
+           HeightRequest="1"
+           WidthRequest="100"  
+           Color="#5b5d68"></BoxView>
+                                    <Grid Margin="0,10,0,10">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="20"></RowDefinition>
+                                            <RowDefinition Height="40"></RowDefinition>
+                                            <RowDefinition Height="20"></RowDefinition>
+                                            <RowDefinition Height="20"></RowDefinition>
+                                            <RowDefinition Height="40"></RowDefinition>
+                                        </Grid.RowDefinitions>
+
+                                    <Label Text="Enter the location to block" TextColor="White" FontSize="10"></Label>
+                                    <Frame CornerRadius="10" Padding="0" Margin="0" BackgroundColor="#292a2e">
+                                        <StackLayout>
+                                            <custom:PlacesBar x:Name="search_bar" TextColor="White" FontSize="12" PlaceholderColor="DarkGray" Placeholder="City, ST" Text="" BackgroundColor="#292a2e"/>
+                                            <StackLayout x:Name="VenueListStackLayout" IsVisible="false">
+                                                <ActivityIndicator x:Name="spinner" IsRunning="false"/>
+                                                <ListView x:Name="results_list">
+                                                    <ListView.ItemTemplate>
+                                                        <DataTemplate x:DataType="custom:AutoCompletePrediction">
+                                                            <TextCell Text="{Binding MainText}" Detail="{Binding SecondaryText}" DetailColor="DarkGray" />
+                                                        </DataTemplate>
+                                                    </ListView.ItemTemplate>
+                                                </ListView>
+                                            </StackLayout>
+                                        </StackLayout>
+
+                                    </Frame>
+                                        <Label BackgroundColor="Black" Grid.Row="2" Text="OR" TextColor="White"></Label>
+                                        <Label BackgroundColor="Black" Grid.Row="3" Text="Distance (Miles from your ZIP)" TextColor="White"></Label>
+                                        <Entry BackgroundColor="White" Grid.Row="4"></Entry>
+                                    </Grid>
+                                    <BoxView   VerticalOptions="Center"
+           HorizontalOptions="FillAndExpand"
+           HeightRequest="1"
+           WidthRequest="100"  
+           Color="#5b5d68"></BoxView>
+                                    <Grid Margin="0,10,0,10">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="50"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="0.9*"></ColumnDefinition>
+                                            <ColumnDefinition Width="9.1*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <CheckBox Grid.Column="0"></CheckBox>
+                                        <Label Grid.Column="1" BackgroundColor="Black" Text="Only Profiles with Photos" TextColor="White" VerticalOptions="Center"></Label>
+                                    </Grid>
+                                    <BoxView   VerticalOptions="Center"
+           HorizontalOptions="FillAndExpand"
+           HeightRequest="1"
+           WidthRequest="100"  
+           Color="#5b5d68"></BoxView>
+                                    <Grid Margin="0,10,0,10">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="40"></RowDefinition>
+                                            <RowDefinition Height="40"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="4*"></ColumnDefinition>
+                                            <ColumnDefinition Width="2.2*"></ColumnDefinition>
+                                            <ColumnDefinition Width="1.6*"></ColumnDefinition>
+                                            <ColumnDefinition Width="2.2*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Label Grid.Column="0" Grid.Row="0" BackgroundColor="Black" Text="Her Age Between" TextColor="White" VerticalOptions="Center"></Label>
+                                        <Entry Grid.Column="1" Grid.Row="0" BackgroundColor="White"></Entry>
+                                        <Label HorizontalOptions="Center" Grid.Column="2" Grid.Row="0" BackgroundColor="Black" Text="and" TextColor="White" VerticalOptions="Center"></Label>
+                                        <Entry Grid.Column="3" Grid.Row="0" BackgroundColor="White"></Entry>
+                                        <Label Grid.Column="0" Grid.Row="1" BackgroundColor="Black" Text="His Age Between" TextColor="White" VerticalOptions="Center"></Label>
+                                        <Entry BackgroundColor="White" Grid.Column="1" Grid.Row="1"></Entry>
+                                        <Label HorizontalOptions="Center" Grid.Column="2" Grid.Row="1" BackgroundColor="Black" Text="and" TextColor="White" VerticalOptions="Center"></Label>
+                                        <Entry BackgroundColor="White" Grid.Column="3" Grid.Row="1"></Entry>
+                                    </Grid>
+                                    <BoxView   VerticalOptions="Center"
+           HorizontalOptions="FillAndExpand"
+           HeightRequest="1"
+           WidthRequest="100"  
+           Color="#5b5d68"></BoxView>
+                                    <Grid Margin="0,10,0,10">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="20"></RowDefinition>
+                                            <RowDefinition Height="40"></RowDefinition>
+                                            <RowDefinition Height="20"></RowDefinition>
+                                            <RowDefinition Height="40"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <!--<Picker Title="Sexual orientation" x:Name="CoupleMySexOrientationPicker" BackgroundColor="#5d5a5d"
+        TitleColor="White"
+        TextColor="White"
+        FontAttributes="Italic"
+        FontSize="12"/>-->
+                                        <Label BackgroundColor="Black" Grid.Row="0" Text="Her Orientation" TextColor="White"></Label>
+                                        <Picker BackgroundColor="White" Grid.Row="1"></Picker>
+                                        <Label BackgroundColor="Black" Grid.Row="2" Text="His Orientation" TextColor="White"></Label>
+                                        <Picker BackgroundColor="White" Grid.Row="3"></Picker>
+                                    </Grid>
+                                </StackLayout>
+                            </Frame>
+
+                            <Frame CornerRadius="10" BackgroundColor="#ba0c90" Padding="0" Margin="0" HorizontalOptions="Center">
+                                <Button Text="Search" TextColor="White" BackgroundColor="#ba0c90" Clicked="SearchButton_Clicked"></Button>
+                            </Frame>
+                        </StackLayout>
+
+                    </Frame>
+                </AbsoluteLayout>
+            </StackLayout>
+
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

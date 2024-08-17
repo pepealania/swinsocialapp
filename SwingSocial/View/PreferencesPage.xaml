@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SwingSocial.Sample.View.PreferencesPage"
+             xmlns:viewmodel="clr-namespace:SwingSocial.Sample.ViewModel"  x:DataType="viewmodel:PreferencesViewModel"            
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"             
+             BackgroundColor="Black"             
+             xmlns:view="clr-namespace:SwingSocial.Sample.View;assembly=SwingSocial" xmlns:model="clr-namespace:SwingSocial.Sample.Model"
+             xmlns:custom="clr-namespace:DurianCode.PlacesSearchBar;assembly=PlacesSearchBar"
+             xmlns:xlabs="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:forms="clr-namespace:Xamarin.RangeSlider.Forms;assembly=Xamarin.RangeSlider.Forms"             
+             Title ="" Shell.BackgroundColor="Black">
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Margin="10"/>
+
+        </Grid>
+    </Shell.TitleView>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="TransparentButtonStyle" TargetType="xlabs:BindableRadioGroup">
+                <Setter Property="BackgroundColor" Value="Black" />
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView BackgroundColor="Black">
+            <StackLayout Margin="20" BackgroundColor="Black">
+                <AbsoluteLayout>
+                    <Frame x:Name="MainScroll" CornerRadius="10" Padding="0" Margin="0" BackgroundColor="Black" BorderColor="black"  AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                        <StackLayout x:Name="stkMain" BackgroundColor="Black">
+                            <Frame CornerRadius="10" BackgroundColor="Black">
+                                <StackLayout BackgroundColor="black">
+                                    <Label BackgroundColor="Black" Text="Preferences" HorizontalOptions="Center" FontSize="26" FontAttributes="Bold" TextColor="White"></Label>
+                                    <BoxView   VerticalOptions="Center"
+           HorizontalOptions="FillAndExpand"
+           HeightRequest="1"
+           WidthRequest="100"  
+           Color="#5b5d68"></BoxView>
+                                    <Label BackgroundColor="Black" Text="Who can see me when they are swiping or searching?" HorizontalOptions="Center" FontSize="20" FontAttributes="Bold" TextColor="White"></Label>
+                                    <Grid Margin="0,10,0,10">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="50"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="10*"></ColumnDefinition>
+                                            <ColumnDefinition Width="25*"></ColumnDefinition>
+                                            <ColumnDefinition Width="10*"></ColumnDefinition>
+                                            <ColumnDefinition Width="25*"></ColumnDefinition>
+                                            <ColumnDefinition Width="10*"></ColumnDefinition>
+                                            <ColumnDefinition Width="20*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+
+
+                                        <CheckBox Grid.Column="0" IsChecked="{Binding Preference.Couples}"></CheckBox>
+                                        <Label Grid.Column="1" BackgroundColor="Black" Text="Couples" TextColor="White" VerticalOptions="Center"></Label>
+                                        <CheckBox Grid.Column="2" IsChecked="{Binding Preference.SingleMales}"></CheckBox>
+                                        <Label Grid.Column="3" BackgroundColor="Black" Text="Single Males" TextColor="White" VerticalOptions="Center"></Label>
+                                        <CheckBox Grid.Column="4" IsChecked="{Binding Preference.SingleFemales}"></CheckBox>
+                                        <Label Grid.Column="5" BackgroundColor="Black" Text="Single Females" TextColor="White" VerticalOptions="Center"></Label>
+                                    </Grid>
+                                    <Grid Margin="0,10,0,10">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="50"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="0.9*"></ColumnDefinition>
+                                            <ColumnDefinition Width="9.1*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <CheckBox Grid.Column="0" IsChecked="{Binding Preference.OnlyPhotos}"></CheckBox>
+                                        <Label Grid.Column="1" BackgroundColor="Black" Text="Only Profiles with Photos" TextColor="White" VerticalOptions="Center"></Label>
+                                    </Grid>
+                                    <BoxView   VerticalOptions="Center"
+           HorizontalOptions="FillAndExpand"
+           HeightRequest="1"
+           WidthRequest="100"  
+           Color="#5b5d68"></BoxView>
+                                    <Label BackgroundColor="Black" Text="Who should I block when I am swiping?" HorizontalOptions="Center" FontSize="20" FontAttributes="Bold" TextColor="White"></Label>
+                                    <Grid Margin="0,10,0,10">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="50"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="10*"></ColumnDefinition>
+                                            <ColumnDefinition Width="25*"></ColumnDefinition>
+                                            <ColumnDefinition Width="10*"></ColumnDefinition>
+                                            <ColumnDefinition Width="25*"></ColumnDefinition>
+                                            <ColumnDefinition Width="10*"></ColumnDefinition>
+                                            <ColumnDefinition Width="20*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+
+
+                                        <CheckBox Grid.Column="0" IsChecked="{Binding Preference.BlockCouples}"></CheckBox>
+                                        <Label Grid.Column="1" BackgroundColor="Black" Text="Couples" TextColor="White" VerticalOptions="Center"></Label>
+                                        <CheckBox Grid.Column="2" IsChecked="{Binding Preference.BlockSingleMales}"></CheckBox>
+                                        <Label Grid.Column="3" BackgroundColor="Black" Text="Single Males" TextColor="White" VerticalOptions="Center"></Label>
+                                        <CheckBox Grid.Column="4" IsChecked="{Binding Preference.BlockSingleFemales}"></CheckBox>
+                                        <Label Grid.Column="5" BackgroundColor="Black" Text="Single Females" TextColor="White" VerticalOptions="Center"></Label>
+                                    </Grid>
+
+
+
+                                    <Label Text="Enter the location to block" TextColor="White" FontSize="10"></Label>
+                                    <Frame CornerRadius="10" Padding="0" Margin="0" BackgroundColor="#292a2e">
+                                        <StackLayout>
+                                            <custom:PlacesBar x:Name="search_bar" TextColor="White" FontSize="12" PlaceholderColor="DarkGray" Placeholder="City, ST" Text="{Binding Preference.CityState}" BackgroundColor="#292a2e"/>
+                                            <StackLayout x:Name="VenueListStackLayout" IsVisible="false">
+                                                <ActivityIndicator x:Name="spinner" IsRunning="false"/>
+                                                <ListView x:Name="results_list">
+                                                    <ListView.ItemTemplate>
+                                                        <DataTemplate x:DataType="custom:AutoCompletePrediction">
+                                                            <TextCell Text="{Binding MainText}" Detail="{Binding SecondaryText}" DetailColor="DarkGray" />
+                                                        </DataTemplate>
+                                                    </ListView.ItemTemplate>
+                                                </ListView>
+                                            </StackLayout>
+                                        </StackLayout>
+
+                                    </Frame>
+                                    <Label Text="{Binding Value,Source={x:Reference Mileage}, StringFormat='Up to {0:F0} miles away:'}" TextColor="white"></Label>
+                                    <Slider x:Name="Mileage" Minimum="0" Maximum="1000" Value="100"></Slider>
+                                    <Label>
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding LowerValue,Source={x:Reference rangeSliderAge}, StringFormat='Age Between {0:F0}'}" TextColor="white"></Span>
+                                                <Span Text=" "></Span>
+                                                <Span Text="{Binding UpperValue,Source={x:Reference rangeSliderAge}, StringFormat='and {0:F0}'}" TextColor="white"></Span>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <forms:RangeSlider
+            Grid.Row="2"
+            x:Name="rangeSliderAge"
+            MinimumValue="18"
+            MaximumValue="100"
+            LowerValue="18"
+            UpperValue="100"
+            StepValue="1"
+            StepValueContinuously="True"
+            TextSize="20"
+            ShowTextAboveThumbs="True"/>
+                                    
+                                </StackLayout>
+                            </Frame>
+
+                            <Frame CornerRadius="10" BackgroundColor="#ba0c90" Padding="0" Margin="0" HorizontalOptions="Center">
+                                <Button Text="Save" TextColor="White" BackgroundColor="#ba0c90" Clicked="SavePreferencesButton_Clicked" CommandParameter="{Binding Preference}"></Button>
+                            </Frame>
+                            <Frame HeightRequest="500" BackgroundColor="Black">
+
+                            </Frame>
+                        </StackLayout>
+
+                    </Frame>
+                </AbsoluteLayout>
+            </StackLayout>
+
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

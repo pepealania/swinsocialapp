@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SwingSocial.Sample.View.LoginVerifyCode5Boxes"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:viewmodel="clr-namespace:SwingSocial.Sample.ViewModel"  x:DataType="viewmodel:NewAccountViewModel"            
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"             
+             BackgroundColor="Black"             
+             xmlns:view="clr-namespace:SwingSocial.Sample.View;assembly=SwingSocial.Sample" xmlns:model="clr-namespace:SwingSocial.Sample.Model"
+             xmlns:xlabs="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:htmllabel="clr-namespace:Plugin.HtmlLabel;assembly=Plugin.HtmlLabel"
+             Title ="" Shell.BackgroundColor="Black">
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Margin="10"/>
+
+        </Grid>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout Margin="20" VerticalOptions="FillAndExpand">
+            <AbsoluteLayout VerticalOptions="FillAndExpand">
+                <ScrollView x:Name="MainScroll" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout>
+                        <StackLayout VerticalOptions="StartAndExpand">
+                            <StackLayout x:Name="stkMain" BackgroundColor="Black">
+                                <Label Text="Verify your email?" TextColor="white" FontSize="26" FontAttributes="Bold" BackgroundColor="Black" Margin="20,20,0,0" HorizontalOptions="Center"></Label>
+                                <Label TextColor="white" FontSize="16" BackgroundColor="Black" Margin="20,20,0,0" HorizontalOptions="Center">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Enter the code we've sent to " ></Span>
+                                            <Span x:Name="EmailAddressSpan"></Span>
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Grid HorizontalOptions="Center">
+                                    <Grid.RowDefinitions></Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20*"></ColumnDefinition>
+                                        <ColumnDefinition Width="20*"></ColumnDefinition>
+                                        <ColumnDefinition Width="20*"></ColumnDefinition>
+                                        <ColumnDefinition Width="20*"></ColumnDefinition>
+                                        <ColumnDefinition Width="20*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Frame Grid.Column="0" CornerRadius="10" BackgroundColor="#5d5a5d" Margin="0,0,0,0" Padding="0">
+
+                                        <Entry x:Name="Code1Entry" BackgroundColor="#5d5a5d" 
+        TextColor="White" Placeholder="X" MaxLength="1"
+        FontAttributes="Italic" TextChanged="Code1Entry_TextChanged" Focused="Code1Entry_Focused"
+        FontSize="18" Keyboard="Numeric"/>
+                                    </Frame>
+                                    <Frame Grid.Column="1" CornerRadius="10" BackgroundColor="#5d5a5d" Margin="0,0,0,0" Padding="0">
+
+                                        <Entry x:Name="Code2Entry" BackgroundColor="#5d5a5d" 
+        TextColor="White" Placeholder="X" MaxLength="1"
+        FontAttributes="Italic" TextChanged="Code2Entry_TextChanged" Focused="Code2Entry_Focused"
+        FontSize="18" Keyboard="Numeric"/>
+                                    </Frame>
+                                    <Frame Grid.Column="2" CornerRadius="10" BackgroundColor="#5d5a5d" Margin="0,0,0,0" Padding="0">
+
+                                        <Entry x:Name="Code3Entry" BackgroundColor="#5d5a5d" 
+        TextColor="White" Placeholder="X" MaxLength="1"
+        FontAttributes="Italic" TextChanged="Code3Entry_TextChanged" Focused="Code3Entry_Focused"
+        FontSize="18" Keyboard="Numeric"/>
+                                    </Frame>
+                                    <Frame Grid.Column="3" CornerRadius="10" BackgroundColor="#5d5a5d" Margin="0,0,0,0" Padding="0">
+
+                                        <Entry x:Name="Code4Entry" BackgroundColor="#5d5a5d" 
+        TextColor="White" Placeholder="X" MaxLength="1"
+        FontAttributes="Italic" TextChanged="Code4Entry_TextChanged" Focused="Code4Entry_Focused"
+        FontSize="18" Keyboard="Numeric"/>
+                                    </Frame>
+                                    <Frame Grid.Column="4" CornerRadius="10" BackgroundColor="#5d5a5d" Margin="0,0,0,0" Padding="0">
+
+                                        <Entry x:Name="Code5Entry" BackgroundColor="#5d5a5d" 
+        TextColor="White" Placeholder="X" MaxLength="1"
+        FontAttributes="Italic" Focused="Code5Entry_Focused"
+        FontSize="18" Keyboard="Numeric"/>
+                                    </Frame>
+                                </Grid>
+                                <Grid>
+                                    <Frame Grid.Column="0"
+                                            Margin="0"
+       BorderColor="White" BackgroundColor="#c21164"
+       CornerRadius="50"
+       HeightRequest="60"
+                                    Padding="0"
+       WidthRequest="60"
+       IsClippedToBounds="True"
+       HorizontalOptions="Center"
+       VerticalOptions="Center">
+                                        <Label Text=">" TextColor="white" FontSize="22" BackgroundColor="#c21164" HorizontalOptions="Center" VerticalOptions="Center" Margin="1">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer  Tapped="ContinueToRegistrationPage3_Tapped">
+
+                                                </TapGestureRecognizer>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </Frame>
+                                    <Frame Grid.Column="1"
+                                            Margin="0"
+       BorderColor="White" BackgroundColor="#c21164"
+       CornerRadius="10"
+                                    Padding="0"
+       HorizontalOptions="Center"
+       VerticalOptions="Center">
+                                        <Label Text="Resend Code" TextColor="white" FontSize="18" BackgroundColor="#c21164" HorizontalOptions="Center" VerticalOptions="Center" Margin="5">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="ResendCode_Tapped">
+
+                                                </TapGestureRecognizer>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </Frame>
+
+                                </Grid>
+                            </StackLayout>
+                            <Image x:Name="listOfFeaturesPerAccountType" Source="hedo2.jpeg" HorizontalOptions="FillAndExpand" Margin="20"></Image>
+                            <Label Text="Come party with us" TextColor="#c21164" HorizontalOptions="Center" FontSize="26">
+                            </Label>
+
+                        </StackLayout>
+                        <StackLayout VerticalOptions="End">
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                                <Label Text="This text should arrive between 23s" FontSize="12" TextColor="White" BackgroundColor="Black" HorizontalOptions="Center"></Label>
+                            </StackLayout>
+                        </StackLayout>
+
+                    </StackLayout>
+                </ScrollView>
+
+            </AbsoluteLayout>            
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

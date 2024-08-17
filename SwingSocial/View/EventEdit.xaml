@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SwingSocial.Sample.View.EventEdit"
+             xmlns:viewmodel="clr-namespace:SwingSocial.Sample.ViewModel"             
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"             
+xmlns:htmllabel="clr-namespace:Plugin.HtmlLabel;assembly=Plugin.HtmlLabel"
+             BackgroundColor="Black" 
+             x:DataType="viewmodel:EventPageViewModel"
+                          xmlns:model="clr-namespace:SwingSocial.Sample.Model"
+             xmlns:view="clr-namespace:SwingSocial.Sample.View;assembly=SwingSocial"             
+             Title ="" Shell.BackgroundColor="Black">
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Margin="10"/>
+
+        </Grid>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <ScrollView Orientation="Vertical">
+            <StackLayout Margin="0">
+                <StackLayout Orientation="Horizontal">
+                    <Label x:Name="eventName" FontSize="30" FontAttributes="Bold" HorizontalTextAlignment="Center"></Label>
+                    <StackLayout>
+                        <ImageButton BackgroundColor="#292a2e" HeightRequest="30" WidthRequest="30" Source="writeemail" Padding="5" Clicked="UpdateTitleDates_Clicked"></ImageButton>
+                    </StackLayout>
+                </StackLayout>
+                <Label HorizontalTextAlignment="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span x:Name="eventStartTime" TextColor="White" FontSize="15" BackgroundColor="Black"></Span>
+                            <Span Text=" - "></Span>
+                            <Span x:Name="eventEndTime" TextColor="white" FontSize="15" BackgroundColor="black"></Span>
+                        </FormattedString>
+                    </Label.FormattedText>
+
+                </Label>
+                <AbsoluteLayout Margin="20">
+                    <Frame CornerRadius="10" Margin="0" Padding="0">
+                        <Image x:Name="eventImage" HeightRequest="500" WidthRequest="380" HorizontalOptions="CenterAndExpand" Margin="0" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Aspect="Fill"></Image>
+                    </Frame>
+                    <StackLayout AbsoluteLayout.LayoutBounds="0.5,1.8,0.1,0.5" AbsoluteLayout.LayoutFlags="All" HeightRequest="30" WidthRequest="30">
+                        <Frame BackgroundColor="#292a2e" CornerRadius="10" Margin="0" Padding="0" HeightRequest="30" WidthRequest="30">
+                            <ImageButton BackgroundColor="#292a2e" HeightRequest="30" WidthRequest="30" Source="writeemail" Padding="5" HorizontalOptions="Center" Clicked="UpdateCoverImage_Clicked"></ImageButton>
+                        </Frame>
+
+                    </StackLayout>
+                </AbsoluteLayout>
+
+                <StackLayout Orientation="Horizontal" Margin="10,0,0,0" HorizontalOptions="FillAndExpand" BackgroundColor="black">
+                    <Label Text="Details" FontSize="16" TextColor="#ffffff" ></Label>
+                    <StackLayout HorizontalOptions="EndAndExpand">
+                        <ImageButton BackgroundColor="#292a2e" HeightRequest="30" WidthRequest="30" Source="writeemail" Padding="5" Clicked="EventDetails_Clicked"></ImageButton>
+                    </StackLayout>
+                </StackLayout>
+                <WebView x:Name="eventsTable" HeightRequest="300" BackgroundColor="Black">
+
+                </WebView>
+                
+                <htmllabel:HtmlLabel Margin="20,20,20,20" x:Name="eventDescription" TextColor="White"></htmllabel:HtmlLabel>
+
+                <StackLayout Orientation="Horizontal" Margin="10,0,0,0" HorizontalOptions="FillAndExpand" BackgroundColor="black">
+                    <Label Text="Add One more Image..." FontSize="16" TextColor="#ffffff" ></Label>
+                    <StackLayout HorizontalOptions="EndAndExpand">
+                        <ImageButton BackgroundColor="#292a2e" HeightRequest="30" WidthRequest="30" Source="writeemail" Padding="5" Clicked="AddExtraImage_Clicked"></ImageButton>
+                    </StackLayout>
+                </StackLayout>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="85*"></ColumnDefinition>
+                        <ColumnDefinition Width="50"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="ImagesExtraLabel" Text="Images" FontSize="16" TextColor="White" Margin="10,20,0,0" Grid.Column="0"></Label>
+                    <ImageButton Grid.Column="1" HeightRequest="50" WidthRequest="50" x:Name="ImagesExtraCollectionHideShow" BackgroundColor="black" Source="circleminus" Clicked="HideShowExtraImages"></ImageButton>
+                </Grid>
+                <Frame x:Name="ImagesExtraFrame" Padding="10" BorderColor="white" CornerRadius="10" Margin="10" BackgroundColor="#000000">
+                    <CollectionView x:Name="ExtraImagesCollection" HeightRequest="500">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:ExtraImage">
+                                <Frame BorderColor="#131414" HeightRequest="500" BackgroundColor="Transparent" Padding="0" CornerRadius="10" HorizontalOptions="Center" VerticalOptions="Center">
+                                    <ImageButton Aspect="AspectFill" Margin="0" Source="{Binding ImageUrl}"  ></ImageButton>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                </Frame>
+                <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Margin="10"/>
+            </StackLayout>
+        </ScrollView>
+
+        
+    </ContentPage.Content>
+</ContentPage>

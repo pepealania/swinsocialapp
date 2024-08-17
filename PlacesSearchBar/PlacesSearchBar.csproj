@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+<PropertyGroup>
+    <TargetFrameworks>netstandard2.0;</TargetFrameworks>
+    <Product>$(AssemblyName) ($(TargetFramework))</Product>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <AssemblyFileVersion>1.0.0.0</AssemblyFileVersion>
+    <Version>1.1.2</Version>
+    <PackageVersion>1.1.2</PackageVersion>
+    <Authors>Alexander Smith</Authors>
+    <PackageId>DurianCode.PlacesSearchBar</PackageId>
+    <PackOnBuild>true</PackOnBuild>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PackageLicenseUrl>https://github.com/ajsmithsw/PlacesSearchBar/blob/master/LICENSE.txt</PackageLicenseUrl>
+    <Owners>Alexander Smith</Owners>
+    <PackageProjectUrl>https://ajsmithsw.github.io/PlacesSearchBar/</PackageProjectUrl>
+    <Summary>An extension of Xamarin Forms SearchBar for implementing Google Places Autocomplete using Google Places API.</Summary>
+    <PackageTags>xamarin forms search bar searchbar google places autocomplete duriancode</PackageTags>
+    <Title>Places Search Bar for Google Places API</Title>
+    <Description>An extension of Xamarin Forms SearchBar for implementing Google Places Autocomplete using Google Places API.</Description>
+    <Copyright>MIT License </Copyright>
+    <RepositoryUrl>https://github.com/ajsmithsw/PlacesSearchBar</RepositoryUrl>
+    <PackageReleaseNotes>Ported to .NET Standard</PackageReleaseNotes>
+
+    <LangVersion>default</LangVersion>
+
+    <DefineConstants>$(DefineConstants);</DefineConstants>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <RootNamespace>DurianCode.PlacesSearchBar</RootNamespace>
+    <GenerateDocumentationFile Condition=" '$(Configuration)' == 'Release' ">true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Xamarin.Forms" Version="3.0.0.561731" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+  </ItemGroup>
+</Project>

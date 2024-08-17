@@ -1,0 +1,735 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:swipeCardView="clr-namespace:MLToolkit.Forms.SwipeCardView;assembly=MLToolkit.Forms.SwipeCardView"
+             x:Class="SwingSocial.Sample.View.Matches"
+                          xmlns:model="clr-namespace:SwingSocial.Sample.Model"
+             xmlns:view="clr-namespace:SwingSocial.Sample.View;assembly=SwingSocial"
+                           xmlns:viewmodel="clr-namespace:SwingSocial.Sample.ViewModel" x:DataType="viewmodel:MatchesPageViewModel"
+             xmlns:xlabs="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+                          xmlns:custom="clr-namespace:DurianCode.PlacesSearchBar;assembly=PlacesSearchBar"
+
+             Title="Explore" Shell.BackgroundColor="Black">
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Margin="10"/>
+
+        </Grid>
+    </Shell.TitleView>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="TransparentButtonStyle" TargetType="xlabs:BindableRadioGroup">
+                <Setter Property="BackgroundColor" Value="Black" />
+                <Setter Property="TextColor" Value="White" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="Black">
+        <Grid BackgroundColor="Black" HeightRequest="750">
+
+        <!-- Menu view -->
+        <Grid RowSpacing="2" x:Name="GridMenuView" BackgroundColor="Black">
+
+            <Grid.RowDefinitions>
+                <RowDefinition x:Name="MenuSafeAreaRow" Height="0" />
+                <RowDefinition x:Name="MenuTopRow" />
+                <RowDefinition Height="47.5" />
+                <RowDefinition Height="47.5"  />
+                <RowDefinition Height="47.5" />
+                <RowDefinition Height="47.5" />
+                <RowDefinition Height="47.5" />
+                <RowDefinition Height="47.5" />
+                <RowDefinition Height="47.5" />
+                <RowDefinition Height="47.5" />
+                <RowDefinition Height="47.5" />
+                <RowDefinition Height="47.5" />
+                <RowDefinition Height="47.5" />
+                        <RowDefinition Height="47.5" />
+                        <RowDefinition x:Name="MenuBottomRow" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50" />
+                <ColumnDefinition Width="27.5" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Image Grid.Row="0" Grid.RowSpan="12" Grid.Column="0" Grid.ColumnSpan="3" BackgroundColor="Black"  Aspect="AspectFill" />
+
+            <!--<Frame Grid.Row="2" Grid.Column="1" WidthRequest="67.5" x:Name="UserIcon" Opacity="0" TranslationY="-10"
+                   HorizontalOptions="Center" VerticalOptions="Center"
+                   BackgroundColor="White" HasShadow="False" 
+                   HeightRequest="67.5" CornerRadius="33.75" IsClippedToBounds="True">
+                <Image Margin="-20" Source="events.png" HeightRequest="67.5"
+                       WidthRequest="47.5" VerticalOptions="Center" HorizontalOptions="Center" />
+            </Frame>-->
+
+
+            <ImageButton Grid.Row="2" Grid.Column="0" WidthRequest="67.5" x:Name="UsersIcon" Opacity="0" TranslationY="-10"
+                   HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnShowLikeds"
+                   Source="likesLiked.png" 
+                   HeightRequest="37.5" BackgroundColor="Black" BorderColor="Yellow"/>
+            <!--<Label Grid.Row="2" Grid.Column="1" Text="5" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12" BackgroundColor="Black"></Label>-->
+            <ImageButton Grid.Row="3" Grid.Column="0" WidthRequest="67.5" x:Name="StarIcon" Opacity="0" TranslationY="-10"
+                   HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnShowMaybes"
+                   Source="likesMaybe.png"
+                   HeightRequest="37.5"  BackgroundColor="Black"  />
+            <!--<Label Grid.Row="3" Grid.Column="1" Text="25" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12"  BackgroundColor="Black"></Label>-->
+            <ImageButton Grid.Row="4" Grid.Column="0" WidthRequest="67.5" x:Name="MessageIcon" Opacity="0" TranslationY="-10"
+                   HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnShowLikedsMe"
+                   Source="likesLikesMe.png"
+                   HeightRequest="37.5"  BackgroundColor="Black" />
+            <ImageButton Grid.Row="5" Grid.Column="0" WidthRequest="67.5" x:Name="LikeMeIcon" Opacity="0" TranslationY="-10"
+                   HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnShowFriends"
+                   Source="likesFriends.png"
+                   HeightRequest="37.5"  BackgroundColor="Black" />
+                    <!--<Label Grid.Row="4" Grid.Column="1" Text="55" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12"  BackgroundColor="Black"></Label>-->
+            <ImageButton Grid.Row="6" Grid.Column="0" WidthRequest="67.5" x:Name="SettingsIcon" Opacity="0" TranslationY="-10"
+                   HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnShowNopeds"
+                   Source="likesDenied.png"
+                   HeightRequest="37.5"  BackgroundColor="Black" />
+            <!--<Label Grid.Row="5" Grid.Column="1" Text="12" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12"  BackgroundColor="Black"></Label>-->
+            <ImageButton Grid.Row="7" Grid.Column="0" WidthRequest="67.5" x:Name="SettingsIcon1" Opacity="0" TranslationY="-10"
+                   HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnShowOnline"
+                   Source="likesOnline.png"
+                   HeightRequest="37.5"  BackgroundColor="Black" />
+            <!--<Label Grid.Row="6" Grid.Column="1" Text="100" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontSize="12"  BackgroundColor="Black"></Label>-->
+                    <ImageButton Grid.Row="8" Grid.Column="0" WidthRequest="67.5" x:Name="SettingsIcon2" Opacity="0" TranslationY="-10"
+                   HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnShowSearch"
+                   Source="likesSearch.png"
+                   HeightRequest="37.5"  BackgroundColor="Black" />
+                    <ImageButton Grid.Row="9" Grid.Column="0" WidthRequest="67.5" x:Name="BlockedButton" Opacity="0" TranslationY="-10"
+                   HorizontalOptions="Center" VerticalOptions="Center" Clicked="OnShowBlocked"
+                   Source="buttonblocked.png"
+                   HeightRequest="37.5"  BackgroundColor="Black" />
+                </Grid>
+
+        <!-- Content view -->
+        <Frame x:Name="Page" BackgroundColor="Black">
+                    <Grid Margin="0" RowSpacing="0" x:Name="TopGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="250"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                <!--<Grid Grid.Row="0" BackgroundColor="{StaticResource PrimaryColor}" RowSpacing="0" ColumnSpacing="0">-->
+                <Grid Grid.Row="0" BackgroundColor="Black" RowSpacing="0" ColumnSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition x:Name="ToolbarSafeAreaRow" />
+                        <RowDefinition Height="48" />
+                    </Grid.RowDefinitions>
+
+                    <Button HorizontalOptions="Start" x:Name="EventsBack" IsVisible="false" Grid.Row="0" Clicked="OnShowMenu" ImageSource="toparrow.png"
+                            BackgroundColor="Transparent" HeightRequest="20" WidthRequest="20" />
+                            <Image Source="thumbnail_logo.png" x:Name="DetailLogo" Grid.Row="0" BackgroundColor="Transparent" HorizontalOptions="Center" WidthRequest="205" HeightRequest="45"></Image>
+                            <Label HorizontalOptions="Center" Grid.Row="1" FontSize="Medium" x:Name="ListTitle"
+                           TextColor="White"
+                           HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                        </Grid>
+
+                        <StackLayout x:Name="SearchView" IsVisible="false" Margin="0,50,0,10" BackgroundColor="Black" HorizontalOptions="FillAndExpand">
+                            <!-- WebView needs to be given height and width request within layouts to render. -->
+                            <ScrollView BackgroundColor="Black">
+                                <StackLayout Margin="0" BackgroundColor="Black">
+                                    <AbsoluteLayout>
+                                        <Frame x:Name="MainScroll" CornerRadius="10" Padding="2" Margin="0" BackgroundColor="Black" BorderColor="Black"  AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All">
+                                            <StackLayout x:Name="stkMain" BackgroundColor="Black">
+                                                <Frame CornerRadius="10" BackgroundColor="Black">
+                                                    <StackLayout BackgroundColor="black">
+                                                        <Label BackgroundColor="Black" Text="Search for" FontSize="26" FontAttributes="Bold" TextColor="White"></Label>
+                                                        <Label BackgroundColor="Black" Text="Username" TextColor="White"></Label>
+                                                        <Frame BackgroundColor="White" CornerRadius="10" Padding="0" Margin="0">
+                                                            <Entry x:Name="SearchUsername" BackgroundColor="White" ></Entry>
+
+                                                        </Frame>
+
+
+                                                        <Grid Margin="0,10,0,10">
+                                                          <Grid.RowDefinitions>
+                                                                <RowDefinition Height="150"></RowDefinition>
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="8*"></ColumnDefinition>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Frame BackgroundColor="#292a2e" CornerRadius="10" Padding="0" HorizontalOptions="FillAndExpand">
+                                                                <xlabs:BindableRadioGroup x:Name="AccountTypesPicker" Margin="1"
+                                     Style="{StaticResource TransparentButtonStyle}"
+                                     BackgroundColor="#292a2e"
+                                     VerticalOptions="Center" Orientation="Vertical"  HorizontalOptions="Center"/>
+
+                                                            </Frame>
+
+                                                            <!--<CheckBox Grid.Column="0" ></CheckBox>
+                                        <Label Grid.Column="1" BackgroundColor="Black" Text="Couples" TextColor="White" VerticalOptions="Center"></Label>
+                                        <CheckBox Grid.Column="2"></CheckBox>
+                                        <Label Grid.Column="3" BackgroundColor="Black" Text="Single Males" TextColor="White" VerticalOptions="Center"></Label>
+                                        <CheckBox Grid.Column="4"></CheckBox>
+                                        <Label Grid.Column="5" BackgroundColor="Black" Text="Single Females" TextColor="White" VerticalOptions="Center"></Label>-->
+                                                        </Grid>
+                                                        <BoxView   VerticalOptions="Center"
+           HorizontalOptions="FillAndExpand"
+           HeightRequest="1"
+           WidthRequest="100"  
+           Color="#5b5d68"></BoxView>
+                                                        <Grid Margin="0,10,0,10">
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="20"></RowDefinition>
+                                                                <RowDefinition Height="40"></RowDefinition>
+                                                            </Grid.RowDefinitions>
+
+                                    <Label Grid.Row="0" Text="Enter the location to block" TextColor="White" FontSize="10"></Label>
+                                                            <Frame Grid.Row="1" CornerRadius="10" Padding="0" Margin="0" BackgroundColor="#292a2e">
+                                        <StackLayout>
+                                            <custom:PlacesBar x:Name="Location" TextColor="White" FontSize="12" PlaceholderColor="DarkGray" Placeholder="City, ST" Text="" BackgroundColor="#292a2e"/>
+                                            <StackLayout x:Name="VenueListStackLayout" IsVisible="false">
+                                                <ActivityIndicator x:Name="spinner" IsRunning="false"/>
+                                                <ListView x:Name="results_list">
+                                                    <ListView.ItemTemplate>
+                                                        <DataTemplate x:DataType="custom:AutoCompletePrediction">
+                                                            <TextCell Text="{Binding MainText}" Detail="{Binding SecondaryText}" DetailColor="DarkGray" />
+                                                        </DataTemplate>
+                                                    </ListView.ItemTemplate>
+                                                </ListView>
+                                            </StackLayout>
+                                        </StackLayout>
+
+                                    </Frame>
+                                                        </Grid>
+                                                        <BoxView   VerticalOptions="Center"
+           HorizontalOptions="FillAndExpand"
+           HeightRequest="1"
+           WidthRequest="100"  
+           Color="#5b5d68"></BoxView>
+                                                        <Grid Margin="0,10,0,10">
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="50"></RowDefinition>
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="0.9*"></ColumnDefinition>
+                                                                <ColumnDefinition Width="9.1*"></ColumnDefinition>
+                                                            </Grid.ColumnDefinitions>
+                                                            <CheckBox x:Name="OnlyWithPhotos" IsChecked="True" Grid.Column="0"></CheckBox>
+                                                            <Label Grid.Column="1" BackgroundColor="Black" Text="Only Profiles with Photos" TextColor="White" VerticalOptions="Center"></Label>
+                                                        </Grid>
+                                                        <BoxView   VerticalOptions="Center"
+           HorizontalOptions="FillAndExpand"
+           HeightRequest="1"
+           WidthRequest="100"  
+           Color="#5b5d68"></BoxView>
+                                                        <Grid Margin="0,10,0,10">
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="40"></RowDefinition>
+                                                                <RowDefinition Height="40"></RowDefinition>
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="4*"></ColumnDefinition>
+                                                                <ColumnDefinition Width="2.2*"></ColumnDefinition>
+                                                                <ColumnDefinition Width="1.6*"></ColumnDefinition>
+                                                                <ColumnDefinition Width="2.2*"></ColumnDefinition>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label Grid.Column="0" Grid.Row="0" BackgroundColor="Black" Text="Her Age Between" TextColor="White" VerticalOptions="Center"></Label>
+                                                            <Frame Grid.Column="1" Grid.Row="0" BackgroundColor="White" CornerRadius="10" Padding="0" Margin="0">
+                                                                <Entry BackgroundColor="White" x:Name="HerAgeFrom"></Entry>
+                                                            </Frame>
+                                                            <Label HorizontalOptions="Center" Grid.Column="2" Grid.Row="0" BackgroundColor="Black" Text="and" TextColor="White" VerticalOptions="Center"></Label>
+                                                            <Frame Grid.Column="3" Grid.Row="0" BackgroundColor="White" CornerRadius="10" Padding="0" Margin="0">
+                                                                <Entry BackgroundColor="White" x:Name="HerAgeTo"></Entry>
+                                                            </Frame>
+                                                            <Label Grid.Column="0" Grid.Row="1" BackgroundColor="Black" Text="His Age Between" TextColor="White" VerticalOptions="Center"></Label>
+                                                            <Frame Grid.Column="1" Grid.Row="1" BackgroundColor="White" CornerRadius="10" Padding="0" Margin="0">
+                                                                <Entry BackgroundColor="White" x:Name="HisAgeFrom"></Entry>
+                                                            </Frame>
+                                                            <Label HorizontalOptions="Center" Grid.Column="2" Grid.Row="1" BackgroundColor="Black" Text="and" TextColor="White" VerticalOptions="Center"></Label>
+                                                            <Frame Grid.Column="3" Grid.Row="1" BackgroundColor="White" CornerRadius="10" Padding="0" Margin="0">
+                                                                <Entry BackgroundColor="White" x:Name="HisAgeTo"></Entry>
+                                                            </Frame>
+                                                        </Grid>
+                                                        <BoxView   VerticalOptions="Center"
+           HorizontalOptions="FillAndExpand"
+           HeightRequest="1"
+           WidthRequest="100"  
+           Color="#5b5d68"></BoxView>
+                                                        <Grid Margin="0,10,0,10">
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="20"></RowDefinition>
+                                                                <RowDefinition Height="40"></RowDefinition>
+                                                                <RowDefinition Height="20"></RowDefinition>
+                                                                <RowDefinition Height="40"></RowDefinition>
+                                                            </Grid.RowDefinitions>
+                                                            <!--<Picker Title="Sexual orientation" x:Name="CoupleMySexOrientationPicker" BackgroundColor="#5d5a5d"
+        TitleColor="White"
+        TextColor="White"
+        FontAttributes="Italic"
+        FontSize="12"/>-->
+                                                            <Label BackgroundColor="Black" Grid.Row="0" Text="Her Orientation" TextColor="White"></Label>
+                                                            <Frame BackgroundColor="White" CornerRadius="10" Padding="0" Margin="0" Grid.Row="1">
+                                                                <Picker BackgroundColor="White" x:Name="HerOrientation"></Picker>
+                                                            </Frame>
+                                                            <Label BackgroundColor="Black" Grid.Row="2" Text="His Orientation" TextColor="White"></Label>
+                                                            <Frame BackgroundColor="White" CornerRadius="10" Padding="0" Margin="0" Grid.Row="3">
+                                                                <Picker BackgroundColor="White" x:Name="HisOrientation"></Picker>
+                                                            </Frame>
+                                                        </Grid>
+                                                    </StackLayout>
+                                                </Frame>
+
+                                                <Frame CornerRadius="10" BackgroundColor="#ba0c90" Padding="0" Margin="0" HorizontalOptions="Center">
+                                                    <Button Text="Search" TextColor="White" BackgroundColor="#ba0c90" Clicked="SearchButton_Clicked"></Button>
+                                                </Frame>
+                                            </StackLayout>
+
+                                        </Frame>
+                                    </AbsoluteLayout>
+                                </StackLayout>
+
+                            </ScrollView>
+                        </StackLayout>
+
+                        <StackLayout x:Name="OnlineView" IsVisible="false" Grid.Row="1">
+                            <!--<Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="60"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="5.4*" />
+                                    <ColumnDefinition Width="4.6*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Margin="10" Grid.Column="0" HorizontalOptions="CenterAndExpand" FontSize="20" Text="Profile"  TextColor="White" BackgroundColor="Black"/>
+                                <Label Margin="10" Grid.Column="1" HorizontalOptions="CenterAndExpand" FontSize="20" Text="Last Online"  TextColor="White" BackgroundColor="Black"/>
+                            </Grid>-->
+                            <Grid BackgroundColor="#292a2e" Padding="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="7*"></ColumnDefinition>
+                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Entry x:Name="OnlineSearchEntry" Grid.Column="0" Placeholder="Search Name..." BackgroundColor="#7F7F7F" PlaceholderColor="White" TextColor="White" HeightRequest="40"></Entry>
+                                <Button Grid.Column="1" CornerRadius="10" Text="Search" BackgroundColor="#c21164" TextColor="White"     Clicked="LocalOnlineSearch_Clicked"  CommandParameter="{Binding Source={x:Reference OnlineSearchEntry}, Path=Text}"></Button>
+                            </Grid>
+                            <ListView RowHeight="400" BackgroundColor="Black"  x:Name="OnlinesListView" ItemsSource="{Binding OnlineProfiles}" ItemTapped="OnlinesListView_ItemTapped">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate x:DataType="model:ProfileEntity">
+                                        <ViewCell IsEnabled="True">
+                                            <Frame BorderColor="#292a2e" CornerRadius="10" BackgroundColor="#292a2e" Padding="0" Margin="10">
+                                                <AbsoluteLayout HeightRequest="400" WidthRequest="100" VerticalOptions="Center" >
+                                                    <Image AbsoluteLayout.LayoutBounds="0,0,1,1" Aspect="Fill"
+AbsoluteLayout.LayoutFlags="All" Source="{Binding Avatar}" />
+
+                                                    <StackLayout AbsoluteLayout.LayoutBounds="0.1,1,380,100" HorizontalOptions="FillAndExpand" BackgroundColor="#292a2e"
+AbsoluteLayout.LayoutFlags="PositionProportional">
+                                                            <Label Margin="20,0,0,0" Text="{Binding UserName}"
+                                               TextColor="White" FontSize="20" />
+
+                                                        <StackLayout Orientation="Horizontal">
+                                                            <Label HorizontalOptions="Start" Margin="20,0,0,0" FontSize="20">
+                                                                <Label.FormattedText>
+                                                                    <FormattedString>
+                                                                        <Span TextColor="White" Text="{Binding Age}"></Span>
+                                                                        <Span TextColor="White" Text=", "></Span>
+                                                                        <Span TextColor="#c21164" Text="{Binding AccountType}"></Span>
+                                                                    </FormattedString>
+                                                                </Label.FormattedText>
+                                                            </Label>
+                                                            <Label HorizontalOptions="End" Margin="20,0,0,0" Text="{Binding Category}"
+                                               TextColor="White" FontSize="20" />
+                                                        </StackLayout>
+
+                                                    </StackLayout>
+                                                </AbsoluteLayout>
+
+                                            </Frame>
+
+                                            <!--<Grid RowSpacing="0" ColumnSpacing="0" Padding="0,0,0,0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="60"/>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="2.5*" />
+                                                    <ColumnDefinition Width="2.9*" />
+                                                    <ColumnDefinition Width="4.6*" />
+                                                </Grid.ColumnDefinitions>
+                                                <AbsoluteLayout Grid.Row="0">
+                                                    <Image Aspect="AspectFill" Margin="0" Source="{Binding Avatar}" AbsoluteLayout.LayoutBounds="0,0,60,60" AbsoluteLayout.LayoutFlags="PositionProportional"></Image>
+
+                                                </AbsoluteLayout>
+
+                                                <StackLayout Grid.Column="1"
+                                VerticalOptions="Center" >
+
+                                                    <Label Text="{Binding UserName}" FontSize="8"
+                               TextColor="#ba0c90" />
+
+                                                    <Label Text="{Binding BirthGender}"
+                               FontSize="8" TextColor="#8C9095" />
+                                                    <Label Text="{Binding Location}"
+                               FontSize="8" TextColor="#8C9095" />
+
+                                                </StackLayout>
+                                                <Label Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center" BackgroundColor="Black" Text="{Binding LastOn}" FontSize="12" TextColor="White"></Label>
+                                            </Grid>-->
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+
+                        <StackLayout x:Name="LearnView" IsVisible="false" Margin="10,50,10,10" BackgroundColor="Black">
+                            <!-- WebView needs to be given height and width request within layouts to render. -->
+                            <WebView x:Name="webView" WidthRequest="1000" HeightRequest="1000" Source="https://swingsocial.co/blogs/"/>
+                        </StackLayout>
+                        <StackLayout x:Name="TravelView" IsVisible="false" Margin="10,50,10,10" BackgroundColor="Black">
+                            <!-- WebView needs to be given height and width request within layouts to render. -->
+                            <WebView x:Name="travelwebView" WidthRequest="1000" HeightRequest="1000" Source="https://swingsocial.co/resorts/"/>
+                        </StackLayout>
+                        <StackLayout x:Name="WhatsHotView" IsVisible="false" Margin="10,50,10,10" BackgroundColor="Black">
+                            <!-- WebView needs to be given height and width request within layouts to render. -->
+                            <WebView x:Name="whatshotwebView" WidthRequest="1000" HeightRequest="1000" Source="http://swingsocial.club/app/posts/"/>
+                        </StackLayout>
+                        <StackLayout x:Name="LikedProfilesListView" IsVisible="true" Grid.Row="1" >
+                            <Grid BackgroundColor="#292a2e" Padding="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="7*"></ColumnDefinition>
+                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Entry x:Name="LikedSearchEntry" Grid.Column="0" Placeholder="Search Name..." BackgroundColor="#7F7F7F" PlaceholderColor="White" TextColor="White" HeightRequest="40"></Entry>
+                                <Button Grid.Column="1" CornerRadius="10" Text="Search" BackgroundColor="#c21164" TextColor="White"     Clicked="LocalLikedSearch_Clicked"  CommandParameter="{Binding Source={x:Reference LikedSearchEntry}, Path=Text}"></Button>
+                            </Grid>
+
+                            <ListView x:Name="LikedProfilesList" BackgroundColor="Black" HasUnevenRows="True" ItemsSource="{Binding LikedProfiles}" ItemTapped="LikedProfilesListView_ItemTapped">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate x:DataType="model:ProfileEntity">
+                                        <ViewCell IsEnabled="True">
+                                            <Frame BorderColor="#292a2e" CornerRadius="10" BackgroundColor="#292a2e" Padding="0" Margin="10">
+                                                <AbsoluteLayout HeightRequest="400" WidthRequest="100" VerticalOptions="Center" >
+                                                    <Label TextColor="White" Text="testing line"></Label>
+                                                    <Image AbsoluteLayout.LayoutBounds="0,0,1,1" Aspect="Fill"
+AbsoluteLayout.LayoutFlags="All" Source="{Binding Avatar}" />
+
+                                                    <StackLayout AbsoluteLayout.LayoutBounds="0.1,1,380,100" HorizontalOptions="FillAndExpand" BackgroundColor="#292a2e"
+AbsoluteLayout.LayoutFlags="PositionProportional">
+
+                                                        <Label Margin="20,0,0,0" Text="{Binding UserName}"
+                                               TextColor="White" FontSize="18" />
+                                                        <Grid BackgroundColor="#292a2e">
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="25"></RowDefinition>
+                                                                <RowDefinition Height="25"></RowDefinition>
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="6*"></ColumnDefinition>
+                                                                <ColumnDefinition Width="4*"></ColumnDefinition>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label Grid.Column="0" Grid.Row="0" Margin="20,0,0,0" FontSize="16">
+                                                                <Label.FormattedText>
+                                                                    <FormattedString>
+                                                                        <Span TextColor="White" Text="{Binding Age}"></Span>
+                                                                        <Span TextColor="White" Text=", "></Span>
+                                                                        <Span TextColor="#c21164" Text="{Binding AccountType}"></Span>
+                                                                    </FormattedString>
+                                                                </Label.FormattedText>
+                                                            </Label>
+                                                            <Label Grid.Column="0" Grid.Row="1" Margin="20,0,0,0" Text="{Binding Location}"
+                                               TextColor="White" FontSize="16" />
+
+                                                            <Label Grid.Column="1" Grid.Row="0" Margin="0,0,20,0" Text="{Binding Category}"
+                                               TextColor="White" FontSize="16" />
+
+                                                        </Grid>
+
+                                                    </StackLayout>
+                                                </AbsoluteLayout>
+
+                                            </Frame>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+
+
+                        <StackLayout x:Name="BlockedProfilesListView" IsVisible="true" Grid.Row="1" >
+                            <Grid BackgroundColor="#292a2e" Padding="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="7*"></ColumnDefinition>
+                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Entry x:Name="BlockedSearchEntry" Grid.Column="0" Placeholder="Search Name..." BackgroundColor="#7F7F7F" PlaceholderColor="White" TextColor="White" HeightRequest="40"></Entry>
+                                <Button Grid.Column="1" CornerRadius="10" Text="Search" BackgroundColor="#c21164" TextColor="White"     Clicked="LocalLikedSearch_Clicked"  CommandParameter="{Binding Source={x:Reference LikedSearchEntry}, Path=Text}"></Button>
+                            </Grid>
+
+                            <ListView x:Name="BlockedProfilesList" BackgroundColor="Black" HasUnevenRows="True" ItemsSource="{Binding BlockedProfiles}" ItemTapped="LikedProfilesListView_ItemTapped">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate x:DataType="model:ProfileEntity">
+                                        <ViewCell IsEnabled="True">
+                                            <Frame BorderColor="#292a2e" CornerRadius="10" BackgroundColor="#292a2e" Padding="0" Margin="10">
+                                                <AbsoluteLayout HeightRequest="400" WidthRequest="100" VerticalOptions="Center" >
+                                                    <Image AbsoluteLayout.LayoutBounds="0,0,1,1" Aspect="Fill"
+AbsoluteLayout.LayoutFlags="All" Source="{Binding Avatar}" />
+
+                                                    <StackLayout AbsoluteLayout.LayoutBounds="0.1,1,380,100" HorizontalOptions="FillAndExpand" BackgroundColor="#292a2e"
+AbsoluteLayout.LayoutFlags="PositionProportional">
+
+                                                        <Label Margin="20,0,0,0" Text="{Binding UserName}"
+                                               TextColor="White" FontSize="18" />
+                                                        <Grid BackgroundColor="#292a2e">
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="25"></RowDefinition>
+                                                                <RowDefinition Height="25"></RowDefinition>
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="6*"></ColumnDefinition>
+                                                                <ColumnDefinition Width="4*"></ColumnDefinition>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label Grid.Column="0" Grid.Row="0" Margin="20,0,0,0" FontSize="16">
+                                                                <Label.FormattedText>
+                                                                    <FormattedString>
+                                                                        <Span TextColor="White" Text="{Binding Age}"></Span>
+                                                                        <Span TextColor="White" Text=", "></Span>
+                                                                        <Span TextColor="#c21164" Text="{Binding AccountType}"></Span>
+                                                                    </FormattedString>
+                                                                </Label.FormattedText>
+                                                            </Label>
+                                                            <Label Grid.Column="0" Grid.Row="1" Margin="20,0,0,0" Text="{Binding Location}"
+                                               TextColor="White" FontSize="16" />
+
+                                                            <Label Grid.Column="1" Grid.Row="0" Margin="0,0,20,0" Text="{Binding Category}"
+                                               TextColor="White" FontSize="16" />
+
+                                                        </Grid>
+
+                                                    </StackLayout>
+                                                </AbsoluteLayout>
+
+                                            </Frame>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+
+
+                        <StackLayout IsVisible="false" Grid.Row="1" x:Name="NopeProfilesListView" >
+                            <Grid BackgroundColor="#292a2e" Padding="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="7*"></ColumnDefinition>
+                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Entry x:Name="DeniedSearchEntry" Grid.Column="0" Placeholder="Search Name..." BackgroundColor="#7F7F7F" PlaceholderColor="White" TextColor="White" HeightRequest="40"></Entry>
+                                <Button Grid.Column="1" CornerRadius="10" Text="Search" BackgroundColor="#c21164" TextColor="White"     Clicked="LocalDeniedSearch_Clicked"  CommandParameter="{Binding Source={x:Reference DeniedSearchEntry}, Path=Text}"></Button>
+                            </Grid>
+                            <ListView x:Name="DeniedProfilesList" RowHeight="400" BackgroundColor="Black" ItemsSource="{Binding NopedProfiles}" ItemTapped="DeniedProfilesListView_ItemTapped">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate x:DataType="model:ProfileEntity">
+                                        <ViewCell IsEnabled="True">
+                                            <Frame BorderColor="#292a2e" CornerRadius="10" BackgroundColor="#292a2e" Padding="0" Margin="10">
+                                                <AbsoluteLayout HeightRequest="400" WidthRequest="100" VerticalOptions="Center" >
+                                                    <Image AbsoluteLayout.LayoutBounds="0,0,1,1" Aspect="Fill"
+AbsoluteLayout.LayoutFlags="All" Source="{Binding Avatar}" />
+
+                                                    <StackLayout AbsoluteLayout.LayoutBounds="0.1,1,380,100" HorizontalOptions="FillAndExpand" BackgroundColor="#292a2e"
+AbsoluteLayout.LayoutFlags="PositionProportional">
+
+                                                        <Label Margin="20,0,0,0" Text="{Binding UserName}"
+                                               TextColor="White" FontSize="18" />
+                                                        <Grid BackgroundColor="#292a2e">
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="25"></RowDefinition>
+                                                                <RowDefinition Height="25"></RowDefinition>
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="6*"></ColumnDefinition>
+                                                                <ColumnDefinition Width="4*"></ColumnDefinition>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label Grid.Column="0" Grid.Row="0" Margin="20,0,0,0" FontSize="16">
+                                                                <Label.FormattedText>
+                                                                    <FormattedString>
+                                                                        <Span TextColor="White" Text="{Binding Age}"></Span>
+                                                                        <Span TextColor="White" Text=", "></Span>
+                                                                        <Span TextColor="#c21164" Text="{Binding AccountType}"></Span>
+                                                                    </FormattedString>
+                                                                </Label.FormattedText>
+                                                            </Label>
+                                                            <Label Grid.Column="0" Grid.Row="1" Margin="20,0,0,0" Text="{Binding Location}"
+                                               TextColor="White" FontSize="16" />
+
+                                                            <Label Grid.Column="1" Grid.Row="0" Margin="0,0,20,0" Text="{Binding Category}"
+                                               TextColor="White" FontSize="16" />
+
+                                                        </Grid>
+
+                                                    </StackLayout>
+                                                </AbsoluteLayout>
+
+                                            </Frame>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+
+
+
+                        </StackLayout>
+                        <StackLayout IsVisible="false" Grid.Row="1" x:Name="MaybeProfilesListView">
+                            <Grid BackgroundColor="#292a2e" Padding="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="7*"></ColumnDefinition>
+                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Entry x:Name="MaybeSearchEntry" Grid.Column="0" Placeholder="Search Name..." BackgroundColor="#7F7F7F" PlaceholderColor="White" TextColor="White" HeightRequest="40"></Entry>
+                                <Button Grid.Column="1" CornerRadius="10" Text="Search" BackgroundColor="#c21164" TextColor="White"     Clicked="LocalMaybeSearch_Clicked"  CommandParameter="{Binding Source={x:Reference MaybeSearchEntry}, Path=Text}"></Button>
+                            </Grid>
+                            <ListView x:Name="MaybeProfilesList" RowHeight="400" BackgroundColor="Black" ItemsSource="{Binding MaybeProfiles}"  ItemTapped="MaybeProfilesListView_ItemTapped">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate x:DataType="model:ProfileEntity">
+                                        <ViewCell IsEnabled="True">
+                                            <Frame BorderColor="#292a2e" CornerRadius="10" BackgroundColor="#292a2e" Padding="0" Margin="10">
+                                                <AbsoluteLayout HeightRequest="400" WidthRequest="100" VerticalOptions="Center" >
+                                                    <Image AbsoluteLayout.LayoutBounds="0,0,1,1" Aspect="Fill"
+AbsoluteLayout.LayoutFlags="All" Source="{Binding Avatar}" />
+
+                                                    <StackLayout AbsoluteLayout.LayoutBounds="0.1,1,380,100" HorizontalOptions="FillAndExpand" BackgroundColor="#292a2e"
+AbsoluteLayout.LayoutFlags="PositionProportional">
+
+                                                        <Label Margin="20,0,0,0" Text="{Binding UserName}"
+                                               TextColor="White" FontSize="18" />
+                                                        <Grid BackgroundColor="#292a2e">
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="25"></RowDefinition>
+                                                                <RowDefinition Height="25"></RowDefinition>
+                                                            </Grid.RowDefinitions>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="6*"></ColumnDefinition>
+                                                                <ColumnDefinition Width="4*"></ColumnDefinition>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Label Grid.Column="0" Grid.Row="0" Margin="20,0,0,0" FontSize="16">
+                                                                <Label.FormattedText>
+                                                                    <FormattedString>
+                                                                        <Span TextColor="White" Text="{Binding Age}"></Span>
+                                                                        <Span TextColor="White" Text=", "></Span>
+                                                                        <Span TextColor="#c21164" Text="{Binding AccountType}"></Span>
+                                                                    </FormattedString>
+                                                                </Label.FormattedText>
+                                                            </Label>
+                                                            <Label Grid.Column="0" Grid.Row="1" Margin="20,0,0,0" Text="{Binding Location}"
+                                               TextColor="White" FontSize="16" />
+
+                                                            <Label Grid.Column="1" Grid.Row="0" Margin="0,0,20,0" Text="{Binding Category}"
+                                               TextColor="White" FontSize="16" />
+
+                                                        </Grid>
+
+                                                    </StackLayout>
+                                                </AbsoluteLayout>
+
+                                            </Frame>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+
+
+                        </StackLayout>
+                        <StackLayout IsVisible="false" Grid.Row="1" x:Name="FriendProfilesListView" >
+                            <Grid BackgroundColor="#292a2e" Padding="5">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="40"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="7*"></ColumnDefinition>
+                                    <ColumnDefinition Width="3*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Entry x:Name="FriendSearchEntry" Grid.Column="0" Placeholder="Search Name..." BackgroundColor="#7F7F7F" PlaceholderColor="White" TextColor="White" HeightRequest="40"></Entry>
+                                <Button Grid.Column="1" CornerRadius="10" Text="Search" BackgroundColor="#c21164" TextColor="White"     Clicked="LocalMaybeSearch_Clicked"  CommandParameter="{Binding Source={x:Reference FriendSearchEntry}, Path=Text}"></Button>
+                            </Grid>
+                            <ListView x:Name="FriendProfilesList" RowHeight="400" BackgroundColor="Black" ItemsSource="{Binding LikedProfiles}" ItemTapped="FriendProfilesListView_ItemTapped">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate x:DataType="model:ProfileEntity">
+                                        <ViewCell IsEnabled="True">
+                                            <Frame BorderColor="#292a2e" CornerRadius="10" BackgroundColor="#292a2e" Padding="0" Margin="10">
+                                                <AbsoluteLayout HeightRequest="400" WidthRequest="100" VerticalOptions="Center" >
+                                                    <Image AbsoluteLayout.LayoutBounds="0,0,1,1" Aspect="Fill"
+AbsoluteLayout.LayoutFlags="All" Source="{Binding Avatar}" />
+
+                                                    <StackLayout AbsoluteLayout.LayoutBounds="0.1,1,380,100" HorizontalOptions="FillAndExpand" BackgroundColor="#292a2e"
+AbsoluteLayout.LayoutFlags="PositionProportional">
+
+                                                        <Label Margin="20,0,0,0" Text="{Binding UserName}"
+                                               TextColor="White" FontSize="20" />
+                                                        <Label Margin="20,0,0,0" FontSize="20">
+                                                            <Label.FormattedText>
+                                                                <FormattedString>
+                                                                    <Span TextColor="White" Text="{Binding Age}"></Span>
+                                                                    <Span TextColor="White" Text=", "></Span>
+                                                                    <Span TextColor="#c21164" Text="{Binding AccountType}"></Span>
+                                                                </FormattedString>
+                                                            </Label.FormattedText>
+                                                        </Label>
+
+                                                    </StackLayout>
+                                                </AbsoluteLayout>
+
+                                            </Frame>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+                        
+                        
+                    </Grid>
+        </Frame>
+
+    </Grid>
+            <StackLayout BackgroundColor="Black" WidthRequest="700">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="10, 10, 10, 20" Spacing="25" BackgroundColor="Black">
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="superLikeButton1" Source="iconhome.png" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:SwingerSocialPage}"></ImageButton>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="nopeButton" Source="iconcommunity.png" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:Community}" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="pineapple" Source="pineapplelittle.png" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:MapPage}" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                        <!--<ImageButton x:Name="superLikeButton" Source="FlashingPineapple.gif" WidthRequest="50" HeightRequest="50" BackgroundColor="White" Scale="1">
+                    </ImageButton>-->
+                        <!--<ff:CachedImage x:Name="pineapple" WidthRequest="50" HeightRequest="50" Margin="0,0,0,0">
+                            <ff:CachedImage.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:MapPage}"/>
+                            </ff:CachedImage.GestureRecognizers>
+                        </ff:CachedImage>-->
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="likeButton" Source="iconmessaging.png" Clicked="OnChatClicked" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="superLikeButton" Source="iconlikes.png" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:Matches}" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

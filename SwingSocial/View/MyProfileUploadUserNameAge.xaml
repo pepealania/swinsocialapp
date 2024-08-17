@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SwingSocial.Sample.View.MyProfileUploadUserNameAge"
+             xmlns:viewmodel="clr-namespace:SwingSocial.Sample.ViewModel"  x:DataType="viewmodel:NewAccountViewModel"            
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"             
+             BackgroundColor="Black"             
+             xmlns:view="clr-namespace:SwingSocial.Sample.View;assembly=SwingSocial" xmlns:model="clr-namespace:SwingSocial.Sample.Model"
+             xmlns:xlabs="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:htmllabel="clr-namespace:Plugin.HtmlLabel;assembly=Plugin.HtmlLabel"
+             Title ="" Shell.BackgroundColor="Black">
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Margin="10"/>
+
+        </Grid>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <AbsoluteLayout>
+                <ScrollView x:Name="MainScroll" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout>
+                        <Frame CornerRadius="10" Padding="0" Margin="0" VerticalOptions="FillAndExpand">
+                            <StackLayout x:Name="stkMain" BackgroundColor="Black">
+
+                                <Label Text="Enter Username and Birthday:" TextColor="white" FontSize="16" FontAttributes="Bold" BackgroundColor="Black" Margin="20,20,0,0"></Label>
+                                <Frame CornerRadius="10" Margin="20" Padding="0" BackgroundColor="black">
+                                                    <StackLayout>
+                                        <Entry x:Name="EntryUserName" Text="" Placeholder="Username" TextColor="white" PlaceholderColor="#292a2e"></Entry>
+                                        <DatePicker x:Name="DoBDatePicker" MinimumDate="01/01/1940"
+MaximumDate="12/31/2018"
+Date="06/21/2018" TextColor="white" BackgroundColor="#292a2e"/>
+                                                    </StackLayout>
+
+                                </Frame>
+                                <ActivityIndicator HorizontalOptions="Center" x:Name="FileActivityIndicator" IsVisible="false" IsRunning="False" Color="Orange" AbsoluteLayout.LayoutBounds="0.5,0.5,0.1,0.1" AbsoluteLayout.LayoutFlags="All"></ActivityIndicator>
+                                <Frame
+                                           x:Name="SaveButton" Margin="0"
+       BorderColor="White" BackgroundColor="#c21164"
+       CornerRadius="10"
+       HeightRequest="20"
+       WidthRequest="130"
+       IsClippedToBounds="True"
+       HorizontalOptions="Center"
+       VerticalOptions="Center">
+                                    <Label Text="Save" TextColor="white" BackgroundColor="#c21164" HorizontalOptions="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="Saved_Tapped">
+
+                                            </TapGestureRecognizer>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </Frame>
+
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </ScrollView>
+
+            </AbsoluteLayout>            
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

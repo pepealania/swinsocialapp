@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SwingSocial.Sample.View.Login"
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"             
+             BackgroundColor="Black"
+             xmlns:view="clr-namespace:SwingSocial.Sample.View;assembly=SwingSocial" 
+             xmlns:htmllabel="clr-namespace:Plugin.HtmlLabel;assembly=Plugin.HtmlLabel"
+             Title ="" Shell.BackgroundColor="Black">
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Margin="10"/>
+
+        </Grid>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout Margin="10" Padding="0" BackgroundColor="Black" HorizontalOptions="FillAndExpand" VerticalOptions="Center">
+            <!-- WebView needs to be given height and width request within layouts to render. -->
+            <htmllabel:HtmlLabel HorizontalOptions="Center" TextColor="White" Text="&lt;h2&gt;Sign in to your account&lt;/h2&gt;&lt;br&gt;" BackgroundColor="black"></htmllabel:HtmlLabel>
+            <Label HorizontalOptions="Center">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer  NumberOfTapsRequired="1" Tapped="StartFree_Tapped">
+                    </TapGestureRecognizer>
+                </Label.GestureRecognizers>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span TextColor="White" Text=" Or   "></Span>
+                        <Span TextColor="#ba0c90" Text="Start free"></Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Frame BackgroundColor="#595b5e" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="5" Margin="30,0,30,0">
+                <Entry Placeholder="Insert your Username" x:Name="UserNameToValidate" FontSize="Body" BackgroundColor="#595b5e" TextColor="White" HorizontalOptions="FillAndExpand"></Entry>
+            </Frame>
+            <Frame BackgroundColor="#c21164" CornerRadius="10" HorizontalOptions="FillAndExpand" Padding="5" Margin="30,0,30,0">
+                <Button Text="Log in" Clicked="Button_Clicked" BackgroundColor="#c21164" TextColor="White" HorizontalOptions="FillAndExpand"></Button>
+            </Frame>
+            <Label TextType="Html" HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center" TextColor="White" Margin="30" FontSize="16">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="By signing up, you agree to our " />
+                        <Span Text="terms"
+                  TextColor="#c21164"
+                  TextDecorations="Underline">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ClickCommand}"
+                                          CommandParameter="https://app.swingsocial.co/terms" />
+                            </Span.GestureRecognizers>
+                        </Span>
+                        <Span Text=" and conditions and our " />
+                        
+                        <Span Text="privacy policy."
+                  TextColor="#c21164"
+                  TextDecorations="Underline">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ClickCommand}"
+                                          CommandParameter="https://app.swingsocial.co/privacy" />
+                            </Span.GestureRecognizers>
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+
+            </Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+

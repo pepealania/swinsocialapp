@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SwingSocial.Sample.View.BRegistrationPage72"
+             xmlns:viewmodel="clr-namespace:SwingSocial.Sample.ViewModel"  x:DataType="viewmodel:NewAccountViewModel"            
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"             
+             BackgroundColor="Black"             
+             xmlns:view="clr-namespace:SwingSocial.Sample.View;assembly=SwingSocial" xmlns:model="clr-namespace:SwingSocial.Sample.Model"
+             xmlns:xlabs="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:htmllabel="clr-namespace:Plugin.HtmlLabel;assembly=Plugin.HtmlLabel"
+             Title ="" Shell.BackgroundColor="Black">
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Margin="10"/>
+
+        </Grid>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <ScrollView x:Name="MainScroll" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Tagline " TextColor="White" FontSize="12"></Span>
+                                <Span Text="*" TextColor="Violet" FontSize="12"></Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label Text="Give members a quick snippet of why you're here or whats going on with you right now" TextColor="white"></Label>
+                    <Editor x:Name="taglineEditor" Placeholder="Tagline" BackgroundColor="#5d5a5d"
+        TextColor="White"
+                                PlaceholderColor="White"
+        FontAttributes="Italic" HeightRequest="150"
+        FontSize="12"/>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="About me " TextColor="White" FontSize="12"></Span>
+                                <Span Text="*" TextColor="Violet" FontSize="12"></Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Label Text="Tell others what you're all about" TextColor="white"></Label>
+
+                    <Frame BackgroundColor="#292a2e" BorderColor="#292a2e" Padding="1" Margin="0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10*"></ColumnDefinition>
+                                <ColumnDefinition Width="10*"></ColumnDefinition>
+                                <ColumnDefinition Width="10*"></ColumnDefinition>
+                                <ColumnDefinition Width="10*"></ColumnDefinition>
+                                <ColumnDefinition Width="60*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Frame BackgroundColor="black" BorderColor="white" Padding="0" CornerRadius="10" Grid.Column="0" >
+                                <ImageButton HeightRequest="30" Margin="10" CornerRadius="10" BackgroundColor="Black" Source="bold" Aspect="AspectFit" Clicked="AboutMeDescriptionBold_Clicked"></ImageButton>
+                            </Frame>
+                            <Frame BackgroundColor="black" BorderColor="white" Padding="0" CornerRadius="10" Grid.Column="1" >
+                                <ImageButton HeightRequest="30" Margin="10" CornerRadius="10" BackgroundColor="Black" Source="italic" Aspect="AspectFit" Clicked="AboutMeDescriptionItalic_Clicked"></ImageButton>
+                            </Frame>
+                        </Grid>
+                    </Frame>
+
+                    <!--<Frame BackgroundColor="Black" BorderColor="White">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="20*"></ColumnDefinition>
+                                <ColumnDefinition Width="20*"></ColumnDefinition>
+                                <ColumnDefinition Width="20*"></ColumnDefinition>
+                                <ColumnDefinition Width="20*"></ColumnDefinition>
+                                <ColumnDefinition Width="20*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Frame BackgroundColor="black" BorderColor="white" Padding="0" CornerRadius="10" Grid.Column="0" >
+                                <ImageButton HeightRequest="50" Margin="10" CornerRadius="10" BackgroundColor="Black" Source="bold" Aspect="AspectFit"></ImageButton>
+                            </Frame>
+                            <Frame BackgroundColor="black" BorderColor="white" Padding="0" CornerRadius="10" Grid.Column="1" >
+                                <ImageButton HeightRequest="50" Margin="10" CornerRadius="10" BackgroundColor="Black" Source="italic" Aspect="AspectFit"></ImageButton>
+                            </Frame>
+                        </Grid>
+                    </Frame>-->
+                    <Editor x:Name="aboutMeEditor" Placeholder="About me" BackgroundColor="#5d5a5d"
+        TextColor="White"
+        PlaceholderColor="White"
+        HeightRequest="150"
+        FontSize="12"/>
+
+
+                    <Frame
+                                            Margin="0"
+       BorderColor="White" BackgroundColor="#c21164"
+       CornerRadius="50"
+       HeightRequest="60"
+                                    Padding="0"
+       WidthRequest="60"
+       IsClippedToBounds="True"
+       HorizontalOptions="Center"
+       VerticalOptions="Center">
+                        <Button CornerRadius="50" Clicked="Continue_Tapped" Text=">" TextColor="white" FontSize="22" BackgroundColor="#c21164" HorizontalOptions="Center" VerticalOptions="Center" Margin="1">
+                        </Button>
+                    </Frame>
+                    <Frame HeightRequest="1000" BackgroundColor="Black">
+                        
+                    </Frame>
+
+                </StackLayout>
+                </ScrollView>
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

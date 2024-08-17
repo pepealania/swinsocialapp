@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SwingSocial.Sample.View.NewAccountUploadPage"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:viewmodel="clr-namespace:SwingSocial.Sample.ViewModel"  x:DataType="viewmodel:NewAccountViewModel"            
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"             
+             BackgroundColor="Black"             
+             xmlns:view="clr-namespace:SwingSocial.Sample.View;assembly=SwingSocial.Sample" xmlns:model="clr-namespace:SwingSocial.Sample.Model"
+             xmlns:xlabs="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:htmllabel="clr-namespace:Plugin.HtmlLabel;assembly=Plugin.HtmlLabel"
+             Title ="" Shell.BackgroundColor="Black">
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Margin="10"/>
+
+        </Grid>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <ScrollView x:Name="MainScroll" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout>
+                    <Label Text="Post Avatar" TextColor="White" BackgroundColor="Black" FontSize="26" FontAttributes="Bold" HorizontalTextAlignment="Center"></Label>
+                    <Frame BackgroundColor="Black" CornerRadius="10" BorderColor="white">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizerAvatar_Tapped"></TapGestureRecognizer>
+                        </Frame.GestureRecognizers>
+                        <StackLayout>
+                            <Image Source="photocamera" x:Name="ImageToDisplayAvatar" HeightRequest="100" WidthRequest="100"></Image>
+                            <Label BackgroundColor="Black" Text="Click to select a file" TextColor="White" FontSize="16"></Label>
+                            <Label BackgroundColor="Black" Text="Attach a file" TextColor="#333230" FontSize="10"></Label>
+
+                        </StackLayout>
+                    </Frame>
+                    <ActivityIndicator HorizontalOptions="Center" x:Name="FileActivityIndicator" IsRunning="true" Color="Orange" AbsoluteLayout.LayoutBounds="0.5,0.5,0.1,0.1" AbsoluteLayout.LayoutFlags="All"></ActivityIndicator>
+
+                    <Label Text="Post Banner" TextColor="White" BackgroundColor="Black" FontSize="26" FontAttributes="Bold" HorizontalTextAlignment="Center"></Label>
+                    <Frame BackgroundColor="Black" CornerRadius="10" BorderColor="white">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizerBanner_Tapped"></TapGestureRecognizer>
+                        </Frame.GestureRecognizers>
+                        <StackLayout>
+                            <Image Source="photocamera"  x:Name="ImageToDisplayBanner" HeightRequest="100" WidthRequest="100"></Image>
+                            <Label BackgroundColor="Black" Text="Click to select a file" TextColor="White" FontSize="16"></Label>
+                            <Label BackgroundColor="Black" Text="Attach a file" TextColor="#333230" FontSize="10"></Label>
+
+                        </StackLayout>
+                    </Frame>
+
+
+                    <Frame
+                                            Margin="0"
+       BorderColor="White" BackgroundColor="#b648d3"
+       CornerRadius="10"
+       HeightRequest="20"
+       WidthRequest="130"
+       IsClippedToBounds="True"
+       HorizontalOptions="Center"
+       VerticalOptions="Center">
+                        <Label Text="Continue" TextColor="white" BackgroundColor="#b648d3" HorizontalOptions="Center">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped">
+
+                                </TapGestureRecognizer>
+                            </Label.GestureRecognizers>
+                        </Label>
+                    </Frame>
+
+
+                </StackLayout>
+                </ScrollView>
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

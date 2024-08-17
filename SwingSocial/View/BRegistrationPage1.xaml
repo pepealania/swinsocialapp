@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SwingSocial.Sample.View.BRegistrationPage1"
+             xmlns:viewmodel="clr-namespace:SwingSocial.Sample.ViewModel"  x:DataType="viewmodel:NewAccountViewModel"            
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"             
+             BackgroundColor="Black"             
+             xmlns:view="clr-namespace:SwingSocial.Sample.View;assembly=SwingSocial" xmlns:model="clr-namespace:SwingSocial.Sample.Model"
+             xmlns:xlabs="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:htmllabel="clr-namespace:Plugin.HtmlLabel;assembly=Plugin.HtmlLabel"
+             Title ="" Shell.BackgroundColor="Black">
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Margin="10"/>
+
+        </Grid>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout Margin="20" VerticalOptions="FillAndExpand">
+            <AbsoluteLayout VerticalOptions="FillAndExpand">
+                <ScrollView x:Name="MainScroll" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout>
+                        <StackLayout VerticalOptions="StartAndExpand">
+                            <StackLayout x:Name="stkMain" BackgroundColor="Black">
+                                <Label Text="What's your email?" TextColor="white" FontSize="26" FontAttributes="Bold" BackgroundColor="Black" Margin="20,20,0,0" HorizontalOptions="Center"></Label>
+                                <Label Text="We protect our community by making sure everyone on SwingSocisl is real" TextColor="white" FontSize="16" BackgroundColor="Black" Margin="20,20,0,0" HorizontalOptions="Center"></Label>
+                                <Grid HorizontalOptions="Center">
+                                    <Grid.RowDefinitions></Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                    </Grid.ColumnDefinitions>
+                                    <Frame CornerRadius="10" BackgroundColor="#5d5a5d" Margin="0,0,0,0" Padding="0">
+
+                                        <Entry x:Name="EmailEntry" BackgroundColor="#5d5a5d"
+        TextColor="White" Placeholder="Email"
+        FontAttributes="Italic"
+        FontSize="20"/>
+
+                                    </Frame>
+
+                                </Grid>
+                                <Frame
+                                            Margin="0"
+       BorderColor="White" BackgroundColor="#c21164"
+       CornerRadius="50"
+       HeightRequest="60"
+                                    Padding="0"
+       WidthRequest="60"
+       IsClippedToBounds="True"
+       HorizontalOptions="Center"
+       VerticalOptions="Center">
+                                    <!--<Label Text=">" TextColor="white" FontSize="22" BackgroundColor="#c21164" HorizontalOptions="Center" VerticalOptions="Center" Margin="1">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="OpenConfirmation_Tapped">
+
+                                            </TapGestureRecognizer>
+                                        </Label.GestureRecognizers>
+                                    </Label>-->
+                                    <Button Text=">" TextColor="white" FontSize="22" BackgroundColor="#c21164" CornerRadius="50" HorizontalOptions="Center" VerticalOptions="Center" Margin="1" Clicked="OpenConfirmation_Tapped">
+                                    </Button>
+                                </Frame>
+                            </StackLayout>
+                            <Image x:Name="listOfFeaturesPerAccountType" Source="hedo1.jpeg" HorizontalOptions="FillAndExpand" Margin="20"></Image>
+                            <!--<Grid HorizontalOptions="FillAndExpand">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20*"></ColumnDefinition>
+                                        <ColumnDefinition Width="80*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Switch IsToggled="True" Grid.Column="0"></Switch>
+                                    <Label Text="I agree to the terms and conditions" TextColor="White" Grid.Column="1"></Label>
+                                </Grid>-->
+                            <Label Text="Come party with us" TextColor="#c21164" HorizontalOptions="Center" FontSize="26">
+                            </Label>
+
+                        </StackLayout>
+                        <StackLayout VerticalOptions="End">
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="We never share this with anyone and it won't be on your profile" FontSize="12" TextColor="White" BackgroundColor="Black" HorizontalOptions="Center"></Label>
+                                <!--<Frame
+                                            Margin="0"
+       BorderColor="White" BackgroundColor="#c21164"
+       CornerRadius="50"
+       HeightRequest="40"
+                                    Padding="0"
+       WidthRequest="40"
+       IsClippedToBounds="True"
+       HorizontalOptions="Center"
+       VerticalOptions="Center">
+                                    <Label Text=">" TextColor="white" FontSize="18" BackgroundColor="#c21164" HorizontalOptions="Center" VerticalOptions="Center" Margin="1">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped">
+
+                                            </TapGestureRecognizer>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </Frame>-->
+                            </StackLayout>
+
+
+                            <Label Text="Already registered?" FontSize="12" FontAttributes="Bold" TextColor="White" BackgroundColor="Black" HorizontalOptions="Center"></Label>
+                            <Label TextColor="#c21164" Text="Click here to Login" HorizontalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer  NumberOfTapsRequired="1" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:Login}">
+                                    </TapGestureRecognizer>
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
+
+                    </StackLayout>                    
+                </ScrollView>
+                <StackLayout Margin="20" AbsoluteLayout.LayoutBounds="0.5,0.5,1,0.5" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="PopUpConfirm" IsVisible="false">
+                    <Frame CornerRadius="10" BackgroundColor="White" Opacity="1">
+                        <StackLayout>
+                            <Label HorizontalOptions="CenterAndExpand" Text="Number Verification" TextColor="Black" FontSize="16" FontAttributes="Bold"></Label>
+                            <Label HorizontalOptions="Center" Text="We need to verify your number, we need to make sure that this is your number" TextColor="Black"></Label>
+                            <Frame HorizontalOptions="FillAndExpand" BackgroundColor="#c21164" CornerRadius="10" Padding="0">
+                                <Button Text="Continue" HorizontalOptions="FillAndExpand" TextColor="White" BackgroundColor="#c21164" Clicked="TapGestureRecognizer_TappedConfirmBox">
+                                </Button>
+                            </Frame>
+                            <Frame BorderColor="#c21164" HorizontalOptions="FillAndExpand" BackgroundColor="White" CornerRadius="10"  Padding="1">
+                                <Button CornerRadius="10" BackgroundColor="White" Text="Back" HorizontalOptions="FillAndExpand" TextColor="Black" Clicked="TapGestureRecognizerBack_Tapped">
+                                </Button>
+                            </Frame>
+                        </StackLayout>
+
+                    </Frame>
+
+                </StackLayout>
+
+            </AbsoluteLayout>            
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

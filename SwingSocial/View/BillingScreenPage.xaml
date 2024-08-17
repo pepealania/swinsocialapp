@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SwingSocial.Sample.View.BillingScreenPage"
+             xmlns:viewmodel="clr-namespace:SwingSocial.Sample.ViewModel"  x:DataType="viewmodel:ProfileBillingInfoViewModel"            
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"             
+             BackgroundColor="Black"             
+             xmlns:view="clr-namespace:SwingSocial.Sample.View;assembly=SwingSocial" xmlns:model="clr-namespace:SwingSocial.Sample.Model"
+             xmlns:xlabs="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:htmllabel="clr-namespace:Plugin.HtmlLabel;assembly=Plugin.HtmlLabel"
+             Title ="" Shell.BackgroundColor="Black">
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Margin="10"/>
+
+        </Grid>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout Margin="50,20,50,20" VerticalOptions="FillAndExpand" >
+            <AbsoluteLayout VerticalOptions="FillAndExpand" BackgroundColor="Black">
+                <ScrollView x:Name="MainScroll" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout>
+
+                        <Label Text="Your Current Plan is:" TextColor="white"></Label>
+                        <Label Text="{Binding ProfileBillingInfo.Title}" TextColor="White"></Label>
+
+                        <BoxView   VerticalOptions="Center"
+           HorizontalOptions="FillAndExpand"
+           HeightRequest="1"
+           WidthRequest="100"  
+           Color="#5b5d68" Margin="0,20,0,20"></BoxView>
+                        <Label Text="Re-ocurring:" TextColor="white"></Label>
+                        <Label Text="ON:" TextColor="white"></Label>
+                        <Label Text="{Binding ProfileBillingInfo.Period}" TextColor="White"></Label>
+                        <BoxView   VerticalOptions="Center"
+           HorizontalOptions="FillAndExpand"
+           HeightRequest="1"
+           WidthRequest="100"  
+           Color="#5b5d68" Margin="0,20,0,20"></BoxView>
+                        <Label Text="Started On:" TextColor="white"></Label>
+                        <Label Text="{Binding ProfileBillingInfo.CreatedAt}" TextColor="White"></Label>
+
+                        <BoxView   VerticalOptions="Center"
+           HorizontalOptions="FillAndExpand"
+           HeightRequest="1"
+           WidthRequest="100"  
+           Color="#5b5d68" Margin="0,20,0,20"></BoxView>
+                        <Label Text="To cancel your subscription tap here" TextColor="white"></Label>
+                        <Button Margin="0,20,0,20" HorizontalOptions="Center" Text="Cancel Subscription" TextColor="White" CornerRadius="10" BackgroundColor="#292a2e"></Button>
+                        <Label Text="For suppert or questions, or to change your plan, email to:" TextColor="white"></Label>
+                        <Label Margin="0,20,0,20" HorizontalTextAlignment="Center" Text="info@swingsocial.co"  TextColor="white"></Label>
+                        
+                        
+                        
+                        
+                        
+                    </StackLayout>
+                </ScrollView>
+                <StackLayout Margin="20" AbsoluteLayout.LayoutBounds="0.5,0.5,1,0.5" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="PopUpConfirm" IsVisible="false">
+                    <Frame CornerRadius="10" BackgroundColor="White" Opacity="1">
+                        <StackLayout>
+                            <Label HorizontalOptions="CenterAndExpand" Text="Create account" TextColor="Black" FontSize="16" FontAttributes="Bold"></Label>
+                            <Label HorizontalOptions="Center" Text="You will register" TextColor="Black"></Label>
+                            <Frame HorizontalOptions="FillAndExpand" BackgroundColor="#ba0c90" CornerRadius="10" Padding="0">
+                                <Button CornerRadius="10" Clicked="TapGestureRecognizer_TappedConfirmBox" Text="Confirm" HorizontalOptions="FillAndExpand" TextColor="White" BackgroundColor="#ba0c90">
+                                </Button>
+                            </Frame>
+                            <Frame HorizontalOptions="FillAndExpand" BackgroundColor="White" CornerRadius="10" BorderColor="#ba0c90" Padding="1">
+                                <Button CornerRadius="10" Clicked="TapGestureRecognizerBack_Tapped" BackgroundColor="White" Text="Back" HorizontalOptions="FillAndExpand" TextColor="Black">
+                                </Button>
+                            </Frame>
+                        </StackLayout>
+
+                    </Frame>
+
+                </StackLayout>
+
+            </AbsoluteLayout>            
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SwingSocial.Sample.View.RegistrationPage4"
+             xmlns:viewmodel="clr-namespace:SwingSocial.Sample.ViewModel"  x:DataType="viewmodel:NewAccountViewModel"            
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"             
+             BackgroundColor="Black"             
+             xmlns:view="clr-namespace:SwingSocial.Sample.View;assembly=SwingSocial" xmlns:model="clr-namespace:SwingSocial.Sample.Model"
+             xmlns:xlabs="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:htmllabel="clr-namespace:Plugin.HtmlLabel;assembly=Plugin.HtmlLabel"
+             Title ="" Shell.BackgroundColor="Black">
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Margin="10"/>
+
+        </Grid>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <AbsoluteLayout>
+                <ScrollView x:Name="MainScroll" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout>
+                        <Frame CornerRadius="10" Padding="5" Margin="0" VerticalOptions="FillAndExpand">
+                            <StackLayout x:Name="stkMain" BackgroundColor="Black">
+                                <Label Text="Create your account" FontSize="16" FontAttributes="Bold" TextColor="White" BackgroundColor="Black" HorizontalOptions="Center"></Label>
+                                <Label Text="Already registered?" FontSize="12" FontAttributes="Bold" TextColor="White" BackgroundColor="Black" HorizontalOptions="Center"></Label>
+                                <Label TextColor="#ba0c90" Text="Click here to Login" HorizontalOptions="Center">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer  NumberOfTapsRequired="1" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:Login}">
+                                        </TapGestureRecognizer>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                <Label Text="Select a Plan" TextColor="white" FontSize="16" FontAttributes="Bold" BackgroundColor="Black" Margin="20,20,0,0"></Label>
+                                <Frame BackgroundColor="Black">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="50"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="100*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Frame BackgroundColor="White" CornerRadius="10" Padding="0" HorizontalOptions="FillAndExpand">
+                                            <xlabs:BindableRadioGroup x:Name="ansPicker"
+                                     FontName="AmericanTypewriter"
+                                     BackgroundColor="White" SelectedIndex="1"
+                                     VerticalOptions="Start" Orientation="Horizontal"  HorizontalOptions="Center"/>
+
+                                        </Frame>
+
+                                    </Grid>
+
+                                </Frame>
+                                <Grid Margin="20,0,0,0" x:Name="premiumOptions">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="25*"></ColumnDefinition>
+                                        <ColumnDefinition Width="25*"></ColumnDefinition>
+                                        <ColumnDefinition Width="25*"></ColumnDefinition>
+                                        <ColumnDefinition Width="25*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Frame BorderColor="white" Grid.Column="0" Padding="0">
+                                        <Label BackgroundColor="violet" x:Name="monthlyLabel" Text="Monthly" TextColor="White">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="MonthlyTapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                                            </Label.GestureRecognizers>
+                                        </Label>
+                                    </Frame>
+                                    <Frame BorderColor="white" Grid.Column="1" Padding="0">
+                                        <Label BackgroundColor="Black" x:Name="quarterlyLabel" Text="Quarterly" TextColor="White">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="QuarterlyTapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                                            </Label.GestureRecognizers>
+
+                                        </Label>
+                                    </Frame>
+                                    <Frame BorderColor="white" Grid.Column="2" Padding="0">
+                                        <Label BackgroundColor="Black" x:Name="bianuallyLabel" Text="Bi-Anually" TextColor="White">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="BiAnuallyTapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                                            </Label.GestureRecognizers>
+
+                                        </Label>
+                                    </Frame>
+                                    <Frame BorderColor="white" Grid.Column="3" Padding="0">
+                                        <Label BackgroundColor="Black" x:Name="anuallyLabel" Text="Anually" TextColor="White">
+                                            <Label.GestureRecognizers>
+                                                <TapGestureRecognizer Tapped="AnuallyTapGestureRecognizer_Tapped"></TapGestureRecognizer>
+                                            </Label.GestureRecognizers>
+
+                                        </Label>
+                                    </Frame>
+                                </Grid>
+                                <Image x:Name="listOfFeaturesPerAccountType" HorizontalOptions="FillAndExpand" Aspect="Fill"></Image>
+                                <Grid HorizontalOptions="FillAndExpand">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20*"></ColumnDefinition>
+                                        <ColumnDefinition Width="80*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Switch IsToggled="True" Grid.Column="0"></Switch>
+                                    <Label Text="I agree to the terms and conditions" TextColor="White" Grid.Column="1"></Label>
+                                </Grid>
+                                <Frame
+                                            Margin="0"
+       BorderColor="White" BackgroundColor="#b648d3"
+       CornerRadius="10"
+       HeightRequest="20"
+       WidthRequest="130"
+       IsClippedToBounds="True"
+       HorizontalOptions="Center"
+       VerticalOptions="Center">
+                                    <Label Text="Pay" TextColor="white" BackgroundColor="#b648d3" HorizontalOptions="Center">
+                                        <Label.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped">
+
+                                            </TapGestureRecognizer>
+                                        </Label.GestureRecognizers>
+                                    </Label>
+                                </Frame>
+                                <Label Text="By Signing up, you agree to our terms and conditions and our privacy policy." TextColor="White"></Label>
+
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </ScrollView>
+                <StackLayout Margin="20" AbsoluteLayout.LayoutBounds="0.5,0.5,1,0.5" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="PopUpConfirm" IsVisible="false">
+                    <Frame CornerRadius="10" BackgroundColor="White" Opacity="1">
+                        <StackLayout>
+                            <Label HorizontalOptions="CenterAndExpand" Text="Create account" TextColor="Black" FontSize="16" FontAttributes="Bold"></Label>
+                            <Label HorizontalOptions="Center" Text="You will register" TextColor="Black"></Label>
+                            <Frame HorizontalOptions="FillAndExpand" BackgroundColor="Violet" CornerRadius="10">
+                                <Label Text="Confirm" HorizontalOptions="Center" TextColor="White" BackgroundColor="Violet">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_TappedConfirmBox"></TapGestureRecognizer>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Frame>
+                            <Frame HorizontalOptions="FillAndExpand" BackgroundColor="White" CornerRadius="10" BorderColor="Violet">
+                                <Label BackgroundColor="White" Text="Back" HorizontalOptions="Center" TextColor="Black">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizerBack_Tapped"></TapGestureRecognizer>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Frame>
+                        </StackLayout>
+
+                    </Frame>
+
+                </StackLayout>
+
+            </AbsoluteLayout>            
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SwingSocial.Sample.View.EventCreate"
+             xmlns:viewmodel="clr-namespace:SwingSocial.Sample.ViewModel"             
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"             
+xmlns:htmllabel="clr-namespace:Plugin.HtmlLabel;assembly=Plugin.HtmlLabel"
+             BackgroundColor="Black" 
+             x:DataType="viewmodel:EventPageViewModel"
+                          xmlns:model="clr-namespace:SwingSocial.Sample.Model"
+             xmlns:view="clr-namespace:SwingSocial.Sample.View;assembly=SwingSocial" xmlns:helper="clr-namespace:SwingSocial.Sample.Helper"
+             		xmlns:custom="clr-namespace:DurianCode.PlacesSearchBar;assembly=PlacesSearchBar"
+             		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             Title ="" Shell.BackgroundColor="Black">
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Margin="10"/>
+
+        </Grid>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <AbsoluteLayout VerticalOptions="FillAndExpand">
+                <ScrollView Orientation="Vertical" x:Name="MainScroll"
+                            AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" >
+                    <StackLayout Margin="0">
+                        <Label x:Name="createEventTitle" Text="Create an event" FontSize="30" FontAttributes="Bold"></Label>
+                        <StackLayout Orientation="Horizontal">
+                            <Frame HorizontalOptions="Start" BackgroundColor="Black">
+                                <StackLayout>
+                                    <Label TextColor="White">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Start Time "></Span>
+                                                <Span Text="*" TextColor="#c21164"></Span>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Frame CornerRadius="10" Padding="0" Margin="0" BorderColor="#292a2e" BackgroundColor="#292a2e">
+                                        <helper:DateTimePicker x:Name="StartDateTime" BackgroundColor="#292a2e" WidthRequest="200">
+
+                                        </helper:DateTimePicker>
+                                    </Frame>
+                                </StackLayout>
+                            </Frame>
+
+                            <Frame HorizontalOptions="EndAndExpand" BackgroundColor="Black">
+                                <StackLayout>
+                                    <Label TextColor="White">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="End Time "></Span>
+                                                <Span Text="*" TextColor="#c21164"></Span>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Frame CornerRadius="10" Padding="0" Margin="0" BorderColor="#292a2e" BackgroundColor="#292a2e">
+                                        <helper:DateTimePicker x:Name="EndDateTime" BackgroundColor="#292a2e" WidthRequest="200">
+
+                                        </helper:DateTimePicker>
+
+                                    </Frame>
+                                </StackLayout>
+                            </Frame>
+
+
+                        </StackLayout>
+                        <Label TextColor="White">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Category "></Span>
+                                    <Span Text="*" TextColor="#c21164"></Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Text="Select your events category" TextColor="White" FontSize="10"></Label>
+                        <Frame CornerRadius="10" Padding="0" Margin="0" BackgroundColor="#292a2e">
+                            <Picker x:Name="CategoryPicker" TextColor="White" TitleColor="DarkGray" Title="Category" BackgroundColor="#292a2e"></Picker>
+                        </Frame>
+                        <Label TextColor="White">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Repeats"></Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="25*"></ColumnDefinition>
+                                <ColumnDefinition Width="25*"></ColumnDefinition>
+                                <ColumnDefinition Width="25*"></ColumnDefinition>
+                                <ColumnDefinition Width="25*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="NoneButton" Grid.Column="0" Text="None" CornerRadius="10" TextColor="White" BackgroundColor="#292a2e" Clicked="None_Clicked"></Button>
+                            <Button x:Name="DailyButton" Grid.Column="1" Text="Daily" CornerRadius="10" TextColor="White" BackgroundColor="#292a2e" Clicked="Daily_Clicked"></Button>
+                            <Button x:Name="WeeklyButton" Grid.Column="2" Text="Weekly" CornerRadius="10" TextColor="White" BackgroundColor="#292a2e" Clicked="Weekly_Clicked"></Button>
+                            <Button x:Name="MonthlyButton" Grid.Column="3" Text="Monthly" CornerRadius="10" TextColor="White" BackgroundColor="#292a2e" Clicked="Monthly_Clicked"></Button>
+                        </Grid>
+                        <Label Text="Event Name" TextColor="White"></Label>
+                        <Frame CornerRadius="10" Padding="0" Margin="0" BackgroundColor="#292a2e">
+                            <Entry x:Name="EventNameEntry" TextColor="White" Placeholder="Add an event name..." PlaceholderColor="DarkGray" BackgroundColor="#292a2e"></Entry>
+                        </Frame>
+
+                        <Label TextColor="White">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Venue "></Span>
+                                    <Span Text="*" TextColor="#c21164"></Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Text="Enter the location of your event" TextColor="White" FontSize="10"></Label>
+                        <Frame CornerRadius="10" Padding="0" Margin="0" BackgroundColor="#292a2e">
+                            <!--<Entry x:Name="LocationEntry" TextColor="White" PlaceholderColor="DarkGray" Placeholder="City, ST" BackgroundColor="#292a2e"></Entry>-->
+                            <StackLayout>
+                                <custom:PlacesBar x:Name="search_bar" TextColor="White" FontSize="12" PlaceholderColor="DarkGray" Placeholder="City, ST" BackgroundColor="#292a2e"/>
+                                <StackLayout x:Name="VenueListStackLayout" IsVisible="false">
+                                    <ActivityIndicator x:Name="spinner" IsRunning="false"/>
+                                    <ListView x:Name="results_list">
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate x:DataType="custom:AutoCompletePrediction">
+                                                <TextCell Text="{Binding MainText}" Detail="{Binding SecondaryText}" DetailColor="DarkGray" />
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </StackLayout>
+                            </StackLayout>
+
+                        </Frame>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"></RowDefinition>
+                                <RowDefinition Height="30"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="9*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <CheckBox x:Name="HideAddressCheckbox" Grid.Column="0" Grid.Row="0"></CheckBox>
+                            <Label Text="Hide Address" TextColor="White" Grid.Column="1" Grid.Row="0"></Label>
+                            <Label Text="Hide Address from members" TextColor="White" Grid.Column="1" Grid.Row="1" FontSize="10"></Label>
+                        </Grid>
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Description" TextColor="White" FontSize="12"></Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Text="Describe your event" TextColor="white" FontSize="10"></Label>
+                        <Frame BackgroundColor="#292a2e" BorderColor="#292a2e" Padding="1" Margin="0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="10*"></ColumnDefinition>
+                                    <ColumnDefinition Width="10*"></ColumnDefinition>
+                                    <ColumnDefinition Width="10*"></ColumnDefinition>
+                                    <ColumnDefinition Width="10*"></ColumnDefinition>
+                                    <ColumnDefinition Width="60*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Frame BackgroundColor="black" BorderColor="white" Padding="0" CornerRadius="10" Grid.Column="0" >
+                                    <ImageButton HeightRequest="30" Margin="10" CornerRadius="10" BackgroundColor="Black" Source="bold" Aspect="AspectFit" Clicked="DescriptionBold_Clicked"></ImageButton>
+                                </Frame>
+                                <Frame BackgroundColor="black" BorderColor="white" Padding="0" CornerRadius="10" Grid.Column="1" >
+                                    <ImageButton HeightRequest="30" Margin="10" CornerRadius="10" BackgroundColor="Black" Source="italic" Aspect="AspectFit" Clicked="DescriptionItalic_Clicked"></ImageButton>
+                                </Frame>
+                            </Grid>
+                        </Frame>
+                        <Editor x:Name="descriptionMeEditor" Placeholder="Add a description" BackgroundColor="#5d5a5d"
+        TextColor="White"
+        PlaceholderColor="White"
+        HeightRequest="150"
+        FontSize="12"/>
+                        <Label>
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Email description" TextColor="White" FontSize="12"></Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Label Text="Enter the description of the email" TextColor="white" FontSize="10"></Label>
+                        <Frame BackgroundColor="#292a2e" BorderColor="#292a2e" Padding="1" Margin="0">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="10*"></ColumnDefinition>
+                                    <ColumnDefinition Width="10*"></ColumnDefinition>
+                                    <ColumnDefinition Width="10*"></ColumnDefinition>
+                                    <ColumnDefinition Width="10*"></ColumnDefinition>
+                                    <ColumnDefinition Width="60*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Frame BackgroundColor="black" BorderColor="white" Padding="0" CornerRadius="10" Grid.Column="0" >
+                                    <ImageButton HeightRequest="30" Margin="10" CornerRadius="10" BackgroundColor="Black" Source="bold" Aspect="AspectFit" Clicked="EmailDescriptionBold_Clicked"></ImageButton>
+                                </Frame>
+                                <Frame BackgroundColor="black" BorderColor="white" Padding="0" CornerRadius="10" Grid.Column="1" >
+                                    <ImageButton HeightRequest="30" Margin="10" CornerRadius="10" BackgroundColor="Black" Source="italic" Aspect="AspectFit" Clicked="EmailDescriptionItalic_Clicked"></ImageButton>
+                                </Frame>
+                            </Grid>
+                        </Frame>
+                        <Editor x:Name="emailDescriptionEditor" Placeholder="Add the email description" BackgroundColor="#5d5a5d"
+        TextColor="White"
+        PlaceholderColor="White"
+        HeightRequest="150"
+        FontSize="12"/>
+                        <Label Margin="0,0,0,0" Text="Cover Photo" TextColor="White" BackgroundColor="Black" FontSize="26" FontAttributes="Bold" HorizontalTextAlignment="Center"></Label>
+                        <Frame Margin="10,0,10,0" BackgroundColor="Black" CornerRadius="10" BorderColor="white" HeightRequest="400">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="CoverPhoto_Tapped"></TapGestureRecognizer>
+                            </Frame.GestureRecognizers>
+                            <AbsoluteLayout>
+                                <Image AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" x:Name="ImageToDisplayCoverImage" Source="photocamera"  Aspect="Fill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Image>
+                                <Frame BackgroundColor="#292a2e" AbsoluteLayout.LayoutBounds="0.8,0.5,1,0.1" AbsoluteLayout.LayoutFlags="All" CornerRadius="10" HorizontalOptions="Center" Padding="0">
+                                    <Label Text="Click to select a file" TextColor="White" FontSize="16" VerticalOptions="Center" VerticalTextAlignment="Center"></Label>
+                                </Frame>
+
+                            </AbsoluteLayout>
+                        </Frame>
+                        <Frame x:Name="ShowUploadConfirmationFrame"
+                                     Margin="0"
+BorderColor="White" BackgroundColor="#c21164"
+CornerRadius="10"
+HeightRequest="50"
+                             Padding="0"
+WidthRequest="200"
+IsClippedToBounds="True"
+HorizontalOptions="Center"
+VerticalOptions="Center" IsVisible="false">
+                            <Button x:Name="ShowPopUpButton" CornerRadius="10" Clicked="ShowPopUp_Tapped" Text="Upload Image" TextColor="white" FontSize="22" BackgroundColor="#c21164" HorizontalOptions="Center" VerticalOptions="Center" Margin="1">
+                            </Button>
+                        </Frame>
+                        <AbsoluteLayout BackgroundColor="Black" IsVisible="false" x:Name="ImageToDisplaySection">
+                            <Image x:Name="ImageToDisplay" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" Aspect="Fill" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Image>
+                            <Frame HeightRequest="40" x:Name="deletephotoFrame" IsVisible="false" WidthRequest="40" AbsoluteLayout.LayoutBounds="0.8,0.2,0.1,0.1" AbsoluteLayout.LayoutFlags="All" CornerRadius="10" BackgroundColor="gray" BorderColor="red" Padding="0" Margin="0">
+                                <ImageButton Margin="5" Aspect="AspectFit" BackgroundColor="Transparent"
+                        Source="deletephoto" ></ImageButton>
+
+                            </Frame>
+                        </AbsoluteLayout>
+
+                        <!--<Label Text="Upload images to your event" TextColor="White" BackgroundColor="Black" FontSize="26" FontAttributes="Bold" HorizontalTextAlignment="Center"></Label>
+                <Label Margin="60,0,0,0" Text="Image 1:" TextColor="White" BackgroundColor="Black" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Start"></Label>
+                <Frame Margin="60,0,60,0" BackgroundColor="Black" CornerRadius="10" BorderColor="white">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Image1_Tapped"></TapGestureRecognizer>
+                    </Frame.GestureRecognizers>
+                    <StackLayout>
+                        <Image Source="photocamera" x:Name="Image1ToDisplay" HeightRequest="100" WidthRequest="100"></Image>
+
+                        <Label BackgroundColor="Black" Text="Click to select a file" TextColor="White" FontSize="16"></Label>
+                        <Label BackgroundColor="Black" Text="Attach a file" TextColor="#333230" FontSize="10"></Label>
+
+                    </StackLayout>
+                </Frame>
+                <Label Margin="60,0,0,0" Text="Image 2:" TextColor="White" BackgroundColor="Black" FontSize="16" FontAttributes="Bold" HorizontalTextAlignment="Start"></Label>
+                <Frame Margin="60,0,60,0" BackgroundColor="Black" CornerRadius="10" BorderColor="white">
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Image2_Tapped"></TapGestureRecognizer>
+                    </Frame.GestureRecognizers>
+                    <StackLayout>
+                        <Image Source="photocamera" x:Name="Image2ToDisplay" HeightRequest="100" WidthRequest="100"></Image>
+
+                        <Label BackgroundColor="Black" Text="Click to select a file" TextColor="White" FontSize="16"></Label>
+                        <Label BackgroundColor="Black" Text="Attach a file" TextColor="#333230" FontSize="10"></Label>
+
+                    </StackLayout>
+                </Frame>-->
+
+                        <Button x:Name="SaveEventButton" Text="Save Event" CornerRadius="10" BackgroundColor="#c21164" TextColor="White" HorizontalOptions="FillAndExpand" Clicked="SaveEvent_Clicked" IsVisible="false"></Button>
+
+                        <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Margin="10"/>
+                        <Frame HeightRequest="1000" BackgroundColor="Black">
+
+                        </Frame>
+                    </StackLayout>
+                </ScrollView>
+                <StackLayout Margin="20" AbsoluteLayout.LayoutBounds="0.5,0.5,1,0.5" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" x:Name="PopUpWaitForUpload" IsVisible="false">
+                    <Frame CornerRadius="10" BackgroundColor="White" Opacity="1">
+                        <StackLayout>
+                            <Label HorizontalOptions="CenterAndExpand" Text="Upload Status..." TextColor="Black" FontSize="16" FontAttributes="Bold"></Label>
+                            <Label HorizontalOptions="Center" Text="Tap to upload cover image, and please wait for the next step." TextColor="Black"></Label>
+                            <ActivityIndicator HorizontalOptions="Center" x:Name="FileActivityIndicator" IsRunning="False" Color="Orange" AbsoluteLayout.LayoutBounds="0.5,0.5,0.1,0.1" AbsoluteLayout.LayoutFlags="All"></ActivityIndicator>
+                            <Frame HorizontalOptions="FillAndExpand" BackgroundColor="#c21164" CornerRadius="10" Padding="0">
+                                <Button x:Name="UploadButton" Text="Upload" HorizontalOptions="FillAndExpand" TextColor="White" BackgroundColor="#c21164" Clicked="TapGestureRecognizer_TappedConfirmBox">
+                                </Button>
+                            </Frame>
+                            <Frame BorderColor="#c21164" HorizontalOptions="FillAndExpand" BackgroundColor="White" CornerRadius="10"  Padding="1">
+                                <Button CornerRadius="10" BackgroundColor="White" Text="Back" HorizontalOptions="FillAndExpand" TextColor="Black" Clicked="TapGestureRecognizerBack_Tapped">
+                                </Button>
+                            </Frame>
+                        </StackLayout>
+
+                    </Frame>
+
+                </StackLayout>
+            </AbsoluteLayout>
+        </StackLayout>
+
+
+
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SwingSocial.Sample.View.EmailRSVPAttendeesPage"
+             xmlns:viewmodel="clr-namespace:SwingSocial.Sample.ViewModel"  x:DataType="viewmodel:ChatViewModel"            
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"             
+             BackgroundColor="Black"             
+             xmlns:view="clr-namespace:SwingSocial.Sample.View;assembly=SwingSocial" xmlns:model="clr-namespace:SwingSocial.Sample.Model"
+             Title ="" Shell.BackgroundColor="Black">
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Margin="10"/>
+
+        </Grid>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <Label Text="Email Details" TextColor="White" FontSize="26" HorizontalOptions="Center"></Label>
+            <Frame CornerRadius="10" BackgroundColor="#292a2e">
+                <StackLayout Orientation="Horizontal">
+                    <CheckBox></CheckBox>
+                    <StackLayout>
+                        <Label TextColor="White" Text="RSVP" FontAttributes="Bold"></Label>
+                        <Label TextColor="White" Text="Send Email to RSVPs"></Label>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+            <Frame CornerRadius="10" BackgroundColor="#292a2e">
+                <StackLayout Orientation="Horizontal">
+                    <CheckBox></CheckBox>
+                    <StackLayout>
+                        <Label TextColor="White" Text="Attendee" FontAttributes="Bold"></Label>
+                        <Label TextColor="White" Text="Send Email to Attendees"></Label>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+            <Frame CornerRadius="10" Padding="0" Margin="0">
+                <StackLayout x:Name="stkMain" BackgroundColor="#292a2e">
+                    <Label TextColor="White">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Email Subject "></Span>
+                                <Span Text="*" TextColor="#c21164"></Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Frame CornerRadius="10" Padding="0" Margin="0" BackgroundColor="#292a2e">
+                        <Entry x:Name="subjectEntry" TextColor="White" PlaceholderColor="DarkGray" Placeholder="Type email subject.." BackgroundColor="#292a2e"></Entry>
+                    </Frame>
+                    <BoxView   VerticalOptions="Center"
+           HorizontalOptions="FillAndExpand"
+           HeightRequest="1"
+           WidthRequest="100"  
+           Color="#5b5d68"></BoxView>
+                    <Label TextColor="White">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Email Description "></Span>
+                                <Span Text="*" TextColor="#c21164"></Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Frame BackgroundColor="#292a2e" BorderColor="#292a2e" Padding="1" Margin="0">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="30"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10*"></ColumnDefinition>
+                                <ColumnDefinition Width="10*"></ColumnDefinition>
+                                <ColumnDefinition Width="10*"></ColumnDefinition>
+                                <ColumnDefinition Width="10*"></ColumnDefinition>
+                                <ColumnDefinition Width="60*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Frame BackgroundColor="black" BorderColor="white" Padding="0" CornerRadius="10" Grid.Column="0" >
+                                <ImageButton HeightRequest="30" Margin="10" CornerRadius="10" BackgroundColor="Black" Source="bold" Aspect="AspectFit" Clicked="EmailDescriptionBold_Clicked"></ImageButton>
+                            </Frame>
+                            <Frame BackgroundColor="black" BorderColor="white" Padding="0" CornerRadius="10" Grid.Column="1" >
+                                <ImageButton HeightRequest="30" Margin="10" CornerRadius="10" BackgroundColor="Black" Source="italic" Aspect="AspectFit" Clicked="EmailDescriptionItalic_Clicked"></ImageButton>
+                            </Frame>
+                        </Grid>
+                    </Frame>
+                    <Editor x:Name="BodyEditor" AutoSize="TextChanges" HeightRequest="300" BackgroundColor="#292a2e" TextColor="White"></Editor>
+                    <Grid BackgroundColor="#3d424a" Padding="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="7*"></ColumnDefinition>
+                            <ColumnDefinition Width="3*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Entry IsVisible="false" x:Name="conversationEntry" Grid.Column="0" Placeholder="Write Group Name..." BackgroundColor="White"></Entry>
+                        <Frame Grid.Column="1" CornerRadius="10" BackgroundColor="#c21164" Padding="0">
+                            <Button Text="Send" Clicked="Button_Clicked"  CommandParameter="{Binding .}" BackgroundColor="#c21164" TextColor="White" ></Button>
+                        </Frame>                        
+                     </Grid>
+
+                </StackLayout>
+            </Frame>
+
+
+            <StackLayout BackgroundColor="Black" WidthRequest="700">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="10, 10, 10, 20" Spacing="25" BackgroundColor="Black">
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="superLikeButton1" Source="iconhome.png" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:SwingerSocialPage}"></ImageButton>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="nopeButton" Source="iconcommunity.png" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:Community}" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="pineapple" Source="pineapplelittle.png" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:MapPage}" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                        <!--<ImageButton x:Name="superLikeButton" Source="FlashingPineapple.gif" WidthRequest="50" HeightRequest="50" BackgroundColor="White" Scale="1">
+                    </ImageButton>-->
+                        <!--<ff:CachedImage x:Name="pineapple" WidthRequest="50" HeightRequest="50" Margin="0,0,0,0">
+                            <ff:CachedImage.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:MapPage}"/>
+                            </ff:CachedImage.GestureRecognizers>
+                        </ff:CachedImage>-->
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="likeButton" Source="iconmessaging.png" Clicked="OnChatClicked" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="superLikeButton" Source="iconlikes.png" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:Matches}" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

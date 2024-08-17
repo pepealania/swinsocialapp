@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SwingSocial.Sample.View.BRegistrationPage7111"
+             xmlns:viewmodel="clr-namespace:SwingSocial.Sample.ViewModel"  x:DataType="viewmodel:CropViewModel"            
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"             
+             BackgroundColor="Black"             
+             xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+             xmlns:controls="clr-namespace:SwingSocial.Controls;assembly=SwingSocial"
+             xmlns:view="clr-namespace:SwingSocial.Sample.View;assembly=SwingSocial" xmlns:model="clr-namespace:SwingSocial.Sample.Model"
+             xmlns:xlabs="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:htmllabel="clr-namespace:Plugin.HtmlLabel;assembly=Plugin.HtmlLabel"
+             xmlns:imageeditor="clr-namespace:Syncfusion.SfImageEditor.XForms;assembly=Syncfusion.SfImageEditor.XForms"
+             Title ="" Shell.BackgroundColor="Black">
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Margin="10"/>
+
+        </Grid>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <AbsoluteLayout VerticalOptions="FillAndExpand">
+                <ScrollView x:Name="MainScroll" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout>
+                        <StackLayout  Orientation="Horizontal">
+                            <Label Text="Post Avatar" TextColor="White" BackgroundColor="Black" FontSize="26" FontAttributes="Bold" HorizontalTextAlignment="Center"></Label>
+                            <Frame BackgroundColor="Black" CornerRadius="10" BorderColor="white">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Avatar_Tapped"></TapGestureRecognizer>
+                                </Frame.GestureRecognizers>
+                                <StackLayout>
+                                    <Image Source="photocamera" HeightRequest="30" WidthRequest="30"></Image>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+
+                        <Frame CornerRadius="10" BackgroundColor="white" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                            <!--<Image x:Name="ImageToDisplayAvatar" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Aspect="AspectFit">
+                                
+                            </Image>-->
+                            <Grid>
+                                <Image x:Name="CroppedImageView" BackgroundColor="Pink" IsVisible="False"/>
+                                <skia:SKCanvasView x:Name="CropImageCanvas" BackgroundColor="White" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"/>
+                                <controls:ManualCropView x:Name="ManualCropView" />
+                                <Button x:Name="CropButton" VerticalOptions="End" 
+                Text="Crop!" 
+                FontSize="Large"
+                Clicked="CropButton_OnClicked"/>
+                                <Button x:Name="DisplayCroppedButton" IsVisible="False" VerticalOptions="End" 
+                Text="Show cropped image from byte[]" 
+                FontSize="Large"
+                Clicked="DisplayCroppedButton_OnClicked"/>
+                            </Grid>
+                        </Frame>
+
+
+                        <Frame
+                                     Margin="0"
+BorderColor="White" BackgroundColor="#c21164"
+CornerRadius="50"
+HeightRequest="60"
+                             Padding="0"
+WidthRequest="60"
+IsClippedToBounds="True"
+HorizontalOptions="Center"
+VerticalOptions="Center">
+                            <Button CornerRadius="50" Clicked="Continue_Tapped" Text=">" TextColor="white" FontSize="22" BackgroundColor="#c21164" HorizontalOptions="Center" VerticalOptions="Center" Margin="1">
+                            </Button>
+                        </Frame>
+
+
+                    </StackLayout>
+                </ScrollView>
+            </AbsoluteLayout>
+            
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

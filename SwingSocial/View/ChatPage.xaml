@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SwingSocial.Sample.View.ChatPage"
+             xmlns:viewmodel="clr-namespace:SwingSocial.Sample.ViewModel"  x:DataType="viewmodel:ChatViewModel"            
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"             
+             BackgroundColor="Black"             
+             xmlns:view="clr-namespace:SwingSocial.Sample.View;assembly=SwingSocial" xmlns:model="clr-namespace:SwingSocial.Sample.Model"
+             xmlns:htmllabel="clr-namespace:Plugin.HtmlLabel;assembly=Plugin.HtmlLabel"
+             Title ="" Shell.BackgroundColor="Black">
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Margin="10"/>
+
+        </Grid>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout Margin="20" BackgroundColor="#292a2e">
+            <Frame CornerRadius="10" Padding="1" Margin="0" BorderColor="#292a2e" BackgroundColor="#292a2e">
+                <StackLayout>
+                    <StackLayout x:Name="stkMain" BackgroundColor="#292a2e">
+                        <Frame VerticalOptions="Center" Padding="5" HorizontalOptions="CenterAndExpand"  BackgroundColor="#292a2e" BorderColor="#292a2e" HeightRequest="80" CornerRadius="10">
+                            <Grid HorizontalOptions="Center">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="80"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="80"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Frame Grid.Column="0"
+                                            Margin="0" Padding="0"
+       BorderColor="Black"
+       CornerRadius="50"
+       HeightRequest="80"
+       WidthRequest="80"
+       IsClippedToBounds="True"
+       HorizontalOptions="End"
+       VerticalOptions="Center"
+                                                >
+                                    <ImageButton x:Name="TopImage"
+                                                   Aspect="AspectFill"
+                                                   Margin="-20"
+         HeightRequest="80"
+         WidthRequest="80" Grid.Row="0" Grid.Column="0"  Clicked="TopImage_Clicked"/>
+                                </Frame>
+
+                                <Label x:Name="TopUserName" Grid.Column="1" VerticalOptions="Center" BackgroundColor="#292a2e" TextColor="White" FontSize="26"></Label>
+
+                            </Grid>
+                        </Frame>
+
+                        <ListView x:Name="mychatList" HasUnevenRows="True" ItemsSource="{Binding ChatComments}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate  x:DataType="model:ChatComment">
+                                    <ViewCell IsEnabled="False">
+                                        <StackLayout>
+                                            <!--<Frame IsVisible="{Binding IsLoggedUser}" HorizontalOptions="Start" BackgroundColor="Black" HeightRequest="50" CornerRadius="10" Padding="10">
+                                            <Label Text="{Binding Conversation}" BackgroundColor="black" TextColor="White"></Label>
+                                        </Frame>-->
+                                            <Frame IsVisible="{Binding IsLoggedUser}" HorizontalOptions="End" BackgroundColor="Black" CornerRadius="10" Padding="10">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                                    </Grid.ColumnDefinitions>
+                                                    <htmllabel:HtmlLabel TextColor="White" Text="{Binding Conversation}" BackgroundColor="black" LineBreakMode="WordWrap"></htmllabel:HtmlLabel>
+                                                    <!--<Label TextColor="White" Text="{Binding Conversation}" BackgroundColor="black" TextType="Html" VerticalOptions="FillAndExpand"></Label>-->
+                                                </Grid>
+
+                                            </Frame>
+                                            <Frame IsVisible="{Binding IsToUser}" HorizontalOptions="Start" BackgroundColor="#3f1794" HeightRequest="50" CornerRadius="10" Padding="10" VerticalOptions="FillAndExpand">
+
+                                                <!--<Label Text="{Binding Conversation}" BackgroundColor="#5834eb" TextColor="White"></Label>-->
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="50"></ColumnDefinition>
+                                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Frame Grid.Column="0"
+                                            Margin="0" Padding="0"
+       BorderColor="Black"
+       CornerRadius="50"
+       HeightRequest="30"
+       WidthRequest="30"
+       IsClippedToBounds="True"
+       HorizontalOptions="End"
+       VerticalOptions="Center"
+                                                >
+                                                        <Image Source="{Binding AvatarFrom}" 
+                                                   Aspect="AspectFit"
+                                                   Margin="-20"
+         HeightRequest="30"
+         WidthRequest="30"/>
+                                                    </Frame>
+
+                                                    <htmllabel:HtmlLabel TextColor="White" Grid.Column="1" Text="{Binding Conversation}" BackgroundColor="#3f1794" LineBreakMode="WordWrap"></htmllabel:HtmlLabel>
+                                                </Grid>
+
+                                            </Frame>
+                                        </StackLayout>
+
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+
+                        <Grid BackgroundColor="#3d424a" Padding="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="40"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="8*"></ColumnDefinition>
+                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Entry x:Name="conversationEntry" Keyboard="Chat" Grid.Column="0" Placeholder="Write..." BackgroundColor="#7F7F7F" PlaceholderColor="White" TextColor="White" HeightRequest="40"></Entry>
+
+                            <Button Grid.Column="1" Text="Send" Clicked="SaveConversation_Clicked" BackgroundColor="#c21164" TextColor="White" CommandParameter="{Binding Source={x:Reference conversationEntry}, Path=.}"></Button>
+                        </Grid>
+                    </StackLayout>
+                    <StackLayout>
+                        <Frame x:Name="EmojiFrame" IsVisible="false" Padding="10" BorderColor="#292a2e" CornerRadius="10" Margin="10" BackgroundColor="#000000">
+                            <CollectionView ItemsSource="{Binding Emojis}" HeightRequest="150">
+                                <CollectionView.ItemsLayout>
+                                    <GridItemsLayout Orientation="Vertical" Span="7"></GridItemsLayout>
+                                </CollectionView.ItemsLayout>
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate x:DataType="model:Emoji">
+                                        <Frame BorderColor="#131414" BackgroundColor="Transparent" Padding="10">
+                                            <Grid HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="20"></RowDefinition>
+                                                </Grid.RowDefinitions>
+                                                <AbsoluteLayout Grid.Row="0">
+                                                    <!--<htmllabel:HtmlLabel Margin="0" Text="{Binding HexAmp}" TextColor="White" AbsoluteLayout.LayoutBounds="0,0,100,100" AbsoluteLayout.LayoutFlags="PositionProportional">
+                                                    </htmllabel:HtmlLabel>-->
+                                                    <Label TextType="Html" Margin="0" Text="{Binding HexAmp}" AbsoluteLayout.LayoutBounds="0,0,100,100" AbsoluteLayout.LayoutFlags="PositionProportional">
+                                                        <Label.GestureRecognizers>
+                                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped">
+                                                            </TapGestureRecognizer>
+                                                        </Label.GestureRecognizers>
+                                                    </Label>
+                                                </AbsoluteLayout>
+                                            </Grid>
+                                        </Frame>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+                        </Frame>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+
+            <StackLayout BackgroundColor="Black" WidthRequest="700">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Padding="10, 10, 10, 20" Spacing="25" BackgroundColor="Black">
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="superLikeButton1" Source="iconhome.png" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:SwingerSocialPage}"></ImageButton>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="nopeButton" Source="iconcommunity.png" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:Community}" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="pineapple" Source="pineapplelittle.png" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:MapPage}" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                        <!--<ImageButton x:Name="superLikeButton" Source="FlashingPineapple.gif" WidthRequest="50" HeightRequest="50" BackgroundColor="White" Scale="1">
+                    </ImageButton>-->
+                        <!--<ff:CachedImage x:Name="pineapple" WidthRequest="50" HeightRequest="50" Margin="0,0,0,0">
+                            <ff:CachedImage.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:MapPage}"/>
+                            </ff:CachedImage.GestureRecognizers>
+                        </ff:CachedImage>-->
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="likeButton" Source="iconmessaging.png" Clicked="OnChatClicked" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                    </StackLayout>
+                    <StackLayout VerticalOptions="Center">
+                        <ImageButton x:Name="superLikeButton" Source="iconlikes.png" Command="{Binding NavigateCommand}" CommandParameter="{x:Type view:Matches}" WidthRequest="50" HeightRequest="50" BackgroundColor="Black" Scale="1" Margin="0,0,0,0"></ImageButton>
+                    </StackLayout>
+                </StackLayout>
+            </StackLayout>
+
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

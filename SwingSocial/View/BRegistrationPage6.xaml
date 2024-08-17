@@ -1,0 +1,112 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SwingSocial.Sample.View.BRegistrationPage6"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:viewmodel="clr-namespace:SwingSocial.Sample.ViewModel"  x:DataType="viewmodel:NewAccountViewModel"            
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"             
+             BackgroundColor="Black"             
+             xmlns:view="clr-namespace:SwingSocial.Sample.View;assembly=SwingSocial.Sample" xmlns:model="clr-namespace:SwingSocial.Sample.Model"
+             xmlns:xlabs="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:htmllabel="clr-namespace:Plugin.HtmlLabel;assembly=Plugin.HtmlLabel"
+             Title ="" Shell.BackgroundColor="Black">
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Margin="10"/>
+
+        </Grid>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout Margin="20" VerticalOptions="FillAndExpand">
+            <AbsoluteLayout VerticalOptions="FillAndExpand">
+                <ScrollView x:Name="MainScroll" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <StackLayout>
+                        <StackLayout VerticalOptions="StartAndExpand" HorizontalOptions="FillAndExpand">
+                            <StackLayout x:Name="stkMain" BackgroundColor="black">
+                                <Label Text="Interested in" TextColor="white" FontSize="16" BackgroundColor="Black" Margin="20,20,0,0" HorizontalOptions="Center"></Label>
+                                <Label HorizontalTextAlignment="Center" HorizontalOptions="Center" Text="What kind of play partners are you interested in?" TextColor="white"></Label>
+                                <!--<Picker Title="Interested in" x:Name="lookingForPicker" BackgroundColor="#5d5a5d"
+        TitleColor="White"
+        TextColor="White"
+        FontAttributes="Italic"
+        FontSize="12"/>-->
+                                <Frame VerticalOptions="Center" Padding="0" Margin="0" HorizontalOptions="FillAndExpand"  BackgroundColor="black" BorderColor="Black" HeightRequest="40" CornerRadius="10">
+                                    <Grid Margin="20,0,20,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                                            <ColumnDefinition Width="4*"></ColumnDefinition>
+                                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label HorizontalOptions="End" VerticalOptions="Center" Text="Males" Grid.Column="1" BackgroundColor="black" TextColor="White" FontSize="16"></Label>
+                                        <CheckBox x:Name="Males" VerticalOptions="Center" Grid.Column="2"></CheckBox>
+                                    </Grid>
+
+                                </Frame>
+                                <Frame VerticalOptions="Center" Padding="2" Margin="0" HorizontalOptions="FillAndExpand"  BackgroundColor="black" BorderColor="Black" HeightRequest="40" CornerRadius="10">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                                            <ColumnDefinition Width="4*"></ColumnDefinition>
+                                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label HorizontalOptions="End" VerticalOptions="Center" Text="Females" Grid.Column="1" BackgroundColor="black" TextColor="White" FontSize="16"></Label>
+                                        <CheckBox x:Name="Females" VerticalOptions="Center" Grid.Column="2"></CheckBox>
+                                    </Grid>
+
+                                </Frame>
+                                <Frame VerticalOptions="Center" Padding="2" Margin="0" HorizontalOptions="FillAndExpand"  BackgroundColor="black" BorderColor="Black" HeightRequest="40" CornerRadius="10">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                                            <ColumnDefinition Width="4*"></ColumnDefinition>
+                                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label HorizontalOptions="End" VerticalOptions="Center" Text="Couples" Grid.Column="1" BackgroundColor="black" TextColor="White" FontSize="16"></Label>
+                                        <CheckBox x:Name="Couples" VerticalOptions="Center" Grid.Column="2"></CheckBox>
+                                    </Grid>
+
+                                </Frame>
+
+
+                                <Frame
+                                            Margin="0"
+       BorderColor="White" BackgroundColor="#c21164"
+       CornerRadius="50"
+       HeightRequest="60"
+                                    Padding="0"
+       WidthRequest="60"
+       IsClippedToBounds="True"
+       HorizontalOptions="Center"
+       VerticalOptions="Center">
+                                    <Button CornerRadius="50" Clicked="GotoBRegistrationPage7_Tapped" Text=">" TextColor="white" FontSize="22" BackgroundColor="#c21164" HorizontalOptions="Center" VerticalOptions="Center" Margin="1">
+                                    </Button>
+                                </Frame>
+                                <!--<Label Text="By Signing up, you agree to our terms and conditions and our privacy policy." TextColor="White"></Label>-->
+                                <StackLayout VerticalOptions="EndAndExpand" Margin="0,50,0,0">
+                                    <Image x:Name="listOfFeaturesPerAccountType" HorizontalOptions="FillAndExpand" Source="hedo3.jpeg" Margin="20"></Image>
+                                    <Label Text="Come party with us" TextColor="#c21164" HorizontalOptions="Center" FontSize="26">
+                                    </Label>
+                                </StackLayout>
+
+                            </StackLayout>
+
+                        </StackLayout>
+                    </StackLayout>                    
+                </ScrollView>
+
+
+            </AbsoluteLayout>            
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

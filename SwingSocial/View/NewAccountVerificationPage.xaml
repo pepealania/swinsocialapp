@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SwingSocial.Sample.View.NewAccountVerificationPage"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms" xmlns:viewmodel="clr-namespace:SwingSocial.Sample.ViewModel"  x:DataType="viewmodel:NewAccountViewModel"            
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"             
+             BackgroundColor="Black"             
+             xmlns:view="clr-namespace:SwingSocial.Sample.View;assembly=SwingSocial.Sample" xmlns:model="clr-namespace:SwingSocial.Sample.Model"
+             xmlns:xlabs="clr-namespace:XLabs.Forms.Controls;assembly=XLabs.Forms"
+             xmlns:htmllabel="clr-namespace:Plugin.HtmlLabel;assembly=Plugin.HtmlLabel"
+             Title ="" Shell.BackgroundColor="Black">
+    <Shell.TitleView>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="thumbnail_logo.png" WidthRequest="205" HeightRequest="45" HorizontalOptions="Center" BackgroundColor="Transparent" Margin="10"/>
+
+        </Grid>
+    </Shell.TitleView>
+    <ContentPage.Content>
+        <StackLayout x:Name="ProfileSection" BackgroundColor="black" Grid.Row="0" WidthRequest="150" HeightRequest="800" IsVisible="true">
+            <ScrollView>
+                <StackLayout>
+                    <AbsoluteLayout x:Name="absLayout">
+                        <AbsoluteLayout x:Name="box" BackgroundColor="White"   WidthRequest="400" HeightRequest="100" >
+                            <Image x:Name="ProfileBanner" BackgroundColor="White"  AbsoluteLayout.LayoutBounds="0,0, 400, 100" 
+            AbsoluteLayout.LayoutFlags="PositionProportional" />
+                            <Frame
+                                            Margin="10"
+       BorderColor="Black"
+       CornerRadius="50"
+       HeightRequest="80"
+       WidthRequest="80"
+       IsClippedToBounds="True"
+       HorizontalOptions="End"
+       VerticalOptions="Center"
+                                                AbsoluteLayout.LayoutBounds="10,50, 100, 100">
+                                <Image x:Name="Avatar"
+                                                   Aspect="AspectFill"
+                                                   Margin="-20"
+         HeightRequest="80"
+         WidthRequest="80" Grid.Row="0" Grid.Column="0" />
+                            </Frame>
+                        </AbsoluteLayout>
+                    </AbsoluteLayout>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="100"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Label BackgroundColor="Black" Grid.Row="0" Grid.Column="0" FontSize="20" FontAttributes="Bold" Margin="20,0,0,0" TextColor="White" VerticalOptions="End">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span x:Name="UserName" TextColor="White" FontSize="20" FontAttributes="Bold" BackgroundColor="Black" Text="House"></Span>
+                                    <Span Text=", "></Span>
+                                    <Span x:Name="Age" TextColor="White" FontSize="20" BackgroundColor="black"></Span>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </Grid>
+                    <Frame CornerRadius="5" BackgroundColor="#121213" x:Name="TagLineIsVisible">
+                        <Label x:Name="Tagline" TextColor="white" FontSize="12"></Label>
+                    </Frame>
+                    <Label BackgroundColor="Black" FontSize="Medium" FontAttributes="Bold" Margin="20,0,0,20" TextColor="White" VerticalOptions="End">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span x:Name="Location" TextColor="#D30CDB" BackgroundColor="Black" FontSize="16"></Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <!--<Grid x:Name="ProfileGrid" Margin="20,0,0,0">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="30">
+                                                    </RowDefinition>
+                                                </Grid.RowDefinitions>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="{Binding LocationLength}"></ColumnDefinition>
+                                                    <ColumnDefinition Width="{Binding AccountTypeLength}"></ColumnDefinition>
+                                                </Grid.ColumnDefinitions>
+                                                <Button Grid.Column="0" FontSize="12"  BackgroundColor="#a13cbb" Text="{Binding Location}" TextColor="White" Padding="0,0,0,0" x:Name="ProfileLocation"></Button>
+                                                <Button Grid.Column="1" FontSize="12" BackgroundColor="#e42977" Text="{Binding AccountType}" TextColor="White" HorizontalOptions="FillAndExpand"  VerticalOptions="CenterAndExpand" Padding="0,0,0,0"></Button>
+
+                                            </Grid>-->
+                    <Frame Padding="2" x:Name="SwingStyleTagsObjectListIsVisible" CornerRadius="10" BackgroundColor="#000000">
+                        <!--<Frame Padding="0" CornerRadius="10" BackgroundColor="#000000">-->
+                        <StackLayout x:Name="SwingStyleTagsObjectList" Orientation="Horizontal">
+                            <!--<Label
+                                                           TextColor="black"
+                                                           Text="one"
+                                                                BackgroundColor="Yellow" WidthRequest="20" Margin="10"
+                                                           />
+                                                <Label
+                                                           TextColor="black"
+                                                           Text="two"
+                                                                BackgroundColor="Yellow" WidthRequest="20" Margin="10"
+                                                           />-->
+                            <!--<CollectionView HeightRequest="400" ItemsSource="{Binding SwingStyleTagsObjectList}">
+                                                    <CollectionView.ItemTemplate >-->
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate x:DataType="model:SwingStyleTagsObject">
+                                    <StackLayout>
+                                        <Grid HorizontalOptions="Center" VerticalOptions="Center">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="25"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="50"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Label HorizontalOptions="Center" VerticalOptions="Center"
+                                                        TextColor="white"
+                                                        x:Name="Description"
+                                                             BackgroundColor="#343A40"
+                                                        />
+                                        </Grid>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+
+                            <!--</CollectionView.ItemTemplate>
+                                                </CollectionView>-->
+
+                        </StackLayout>
+                        <!--</Frame>-->
+                    </Frame>
+                    <StackLayout>
+                        <Image Source="ProfileMockButtons.png" HorizontalOptions="CenterAndExpand"></Image>
+                    </StackLayout>
+                    <Frame Padding="2" CornerRadius="10" BackgroundColor="black" x:Name="AboutIsVisible">
+                        <!--<Frame CornerRadius="10" BackgroundColor="#000000">-->
+                        <StackLayout>
+                            <Label FontSize="16" TextColor="White" Margin="5" BackgroundColor="#000000">About</Label>
+                            <htmllabel:HtmlLabel x:Name="About" TextColor="White"></htmllabel:HtmlLabel>
+                        </StackLayout>
+                        <!--</Frame>-->
+                    </Frame>
+                    <Label Text="Details" FontSize="16" TextColor="#ffffff" Margin="10,20,0,0"></Label>
+                    <WebView x:Name="DetailsHtmlTable" HeightRequest="300" BackgroundColor="Black">
+
+                    </WebView>
+
+
+                </StackLayout>
+
+            </ScrollView>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

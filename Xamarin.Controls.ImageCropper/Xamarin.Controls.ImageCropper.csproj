@@ -1,0 +1,53 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFrameworks>net8.0;net8.0-ios;net8.0-android</TargetFrameworks>
+		<RootNamespace>Controls.ImageCropper</RootNamespace>
+		
+		<EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+		<DebugType>portable</DebugType>
+		<DefineConstants>$(DefineConstants);</DefineConstants>
+
+		<!--When built in 2019 will remove extra references on pack-->
+		<DisableExtraReferences>false</DisableExtraReferences>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+		<Authors>Alex Dobrynin</Authors>
+		<Company />
+		<PackageProjectUrl>https://github.com/Alex-Dobrynin/Xamarin.Controls.ImageCropper</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/Alex-Dobrynin/Xamarin.Controls.ImageCropper.git</RepositoryUrl>
+		<RepositoryType>Git</RepositoryType>
+		<PackageTags>xamarin image cropper crop android ios rotate</PackageTags>
+		<Copyright>2023 Alex Dobrynin</Copyright>
+		<Description>Simple crossplatform Xamarin image cropper</Description>
+		<Version>1.2.3.1</Version>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)'=='Debug' ">
+		<DebugSymbols>true</DebugSymbols>
+		<GenerateDocumentationFile>false</GenerateDocumentationFile>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)'=='Release' ">
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<!-- sourcelink: Declare that the Repository URL can be published to NuSpec -->
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<!-- sourcelink: Embed source files that are not tracked by the source control manager to the PDB -->
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<!-- sourcelink: Include PDB in the built .nupkg -->
+		<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Compile Include="**\Shared\*.cs" />
+	</ItemGroup>
+
+	<ItemGroup Condition=" $(TargetFramework.Contains('android')) ">
+		<Compile Include="**\Android\*.cs" />
+		<PackageReference Include="Com.Vanniktech.AndroidImageCropper.Maui" Version="4.4.0.5" />
+	</ItemGroup>
+
+	<ItemGroup Condition=" $(TargetFramework.Contains('ios')) ">
+		<Compile Include="**\iOS\*.cs" />
+		<PackageReference Include="TOCropView.Maui" Version="2.6.1.7" />
+	</ItemGroup>
+</Project>

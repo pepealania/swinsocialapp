@@ -1,0 +1,144 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--<PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>-->
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="View\MyProfilePage.xaml.cs" />
+    <Compile Remove="View\ProfileEditPage.xaml.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="View\MyProfilePage.xaml" />
+    <EmbeddedResource Remove="View\ProfileEditPage.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="photocamera.png" />
+    <None Remove="wallpaper.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="photocamera.png">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="wallpaper.png">
+      <Generator>MSBuild:UpdateGeneratedFiles</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentFTP" Version="51.0.0" />
+    <PackageReference Include="PCLStorage" Version="1.0.2" />
+    <PackageReference Include="SkiaSharp" Version="2.80.2" />
+    <PackageReference Include="SkiaSharp.Views.Forms" Version="2.80.2" />
+    <PackageReference Include="Syncfusion.Xamarin.SfImageEditor" Version="26.1.35" />
+    <PackageReference Include="System.Text.Json" Version="8.0.3" />
+    <PackageReference Include="Xam.Plugin.HtmlLabel" Version="2.2.0" />
+    <PackageReference Include="Xam.Plugins.Notifier" Version="3.0.1" />
+    <PackageReference Include="Xamarin.CommunityToolkit" Version="1.0.1" />
+    <PackageReference Include="Xamarin.Controls.ImageCropper" Version="1.0.1" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.8.1" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2662" />
+    <PackageReference Include="Xamarin.Forms.GoogleMaps" Version="5.0.0" />
+    <PackageReference Include="Xamarin.Forms.RangeSlider" Version="1.0.2" />
+    <PackageReference Include="Xamarin.Plugin.FilePicker" Version="2.1.41" />
+    <PackageReference Include="XLabs.Forms" Version="2.0.5782" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Calendar.Plugin\CalendarPlugin.csproj" />
+    <ProjectReference Include="..\MLToolkit.Forms.SwipeCardView\MLToolkit.Forms.SwipeCardView.csproj" />
+    <ProjectReference Include="..\PlacesSearchBar\PlacesSearchBar.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Mono.Android">
+      <HintPath>..\..\..\..\..\..\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v13.0\Mono.Android.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="View\RegistrationUploadCrop.xaml.cs">
+      <DependentUpon>RegistrationUploadCrop.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\RegistrationUploadNew.xaml.cs">
+      <DependentUpon>RegistrationUploadNew.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\MyProfileUploadPublicCrop.xaml.cs">
+      <DependentUpon>MyProfileUploadPublicCrop.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\MyProfileUploadPrivateCrop.xaml.cs">
+      <DependentUpon>MyProfileUploadPrivateCrop.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\MyProfileUploadAvatarCrop.xaml.cs">
+      <DependentUpon>MyProfileUploadAvatarCrop.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\MyProfileUploadPublicNew.xaml.cs">
+      <DependentUpon>MyProfileUploadPublicNew.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\MyProfileUploadPrivateNew.xaml.cs">
+      <DependentUpon>MyProfileUploadPrivateNew.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\MyProfileUploadAvatarNew.xaml.cs">
+      <DependentUpon>MyProfileUploadAvatarNew.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\MyProfileUploadProfileBannerNew.xaml.cs">
+      <DependentUpon>MyProfileUploadProfileBannerNew.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\MyProfileUploadProfileBannerCrop.xaml.cs">
+      <DependentUpon>MyProfileUploadProfileBannerCrop.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\ProfilesPageMaybe.xaml.cs">
+      <DependentUpon>ProfilesPageMaybe.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\ProfilesPageFriend.xaml.cs">
+      <DependentUpon>ProfilesPageFriend.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\ProfilesPageDenied.xaml.cs">
+      <DependentUpon>ProfilesPageDenied.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\ProfilesPageChat.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>ProfilesPageChat.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\SwingSocialGateway.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>SwingSocialGateway.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="View\RegistrationUploadCrop.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\MyProfileUploadPublicCrop.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\MyProfileUploadPrivateCrop.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\MyProfileUploadAvatarCrop.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\MyProfileUploadProfileBannerCrop.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\PreviewPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\ProfilesPageChat.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\SwingSocialGateway.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
